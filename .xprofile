@@ -1,0 +1,4 @@
+#!/bin/bash
+cinnamon-session-cinnamon2d &
+gnome-terminal &
+exec bspwm
