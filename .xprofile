@@ -1,4 +1,8 @@
 #!/bin/bash
+#cinnamon-session --session cinnamon &
+eval $(ssh-agent)
 cinnamon-session-cinnamon2d &
+cinnamon-screensaver &
+#polkit-gnome-authentication-agent-1 &
 gnome-terminal &
 exec bspwm
