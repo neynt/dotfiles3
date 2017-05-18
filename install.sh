@@ -9,8 +9,12 @@ echo "sxhkd"
 rm -Ir ~/.config/sxhkd
 ln -s $DIR/.config/sxhkd ~/.config/sxhkd
 
-echo "xprofile"
+echo ".xprofile"
 rm -if ~/.xprofile
 ln -s $DIR/.xprofile ~/.xprofile
+
+echo ".vimrc"
+rm -if ~/.vimrc
+ln -s $DIR/.vimrc ~/.vimrc
 
 echo "done."
