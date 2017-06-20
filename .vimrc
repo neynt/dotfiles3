@@ -34,13 +34,10 @@ colorscheme jellybeans
 
 set hlsearch
 set number
+set relativenumber
 
 " tabs
-set sts=2
-set ts=2
-set sw=2
-set smarttab
-set expandtab
+set ts=2 sts=2 sw=2 smarttab expandtab
 set autoindent
 
 " swap files
@@ -65,6 +62,8 @@ nmap <leader>ne :NERDTreeToggle<cr>
 " Filetype detection, smart plugins and indents
 filetype plugin indent on
 autocmd FileType html setlocal sw=2 ts=2
+
+autocmd FileType go setlocal sw=2 ts=2
 
 " Syntax highlighting
 syntax on

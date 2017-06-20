@@ -3,15 +3,15 @@
 #
 
 # terminal emulator
-alt + Return
+super + Return
 	gnome-terminal
 
 # program launcher
-alt + @space
+super + @space
 	dmenu_run
 
 # make sxhkd reload its configuration files:
-alt + Escape
+super + Escape
 	pkill -USR1 -x sxhkd
 
 # lock screen
@@ -23,22 +23,22 @@ super + shift + l
 #
 
 # quit bspwm normally
-alt + shift + Escape
+super + shift + Escape
 	bspc quit
 
 # close and kill
-alt + {_,shift + }w
+super + {_,shift + }w
 	bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
-alt + m
+super + m
 	bspc desktop -l next
 # if the current node is automatic, send it to the last manual, otherwise pull the last leaf
-alt + y
+super + y
 	bspc query -N -n focused.automatic && bspc node -n last.!automatic || bspc node last.leaf -n focused
 
 # swap the current node and the biggest node
-alt + g
+super + g
 	bspc node -s biggest
 
 #
@@ -46,11 +46,11 @@ alt + g
 #
 
 # set the window state
-alt + {t,shift + t,s,f}
+super + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
-alt + ctrl + {x,y,z}
+super + ctrl + {x,y,z}
 	bspc node -g {locked,sticky,private}
 
 #
@@ -58,27 +58,27 @@ alt + ctrl + {x,y,z}
 #
 
 # focus the node in the given direction
-alt + {_,shift + }{h,j,k,l}
+super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
-alt + {p,b,comma,period}
+super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
-alt + {_,shift + }c
+super + {_,shift + }c
 	bspc node -f {next,prev}.local
 
 # focus the next/previous desktop in the current monitor
-alt + bracket{left,right}
+super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
 # focus the last node/desktop
-alt + {grave,Tab}
+super + {grave,Tab}
 	bspc {node,desktop} -f last
 
 # focus the older or newer node in the focus history
-alt + {o,i}
+super + {o,i}
 	bspc wm -h off; \
 	bspc node {older,newer} -f; \
 	bspc wm -h on
@@ -104,7 +104,7 @@ shift + ctrl + space
 	bspc node -p cancel
 
 # cancel the preselection for the focused desktop
-shift + alt + ctrl + space
+shift + super + ctrl + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 #
@@ -112,13 +112,13 @@ shift + alt + ctrl + space
 #
 
 # expand a window by moving one of its side outward
-ctrl + alt + {h,j,k,l}
+ctrl + super + {h,j,k,l}
 	bspc node -z {left -160 0,bottom 0 160,top 0 -160,right 160 0}
 
 # contract a window by moving one of its side inward
-ctrl + alt + shift + {h,j,k,l}
+ctrl + super + shift + {h,j,k,l}
 	bspc node -z {right -160 0,top 0 160,bottom 0 -160,left 160 0}
 
 # move a floating window
-alt + {Left,Down,Up,Right}
+super + {Left,Down,Up,Right}
 	bspc node -v {-160 0,0 160,0 -160,160 0}
