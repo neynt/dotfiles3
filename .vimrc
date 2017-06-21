@@ -34,7 +34,6 @@ colorscheme jellybeans
 
 set hlsearch
 set number
-set relativenumber
 
 " tabs
 set ts=2 sts=2 sw=2 smarttab expandtab
