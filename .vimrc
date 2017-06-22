@@ -45,6 +45,8 @@ set undodir=~/.vim/undo//,.
 set backupdir=~/.vim/backup//,.
 set backupcopy=yes
 
+set timeoutlen=1000 ttimeoutlen=0
+
 if has("mouse")
   set mouse=a
 endif
