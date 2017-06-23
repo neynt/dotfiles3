@@ -17,4 +17,8 @@ echo ".vimrc"
 rm -if ~/.vimrc
 ln -s $DIR/.vimrc ~/.vimrc
 
+echo ".tmux.conf"
+rm -if ~/.tmux.conf
+ln -s $DIR/.tmux.conf ~/.tmux.conf
+
 echo "done."
