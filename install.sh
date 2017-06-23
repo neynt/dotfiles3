@@ -1,24 +1,28 @@
 #!/bin/bash
+set -e
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-echo "bspwm"
-rm -Ir ~/.config/bspwm
-ln -s $DIR/.config/bspwm ~/.config/bspwm
+if [ "$#" -eq 0 ]; then
+  echo "Usage: ./install.sh FILES_OR_DIRS" >&2
+  exit 1
+fi
 
-echo "sxhkd"
-rm -Ir ~/.config/sxhkd
-ln -s $DIR/.config/sxhkd ~/.config/sxhkd
+for filename in "$@"; do
+  ln_target="$DIR/$filename"
+  ln_source="$HOME/$filename"
 
-echo ".xprofile"
-rm -if ~/.xprofile
-ln -s $DIR/.xprofile ~/.xprofile
+  # Remove slash at end of directory, so rm -rf doesn't recurse into the real
+  # files
+  ln_source=${ln_source%/}
 
-echo ".vimrc"
-rm -if ~/.vimrc
-ln -s $DIR/.vimrc ~/.vimrc
-
-echo ".tmux.conf"
-rm -if ~/.tmux.conf
-ln -s $DIR/.tmux.conf ~/.tmux.conf
-
-echo "done."
+  if [[ -d "$ln_target" ]]; then
+    rm -rf -i $ln_source
+    ln -s $ln_target $ln_source
+  elif [[ -f "$ln_target" ]]; then
+    rm -f -i $ln_source
+    ln -s $ln_target $ln_source
+  else
+    echo "$filename is not a file or directory" >&2
+  fi
+done
