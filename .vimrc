@@ -6,6 +6,9 @@ if !has('nvim')
 endif
 Plug 'scrooloose/nerdtree'
 Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'vim-syntastic/syntastic'
 if filereadable(expand('~/.vimrc.work'))
   " work
   source ~/.vimrc.work
@@ -28,6 +31,9 @@ end
 call plug#end()
 
 let mapleader = ","
+let g:UltiSnipsExpandTrigger = "<c-j>"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 
 colorscheme SerialExperimentsLain
 colorscheme jellybeans
