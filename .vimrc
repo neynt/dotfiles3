@@ -9,6 +9,7 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'vim-syntastic/syntastic'
+Plug 'ctrlpvim/ctrlp.vim'
 if filereadable(expand('~/.vimrc.work'))
   " work
   source ~/.vimrc.work
