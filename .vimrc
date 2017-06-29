@@ -14,6 +14,7 @@ if filereadable(expand('~/.vimrc.work'))
   " work
   source ~/.vimrc.work
 else
+  Plug 'Chiel92/vim-autoformat'
   Plug 'Valloric/YouCompleteMe'
   " git integration
   Plug 'tpope/vim-fugitive'
@@ -35,6 +36,7 @@ let mapleader = ","
 let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+let g:syntastic_mode_map = { 'mode': 'passive' }
 
 colorscheme SerialExperimentsLain
 colorscheme jellybeans
@@ -70,8 +72,8 @@ nmap <leader>ne :NERDTreeToggle<cr>
 " Filetype detection, smart plugins and indents
 filetype plugin indent on
 autocmd FileType html setlocal sw=2 ts=2
-
 autocmd FileType go setlocal sw=2 ts=2
+autocmd FileType vue syntax sync fromstart
 
 " Syntax highlighting
 syntax on
