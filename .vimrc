@@ -23,7 +23,6 @@ else
   Plug 'rust-lang/rust.vim'
   Plug 'kchmck/vim-coffee-script'
   Plug 'gkz/vim-ls'
-  Plug 'elixir-lang/vim-elixir'
   Plug 'petRUShka/vim-sage'
   Plug 'rhysd/vim-crystal'
   Plug 'posva/vim-vue'
@@ -32,6 +31,7 @@ else
   " elixir semantics
   Plug 'slashmili/alchemist.vim'
 end
+Plug 'elixir-lang/vim-elixir'
 call plug#end()
 
 let mapleader = ","
@@ -40,7 +40,7 @@ let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 let g:syntastic_mode_map = { 'mode': 'passive' }
 let g:ctrlp_cmd = 'CtrlPBuffer'
-"let NERDTreeQuitOnOpen = 1
+let NERDTreeQuitOnOpen = 1
 
 colorscheme SerialExperimentsLain
 colorscheme jellybeans
