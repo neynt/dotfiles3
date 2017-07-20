@@ -26,6 +26,7 @@ else
   Plug 'petRUShka/vim-sage'
   Plug 'rhysd/vim-crystal'
   Plug 'posva/vim-vue'
+  Plug 'digitaltoad/vim-pug'
   " clojure repl
   Plug 'tpope/vim-fireplace'
   " elixir semantics
