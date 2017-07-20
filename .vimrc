@@ -27,6 +27,8 @@ else
   Plug 'petRUShka/vim-sage'
   Plug 'rhysd/vim-crystal'
   Plug 'posva/vim-vue'
+  " clojure repl
+  Plug 'tpope/vim-fireplace'
   " elixir semantics
   Plug 'slashmili/alchemist.vim'
 end
@@ -37,6 +39,8 @@ let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 let g:syntastic_mode_map = { 'mode': 'passive' }
+let g:ctrlp_cmd = 'CtrlPBuffer'
+"let NERDTreeQuitOnOpen = 1
 
 colorscheme SerialExperimentsLain
 colorscheme jellybeans
@@ -62,8 +66,8 @@ endif
 
 " make gvim pretty
 if has("gui_running")
-  set guifont=Source\ Code\ Pro\ Semibold\ 10.5
-  set guioptions=aeigtm
+  set guifont=Fira\ Mono\ 8.5
+  set guioptions=aeigt
 endif
 
 " NERDTree toggle

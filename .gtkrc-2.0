@@ -1,0 +1,5 @@
+# Fixes white borders on gvim when using tiling WM
+style "vimfix" {
+  bg[NORMAL] = "#000000"
+}
+widget "vim-main-window.*GtkForm" style "vimfix"
