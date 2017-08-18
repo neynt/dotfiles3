@@ -33,6 +33,11 @@ else
   Plug 'slashmili/alchemist.vim'
 end
 Plug 'elixir-lang/vim-elixir'
+Plug 'JuliaEditorSupport/julia-vim'
+
+" colorscheme
+Plug 'morhetz/gruvbox'
+Plug 'tomasr/molokai'
 call plug#end()
 
 let mapleader = ","
@@ -43,8 +48,10 @@ let g:syntastic_mode_map = { 'mode': 'passive' }
 let g:ctrlp_cmd = 'CtrlPBuffer'
 let NERDTreeQuitOnOpen = 1
 
-colorscheme SerialExperimentsLain
+colorscheme SerialExperimentsLain  " this is needed, trust me
 colorscheme jellybeans
+"let g:gruvbox_contrast_dark = "hard"
+"colorscheme gruvbox
 
 set hlsearch
 set number
