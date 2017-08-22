@@ -1,0 +1,17 @@
+prompt_neynt_setup() {
+  PROMPT="${prompt_newline}"
+  # user@host:/dir
+  PROMPT+="%F{cyan}%n%f"
+  PROMPT+="%F{white}@%f"
+  PROMPT+="%F{green}%m%f"
+  PROMPT+="%F{black}:%f"
+  PROMPT+="%F{yellow}%~%f"
+  # Current time
+  PROMPT+=" [%*]"
+  # Exit code if nonzero
+  PROMPT+="%(?,, ?:%F{red}%?%f)"
+  PROMPT+="${prompt_newline}"
+  # Prompt char
+  PROMPT+="%F{red}$%f "
+}
+prompt_neynt_setup "$@"

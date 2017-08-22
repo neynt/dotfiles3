@@ -1,21 +1,28 @@
-# Set up the prompt
+# Muh fpath
+fpath=( "$HOME/.zsh" $fpath )
+
+# Prompt
 autoload -Uz promptinit
 promptinit
-prompt adam1
+prompt neynt
 
-setopt histignorealldups sharehistory
+# Completion
+autoload -Uz compinit
+compinit
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
+
+alias ls="ls --color"
+alias grep="grep --color"
+alias tmux="tmux -2"
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-# Use modern completion system
-autoload -Uz compinit
-compinit
+setopt histignorealldups sharehistory
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -34,10 +41,6 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-
-alias ls="ls --color"
-alias grep="grep --color"
-alias tmux="tmux -2"
 
 if [[ -f ~/.zshrc.work ]]; then
   source ~/.zshrc.work

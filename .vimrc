@@ -35,7 +35,7 @@ end
 Plug 'elixir-lang/vim-elixir'
 Plug 'JuliaEditorSupport/julia-vim'
 
-" colorscheme
+" colors
 Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
 call plug#end()
@@ -47,11 +47,13 @@ let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 let g:syntastic_mode_map = { 'mode': 'passive' }
 let g:ctrlp_cmd = 'CtrlPBuffer'
 let NERDTreeQuitOnOpen = 1
-
-colorscheme SerialExperimentsLain  " this is needed, trust me
-colorscheme jellybeans
 "let g:gruvbox_contrast_dark = "hard"
-"colorscheme gruvbox
+
+" Key mapping
+nnoremap <space> <nop>
+nnoremap <leader>ne :NERDTreeToggle<cr>
+nnoremap <leader>ev :e $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 set hlsearch
 set number
@@ -65,7 +67,6 @@ set dir=~/.vim/tmp//,.
 set undodir=~/.vim/undo//,.
 set backupdir=~/.vim/backup//,.
 set backupcopy=yes
-
 set timeoutlen=1000 ttimeoutlen=0
 
 if has("mouse")
@@ -78,14 +79,15 @@ if has("gui_running")
   set guioptions=aeigt
 endif
 
-" NERDTree toggle
-nmap <leader>ne :NERDTreeToggle<cr>
-
 " Filetype detection, smart plugins and indents
 filetype plugin indent on
 autocmd FileType html setlocal sw=2 ts=2
 autocmd FileType go setlocal sw=2 ts=2
 autocmd FileType vue syntax sync fromstart
+
+colorscheme SerialExperimentsLain  " this is needed, trust me
+colorscheme jellybeans
+"colorscheme gruvbox
 
 " Syntax highlighting
 syntax on
