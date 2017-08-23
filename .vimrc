@@ -16,6 +16,7 @@ if filereadable(expand('~/.vimrc.work'))
 else
   Plug 'Chiel92/vim-autoformat'
   Plug 'Valloric/YouCompleteMe'
+  Plug 'tpope/vim-sleuth'
   " git integration
   Plug 'tpope/vim-fugitive'
   "Plug 'airblade/vim-gitgutter'
@@ -78,7 +79,7 @@ endif
 
 " make gvim pretty
 if has("gui_running")
-  set guifont=Fira\ Mono\ 8.5
+  set guifont=Fira\ Mono\ 9
   set guioptions=aeigt
 endif
 
@@ -86,7 +87,7 @@ endif
 filetype plugin indent on
 autocmd FileType html setlocal sw=2 ts=2
 autocmd FileType go setlocal sw=2 ts=2
-autocmd FileType vue syntax sync fromstart
+autocmd BufEnter *.vue syntax sync fromstart
 
 colorscheme SerialExperimentsLain  " this is needed, trust me
 colorscheme jellybeans
