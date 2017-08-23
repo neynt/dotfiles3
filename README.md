@@ -2,18 +2,25 @@
 
 Dotfiles that I can take anywhere.
 
-Files in this directory should be placed relative to ~.
+### Installing
 
-To install a file or directory:
+To symlink a file or directory to this repo's directory:
 
 ```
 $ ./install.sh .vimrc
 $ ./install.sh .vim/colors
 ```
 
-To take control of an existing file or directory:
+You will be asked before the script tries to delete any files that already
+exist.
+
+### Tracking new config files
+
+To copy an existing file or directory to the repo:
 
 ```
 $ ./take.sh ~/.vimrc
 $ ./take.sh ~/.vim/colors
 ```
+
+Then, use `install.sh` to symlink the original files.

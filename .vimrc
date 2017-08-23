@@ -55,6 +55,9 @@ nnoremap <leader>ne :NERDTreeToggle<cr>
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
+" modeline
+set modeline
+
 set hlsearch
 set number
 
