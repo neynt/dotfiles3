@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=false
 ColorScheme=tinted
-Font=Fira Code,9,-1,5,25,0,0,0,0,0
+Font=Fira Code,10.5,-1,5,25,0,0,0,0,0
 UseFontLineChararacters=false
 
 [Cursor Options]
@@ -21,4 +21,4 @@ HistoryMode=1
 ScrollBarPosition=2
 
 [Terminal Features]
-BlinkingCursorEnabled=1
+BlinkingCursorEnabled=true
