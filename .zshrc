@@ -1,29 +1,24 @@
 # Muh fpath
 fpath=( "$HOME/.zsh" $fpath )
 
+export PATH=~/bin:$PATH
+export EDITOR=vim
+export BROWSER=chromium
+
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+
+alias ls="ls --color"
+alias grep="grep --color"
+alias tmux="tmux -2"
+
 # Prompt
 autoload -Uz promptinit
 promptinit
 prompt neynt
 
 # Completion
-autoload -Uz compinit
-compinit
-
-# Use emacs keybindings even if our EDITOR is set to vi
-bindkey -e
-
-alias ls="ls --color"
-alias grep="grep --color"
-alias tmux="tmux -2"
-
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
-HISTFILE=~/.zsh_history
-
-setopt histignorealldups sharehistory
-
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
@@ -38,9 +33,14 @@ zstyle ':completion:*' menu select=long
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
-
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+autoload -Uz compinit
+compinit
+# Use emacs keybindings even if our EDITOR is set to vi
+bindkey -e
+
+setopt histignorealldups sharehistory
 
 if [[ -f ~/.zshrc.work ]]; then
   source ~/.zshrc.work
