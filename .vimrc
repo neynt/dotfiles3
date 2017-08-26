@@ -47,6 +47,9 @@ let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 let g:syntastic_mode_map = { 'mode': 'passive' }
 let g:ctrlp_cmd = 'CtrlPBuffer'
+let g:jellybeans_overrides = {}
+let g:jellybeans_overrides["background"] = {}
+let g:jellybeans_overrides["background"]["256ctermbg"] = "none"
 let NERDTreeQuitOnOpen = 1
 "let g:gruvbox_contrast_dark = "hard"
 
