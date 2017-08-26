@@ -17,11 +17,13 @@ for filename in "$@"; do
   ln_source=${ln_source%/}
 
   if [[ -d "$ln_target" ]]; then
-    rm -rf -i $ln_source
+    rm -rf -i $ln_source || true
     ln -s $ln_target $ln_source
+    echo "linked $ln_source -> $ln_target (directory)"
   elif [[ -f "$ln_target" ]]; then
-    rm -f -i $ln_source
+    rm -f -i $ln_source || true
     ln -s $ln_target $ln_source
+    echo "linked $ln_source -> $ln_target (file)"
   else
     echo "$filename is not a file or directory" >&2
   fi
