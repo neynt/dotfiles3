@@ -26,7 +26,7 @@ else
   Plug 'gkz/vim-ls'
   Plug 'petRUShka/vim-sage'
   Plug 'rhysd/vim-crystal'
-  Plug 'posva/vim-vue'
+  Plug 'neynt/vim-vue'
   Plug 'digitaltoad/vim-pug'
   " clojure repl
   Plug 'tpope/vim-fireplace'
