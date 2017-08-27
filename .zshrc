@@ -37,7 +37,6 @@ bindkey "${terminfo[kend]}"  end-of-line
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 
-. /etc/profile.d/vte.sh
 eval `dircolors -b ~/.dir_colors`
 
 # Completion
