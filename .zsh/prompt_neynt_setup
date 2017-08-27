@@ -9,7 +9,7 @@ prompt_neynt_setup() {
   PROMPT+="%B%F{yellow}%~%f%b"  # /dir
   PROMPT+="%b"
   # Current time
-  PROMPT+=" [%*]"
+  PROMPT+=" %F{white}[%*]%f"
   # Exit code if nonzero
   PROMPT+="%(?,, %F{red}%?%f)"
   PROMPT+="${prompt_newline}"
