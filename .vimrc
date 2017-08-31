@@ -11,31 +11,25 @@ Plug 'honza/vim-snippets'
 Plug 'vim-syntastic/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
 if filereadable(expand('~/.vimrc.work'))
-  " work
   source ~/.vimrc.work
 else
   Plug 'Chiel92/vim-autoformat'
   Plug 'Valloric/YouCompleteMe'
-  Plug 'tpope/vim-sleuth'
-  " git integration
-  Plug 'tpope/vim-fugitive'
-  "Plug 'airblade/vim-gitgutter'
-  " languages
-  Plug 'rust-lang/rust.vim'
-  Plug 'kchmck/vim-coffee-script'
-  Plug 'gkz/vim-ls'
-  Plug 'petRUShka/vim-sage'
-  Plug 'rhysd/vim-crystal'
-  Plug 'neynt/vim-vue'
-  Plug 'digitaltoad/vim-pug'
-  " clojure repl
-  Plug 'tpope/vim-fireplace'
-  " elixir semantics
-  Plug 'slashmili/alchemist.vim'
+  Plug 'tpope/vim-sleuth'  " detect indentation
+  Plug 'tpope/vim-fugitive'  " git integration
+  Plug 'tpope/vim-fireplace'  " clojure repl
+  Plug 'slashmili/alchemist.vim'  " elixir semantics
 end
+" languages
+Plug 'rust-lang/rust.vim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'gkz/vim-ls'
+Plug 'petRUShka/vim-sage'
+Plug 'rhysd/vim-crystal'
+Plug 'neynt/vim-vue'
+Plug 'digitaltoad/vim-pug'
 Plug 'elixir-lang/vim-elixir'
 Plug 'JuliaEditorSupport/julia-vim'
-
 " colors
 Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
@@ -51,7 +45,7 @@ let g:jellybeans_overrides = {}
 let g:jellybeans_overrides["background"] = {}
 let g:jellybeans_overrides["background"]["256ctermbg"] = "none"
 let NERDTreeQuitOnOpen = 1
-"let g:gruvbox_contrast_dark = "hard"
+let g:gruvbox_contrast_dark = "hard"
 
 " Key mapping
 nnoremap <space> <nop>

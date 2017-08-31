@@ -1,8 +1,11 @@
 # Muh fpath
 fpath=( "$HOME/.zsh" $fpath )
 
-export PATH=~/bin:$PATH
+export GOPATH=~/go
+export PATH="$PATH:$GOPATH/bin"
+export PATH=$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
 export PATH=~/.npm-global/bin:$PATH
+export PATH=~/bin:$PATH
 export EDITOR=vim
 export BROWSER=chromium
 
