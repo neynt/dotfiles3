@@ -4,7 +4,7 @@ Dotfiles that I can take anywhere.
 
 ### Installing
 
-To symlink a file or directory to this repo's directory:
+`install.sh` lets you symlink a single dotfile at a time.
 
 ```
 $ ./install.sh .vimrc
@@ -16,11 +16,11 @@ exist.
 
 ### Tracking new config files
 
-To copy an existing file or directory to the repo:
+To copy an existing file or directory to this repo:
 
 ```
 $ ./take.sh ~/.vimrc
 $ ./take.sh ~/.vim/colors
 ```
 
-Then, use `install.sh` to symlink the original files.
+Then, use `install.sh` to replace the original files with a symlink.
