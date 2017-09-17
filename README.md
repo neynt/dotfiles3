@@ -24,3 +24,18 @@ $ ./take.sh ~/.vim/colors
 ```
 
 Then, use `install.sh` to replace the original files with a symlink.
+
+## Other configuration
+
+### GNOME shell extensions
+
+- Activities configurator
+- Alternatetab
+- Disable workspace switcher popup
+- Impatience
+- Launch new instance
+- Native window placement
+- Status area horizontal spacing
+- Topicons plus
+- User themes
+- Shellshape

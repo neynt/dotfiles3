@@ -1,11 +1,11 @@
 [Background]
-Color=23,24,26
+Color=23,26,33
 
 [BackgroundFaint]
-Color=23,24,26
+Color=23,26,33
 
 [BackgroundIntense]
-Color=28,32,41
+Color=18,19,22
 
 [Color0]
 Color=0,0,0
@@ -86,7 +86,7 @@ Color=233,233,233
 Color=233,233,233
 
 [ForegroundIntense]
-Color=233,233,233
+Color=255,255,255
 
 [General]
 Description=Tinted

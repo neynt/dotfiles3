@@ -6,8 +6,10 @@ export PATH="$PATH:$GOPATH/bin"
 export PATH=$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
 export PATH=~/.npm-global/bin:$PATH
 export PATH=~/bin:$PATH
+export ANDROID_HOME=/opt/android-sdk
 export EDITOR=vim
 export BROWSER=chromium
+. ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
@@ -16,6 +18,7 @@ SAVEHIST=1000
 alias ls="ls -F --color=auto"
 alias grep="grep --color=auto"
 alias tmux="tmux -2"
+alias diff="colordiff"
 
 # Prompt
 autoload -Uz promptinit

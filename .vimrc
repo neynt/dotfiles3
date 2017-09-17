@@ -8,7 +8,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
 if filereadable(expand('~/.vimrc.work'))
   source ~/.vimrc.work
@@ -39,13 +39,14 @@ let mapleader = ","
 let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
-let g:syntastic_mode_map = { 'mode': 'passive' }
+"let g:syntastic_mode_map = { 'mode': 'passive' }
 let g:ctrlp_cmd = 'CtrlPBuffer'
 let g:jellybeans_overrides = {}
 let g:jellybeans_overrides["background"] = {}
 let g:jellybeans_overrides["background"]["256ctermbg"] = "none"
 let NERDTreeQuitOnOpen = 1
 let g:gruvbox_contrast_dark = "hard"
+let g:ycm_global_ycm_extra_conf = "/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
 
 " Key mapping
 nnoremap <space> <nop>
