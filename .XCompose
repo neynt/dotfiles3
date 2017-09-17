@@ -1,0 +1,33 @@
+include "/usr/share/X11/locale/en_US.UTF-8/Compose"
+
+# Kawaii
+<Multi_key> <minus> <asciitilde>        : "⁓" U2053 # SWUNG DASH
+
+# Math
+<Multi_key> <s> <q>                     : "√"  U221A    # SQUARE ROOT
+<Multi_key> <3> <s> <q>                 : "∛"  U221B          # CUBE ROOT
+<Multi_key> <4> <s> <q>                 : "∜"  U221C    # FOURTH ROOT
+<Multi_key> <i> <n> <f>                 : "∞"
+<Multi_key> <asterisk> <x>              : "⨯"  U2A2F            # CROSS PRODUCT
+<Multi_key> <asterisk> <period>         : "⋅"  U22C5            # DOT OPERATOR (dot product)
+<Multi_key> <d> <e> <l>                 : "∇" U2207         # NABLA
+<Multi_key> <p> <a> <r> <t>             : "∂" U2202   # PARTIAL DIFFERENTIAL
+
+# Math greek
+<Multi_key> <p> <i>                     : "π" U03C0  # GREEK SMALL LETTER PI
+
+# Math integrals
+<Multi_key> <i> <n> <t>                 : "∫" U222B   # INTEGRAL
+<Multi_key> <u> <i> <n> <t>             : "⨛" U2A1B   # UPPER INTEGRAL
+<Multi_key> <l> <i> <n> <t>             : "⨜" U2A1C   # LOWER INTEGRAL
+<Multi_key> <i> <i> <n> <t>             : "∬" U222C   # DOUBLE INTEGRAL
+<Multi_key> <i> <i> <i> <n> <t>         : "∭" U222D   # TRIPLE INTEGRAL
+<Multi_key> <i> <i> <i> <i> <n> <t>     : "⨌" U2A0C   # QUADRUPLE INTEGRAL
+
+# Math sets
+<Multi_key> <bar> <C>                   : "ℂ"   U2102   # DOUBLE-STRUCK CAPITAL C (set of complex numbers) (INTENTIONAL CONFLICT)
+<Multi_key> <bar> <N>                   : "ℕ"   U2115   # DOUBLE-STRUCK CAPITAL N (natural number)
+<Multi_key> <bar> <P>                   : "ℙ"   U2119   # DOUBLE-STRUCK CAPITAL P 
+<Multi_key> <bar> <Q>                   : "ℚ"   U211A   # DOUBLE-STRUCK CAPITAL Q (set of rational numbers)
+<Multi_key> <bar> <R>                   : "ℝ"   U211D   # DOUBLE-STRUCK CAPITAL R (set of real numbers)
+<Multi_key> <bar> <Z>                   : "ℤ"   U2124   # DOUBLE-STRUCK CAPITAL Z (set of integers)
