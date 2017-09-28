@@ -30,6 +30,7 @@ Plug 'neynt/vim-vue'
 Plug 'digitaltoad/vim-pug'
 Plug 'elixir-lang/vim-elixir'
 Plug 'JuliaEditorSupport/julia-vim'
+Plug 'flxf/uCpp.vim'
 " colors
 Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'

@@ -19,6 +19,8 @@ alias ls="ls -F --color=auto"
 alias grep="grep --color=auto"
 alias tmux="tmux -2"
 alias diff="colordiff"
+alias sshcs="ssh -Y z394zhan@cslinux"
+alias moshcs="mosh z394zhan@cslinux"
 
 # Prompt
 autoload -Uz promptinit
