@@ -14,7 +14,7 @@ if filereadable(expand('~/.vimrc.work'))
   source ~/.vimrc.work
 else
   Plug 'Chiel92/vim-autoformat'
-  Plug 'Valloric/YouCompleteMe'
+  "Plug 'Valloric/YouCompleteMe'
   Plug 'tpope/vim-sleuth'  " detect indentation
   Plug 'tpope/vim-fugitive'  " git integration
   Plug 'tpope/vim-fireplace'  " clojure repl
