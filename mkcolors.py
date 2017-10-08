@@ -17,6 +17,13 @@ colors = {
     'color7': ['#b0b0b0', '#ffffff'], # White
 }
 
+paths = [
+    '.*.tmpl',
+    '.config/**/*.tmpl',
+    '.local/**/*.tmpl',
+    '**/*.tmpl',
+]
+
 def hex2rgb(hex_color):
     rx, gx, bx = (hex_color[1:3], hex_color[3:5], hex_color[5:7])
     return int(rx, 16), int(gx, 16), int(bx, 16)
@@ -41,11 +48,10 @@ for color_name, rgb in colors_flat_rgb.items():
 
 # Apply the templates to all .tmpl files!
 filenames = itertools.chain(
-    glob.iglob('.config/**/*.tmpl', recursive=True),
-    glob.iglob('.local/**/*.tmpl', recursive=True),
-    glob.iglob('**/*.tmpl', recursive=True))
+        *[glob.iglob(path, recursive=True) for path in paths])
 for filename in filenames:
-    new_filename = os.path.splitext(filename)[0] + '.tmpld'
+    print(filename)
+    new_filename = os.path.splitext(filename)[0]
     tmpl = string.Template(open(filename).read())
     new_content = tmpl.substitute(tmpl_subs)
     open(new_filename, 'w').write(new_content)
