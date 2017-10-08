@@ -1,11 +1,14 @@
 [Background]
-Color=23,26,33
+Color=17,17,17
+MaxRandomHue=0
+MaxRandomSaturation=0
+MaxRandomValue=0
 
 [BackgroundFaint]
-Color=23,26,33
+Color=17,17,17
 
 [BackgroundIntense]
-Color=18,19,22
+Color=17,17,17
 
 [Color0]
 Color=0,0,0

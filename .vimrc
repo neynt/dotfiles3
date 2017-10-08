@@ -65,6 +65,8 @@ set number
 set ts=2 sts=2 sw=2 smarttab expandtab
 set autoindent
 
+set fillchars+=vert:\ 
+
 " swap files
 set dir=~/.vim/tmp//,.
 set undodir=~/.vim/undo//,.

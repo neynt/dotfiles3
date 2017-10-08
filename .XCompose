@@ -35,3 +35,13 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <bar> <Q>                   : "ℚ"   U211A   # DOUBLE-STRUCK CAPITAL Q (set of rational numbers)
 <Multi_key> <bar> <R>                   : "ℝ"   U211D   # DOUBLE-STRUCK CAPITAL R (set of real numbers)
 <Multi_key> <bar> <Z>                   : "ℤ"   U2124   # DOUBLE-STRUCK CAPITAL Z (set of integers)
+
+# Logic
+<Multi_key> <n> <o> <t>                 : "¬"   UAC     # NOT
+<Multi_key> <A> <A>                     : "∀"   U2200   # FOR ALL
+<Multi_key> <E> <E>                     : "∃"   U2203   # THERE EXISTS
+<Multi_key> <l> <a> <n> <d>             : "∧"   U2227   # LOGICAL AND
+<Multi_key> <l> <o> <r>                 : "∨"   U2228   # LOGICAL OR
+<Multi_key> <bar> <minus>               : "⊦"   U22A6   # ASSERTION
+<Multi_key> <bar> <equal>               : "⊧"   U22A8   # MODELS
+<Multi_key> <bar> <greater>             : "▷"   U25B7   # WHITE RIGHT-POINTING TRIANGLE
