@@ -18,6 +18,7 @@ for filename in "$@"; do
 
   if [[ -d "$ln_target" ]]; then
     rm -rf -i $ln_source || true
+    mkdir -p "$(basename $ln_target)"
     ln -s $ln_target $ln_source
     echo "linked $ln_source -> $ln_target (directory)"
   elif [[ -f "$ln_target" ]]; then

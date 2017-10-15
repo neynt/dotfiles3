@@ -45,3 +45,5 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <bar> <minus>               : "⊦"   U22A6   # ASSERTION
 <Multi_key> <bar> <equal>               : "⊧"   U22A8   # MODELS
 <Multi_key> <bar> <greater>             : "▷"   U25B7   # WHITE RIGHT-POINTING TRIANGLE
+<Multi_key> <l> <i> <n>                 : "∈"   U2208   # ELEMENT OF
+<Multi_key> <exclam> <l> <i> <n>        : "∉"   U2209   # NOT AN ELEMENT OF

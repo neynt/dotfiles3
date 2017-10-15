@@ -1,20 +1,30 @@
 #!/usr/bin/python3
+# Searches paths for .tmpl files and substitutes the correct colours.
 import glob
 import itertools
 import string
 import os
 
+# List of all color template strings available:
+# ${COLOR}_hex: e.g. #ff0000
+# ${COLOR}_csv: e.g. 255,0,0
+#
+# ${COLOR} is a key in the colors dict.
+# Append _bright to the key for the bright variant of the color, e.g.
+# color1_bright_hex is the hex for bright red.
+
 colors = {
-    'background': ['#111111', '#111111'],
+    # Color name    Normal     Bright
+    'background': ['#191919', '#191919'],
     'foreground': ['#e9e9e9', '#ffffff'],
-    'color0': ['#222222', '#5d5d5d'], # Black
-    'color1': ['#c75646', '#e09690'], # Red
-    'color2': ['#8eb33b', '#cdee69'], # Green
-    'color3': ['#d0b03c', '#ffe377'], # Yellow
-    'color4': ['#72b3cc', '#9cd9f0'], # Blue
-    'color5': ['#c8a0d1', '#fbb1f9'], # Purple
-    'color6': ['#218693', '#77dfd8'], # Cyan
-    'color7': ['#b0b0b0', '#ffffff'], # White
+    'color0':     ['#222222', '#5d5d5d'], # Black
+    'color1':     ['#c75646', '#e09690'], # Red
+    'color2':     ['#8eb33b', '#cdee69'], # Green
+    'color3':     ['#d0b03c', '#ffe377'], # Yellow
+    'color4':     ['#72b3cc', '#9cd9f0'], # Blue
+    'color5':     ['#c8a0d1', '#fbb1f9'], # Purple
+    'color6':     ['#218693', '#77dfd8'], # Cyan
+    'color7':     ['#b0b0b0', '#ffffff'], # White
 }
 
 paths = [

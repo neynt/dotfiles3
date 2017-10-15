@@ -3,7 +3,7 @@ fpath=( "$HOME/.zsh" $fpath )
 
 export GOPATH=~/go
 export PATH="$PATH:$GOPATH/bin"
-export PATH=$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
+type ruby > /dev/null && export PATH=$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
 export PATH=~/.npm-global/bin:$PATH
 export PATH=~/bin:$PATH
 export ANDROID_HOME=/opt/android-sdk
