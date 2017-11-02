@@ -15,7 +15,7 @@ import os
 
 colors = {
     # Color name    Normal     Bright
-    'background': ['#191919', '#191919'],
+    'background': ['#000000', '#000000'],
     'foreground': ['#e9e9e9', '#ffffff'],
     'color0':     ['#222222', '#5d5d5d'], # Black
     'color1':     ['#c75646', '#e09690'], # Red

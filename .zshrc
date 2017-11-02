@@ -21,6 +21,7 @@ alias tmux="tmux -2"
 alias diff="colordiff"
 function ssht() { ssh -t $@ "tmux attach || tmux new" }
 function sshcs() { ssht -Y z394zhan@cslinux }
+function mypandoc() { pandoc -V geometry:margin=1in $@ }
 
 # Prompt
 autoload -Uz promptinit
