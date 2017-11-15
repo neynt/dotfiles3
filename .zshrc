@@ -19,8 +19,10 @@ alias ls="ls -F --color=auto"
 alias grep="grep --color=auto"
 alias tmux="tmux -2"
 alias diff="colordiff"
+alias ..="cd .."
+alias ...="cd ../.."
 function ssht() { ssh -t $@ "tmux attach || tmux new" }
-function sshcs() { ssht -Y z394zhan@cslinux }
+function sshcs() { ssht -Y z394zhan@ubuntu1604-002.student.cs.uwaterloo.ca }
 function mypandoc() { pandoc -V geometry:margin=1in $@ }
 
 # Prompt

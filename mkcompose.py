@@ -14,6 +14,8 @@ _ underscore
 | bar
 ~ asciitilde
 \ backslash
+( parenleft
+) parenright
 """.strip().splitlines()])
 
 def pairs(data):
@@ -57,6 +59,8 @@ lor      ∨
 |>       ▷
 lin      ∈
 !lin     ∉
+(_       ⊆
+((       ⊂
 """)
 
 # Greek letters
@@ -114,6 +118,6 @@ macros += pairs("""
 print('include "/usr/share/X11/locale/en_US.UTF-8/Compose"')
 for seq, char in macros:
     seq_codes = ['Multi_key'] + [keynames.get(c, c) for c in seq]
-    xcmp_seq = ' '.join('<%s>' % s for s in seq_codes)
+    xcmp_seq = ' '.join('<%s>' % s for s in seq_codes[:5])
     unicode_name = unicodedata.name(char)
     print('%-40s: "%c" U%s  # %s' % (xcmp_seq, char, hex(ord(char))[2:].upper(), unicode_name))
