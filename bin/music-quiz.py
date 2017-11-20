@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Test song recognition starting at random points.
+# Test song recognition starting at random times.
 # Run from a directory that contains only the desired sound files.
 
 import math
@@ -7,6 +7,9 @@ import os
 import glob
 import subprocess
 import random
+
+# Seconds to play per song
+SAMPLE_LENGTH = 1
 
 FNULL = open(os.devnull, 'w')
 all_songs = glob.glob('*')
@@ -32,8 +35,8 @@ while True:
         break
     song = songs_cur.pop()
     try:
-        start_time = random.randint(1, song_length[song] - 11)
-        end_time = start_time + 10
+        start_time = random.randint(1, song_length[song] - SAMPLE_LENGTH - 1)
+        end_time = start_time + SAMPLE_LENGTH
         subprocess.run(['mpv',
             '--no-video',
             '--start=%d' % start_time,
@@ -43,12 +46,12 @@ while True:
         pass
     print()
     print(song)
-    print('Enter: got it! ^C: nope. Q: quit.')
+    print('Enter: got it! ^C: nope. ^D: quit.')
     try:
-        if input().lower().startswith('q'):
-            break
-        else:
-            songs_left.remove(song)
-            print('%d remaining' % len(songs_left))
+        input()
+        songs_left.remove(song)
+        print('%d remaining' % len(songs_left))
     except KeyboardInterrupt:
         pass
+    except EOFError:
+        break

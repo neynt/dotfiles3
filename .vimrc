@@ -32,6 +32,7 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'flxf/uCpp.vim'
 Plug 'tikhomirov/vim-glsl'
+Plug 'dleonard0/pony-vim-syntax'
 " colors
 Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
@@ -97,6 +98,7 @@ set ts=2 sts=2 sw=2 smarttab expandtab
 set autoindent
 set breakindent
 "set breakindentopt=shift:2
+set nojoinspaces " don't double-space after period with gq
 
 colorscheme SerialExperimentsLain  " this is needed, trust me
 colorscheme jellybeans
