@@ -2,6 +2,8 @@
 # Test song recognition starting at random times.
 # Run from a directory that contains only the desired sound files.
 
+# Dependencies: ffprobe, mpv
+
 import math
 import os
 import glob
@@ -9,7 +11,7 @@ import subprocess
 import random
 
 # Seconds to play per song
-SAMPLE_LENGTH = 1
+SAMPLE_LENGTH = 10
 
 FNULL = open(os.devnull, 'w')
 all_songs = glob.glob('*')

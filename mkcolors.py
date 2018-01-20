@@ -63,5 +63,5 @@ for filename in filenames:
     print(filename)
     new_filename = os.path.splitext(filename)[0]
     tmpl = string.Template(open(filename).read())
-    new_content = tmpl.substitute(tmpl_subs)
+    new_content = tmpl.safe_substitute(tmpl_subs)
     open(new_filename, 'w').write(new_content)

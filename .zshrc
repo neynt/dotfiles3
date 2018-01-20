@@ -3,7 +3,7 @@ fpath=( "$HOME/.zsh" $fpath )
 
 export GOPATH=~/go
 export PATH="$PATH:$GOPATH/bin"
-type ruby > /dev/null && export PATH=$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
+type ruby > /dev/null && export PATH=$(ruby -rrubygems -e "puts Gem.user_dir")/bin:$PATH
 export PATH=~/.npm-global/bin:$PATH
 export PATH=~/bin:$PATH
 export ANDROID_HOME=/opt/android-sdk
@@ -22,7 +22,8 @@ alias diff="colordiff"
 alias ..="cd .."
 alias ...="cd ../.."
 function ssht() { ssh -t $@ "tmux attach || tmux new" }
-function sshcs() { ssht -Y z394zhan@ubuntu1604-002.student.cs.uwaterloo.ca }
+function sshcs() { ssht z394zhan@ubuntu1604-002.student.cs.uwaterloo.ca }
+function sshcsY() { ssht -Y z394zhan@ubuntu1604-002.student.cs.uwaterloo.ca }
 function mypandoc() { pandoc -V geometry:margin=1in $@ }
 
 # Prompt

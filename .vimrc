@@ -8,6 +8,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-obsession'  " auto sessions
 "Plug 'vim-syntastic/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
 if filereadable(expand('~/.vimrc.work'))
@@ -20,8 +22,12 @@ else
   Plug 'tpope/vim-fireplace'  " clojure repl
   Plug 'slashmili/alchemist.vim'  " elixir semantics
 end
+if filereadable(expand('~/.vimrc.ocaml'))
+  source ~/.vimrc.ocaml
+end
 " languages
 Plug 'rust-lang/rust.vim'
+Plug 'cespare/vim-toml'
 Plug 'kchmck/vim-coffee-script'
 Plug 'gkz/vim-ls'
 Plug 'petRUShka/vim-sage'
@@ -79,7 +85,7 @@ endif
 
 " make gvim pretty
 if has("gui_running")
-  set guifont=Fira\ Mono\ 9
+  set guifont=Fira\ Mono\ 10
   set guioptions=aeigt
 endif
 
