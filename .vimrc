@@ -22,9 +22,9 @@ else
   Plug 'tpope/vim-fireplace'  " clojure repl
   Plug 'slashmili/alchemist.vim'  " elixir semantics
 end
-if filereadable(expand('~/.vimrc.ocaml'))
-  source ~/.vimrc.ocaml
-end
+"if filereadable(expand('~/.vimrc.ocaml'))
+"  source ~/.vimrc.ocaml
+"end
 " languages
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
