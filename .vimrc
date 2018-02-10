@@ -17,10 +17,11 @@ if filereadable(expand('~/.vimrc.work'))
 else
   Plug 'Chiel92/vim-autoformat'
   Plug 'Valloric/YouCompleteMe'
-  "Plug 'tpope/vim-sleuth'  " detect indentation
-  Plug 'tpope/vim-fugitive'  " git integration
-  Plug 'tpope/vim-fireplace'  " clojure repl
+  "Plug 'tpope/vim-sleuth'        " detect indentation
+  Plug 'tpope/vim-fugitive'       " git integration
+  Plug 'tpope/vim-fireplace'      " clojure repl
   Plug 'slashmili/alchemist.vim'  " elixir semantics
+  Plug 'Shougo/echodoc.vim'       " show doc at bottom
 end
 "if filereadable(expand('~/.vimrc.ocaml'))
 "  source ~/.vimrc.ocaml
@@ -56,6 +57,8 @@ let g:jellybeans_overrides["background"]["256ctermbg"] = "none"
 let NERDTreeQuitOnOpen = 1
 let g:gruvbox_contrast_dark = "hard"
 let g:ycm_global_ycm_extra_conf = "/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+let g:racer_experimental_completer = 1
+let g:echodoc_enable_at_startup = 1
 
 " Key mapping
 nnoremap <space> <nop>
@@ -64,13 +67,11 @@ nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>rt :set sw=2 sts=2 ts=2 expandtab<cr>:retab<cr>
 
-" modeline
 set modeline
-
 set hlsearch
 set number
-
 set fillchars+=vert:\ 
+set cmdheight=2
 
 " swap files
 set dir=~/.vim/tmp//,.
@@ -78,6 +79,13 @@ set undodir=~/.vim/undo//,.
 set backupdir=~/.vim/backup//,.
 set backupcopy=yes
 set timeoutlen=1000 ttimeoutlen=0
+
+" tabs
+set ts=2 sts=2 sw=2 smarttab expandtab
+set autoindent
+set breakindent
+"set breakindentopt=shift:2
+set nojoinspaces " don't double-space after period with gq
 
 if has("mouse")
   set mouse=a
@@ -89,7 +97,6 @@ if has("gui_running")
   set guioptions=aeigt
 endif
 
-
 " Filetype detection, smart plugins and indents
 " TODO: Get vim to stop overriding my tab settings
 "filetype plugin indent on
@@ -98,13 +105,6 @@ autocmd FileType go setlocal sw=2 sts=2 ts=2
 autocmd FileType cpp setlocal sw=2 sts=2 ts=2
 autocmd BufEnter *.vue syntax sync fromstart
 autocmd BufNewFile,BufRead *.vs,*.fs set ft=glsl
-
-" tabs
-set ts=2 sts=2 sw=2 smarttab expandtab
-set autoindent
-set breakindent
-"set breakindentopt=shift:2
-set nojoinspaces " don't double-space after period with gq
 
 colorscheme SerialExperimentsLain  " this is needed, trust me
 colorscheme jellybeans

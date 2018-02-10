@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=xcalib
+GenericName=xcalib
+Comment=Set color profile with xcalib
+Exec=xcalib /trove/XPS15-9560.icm
+Terminal=false
+Type=Application
