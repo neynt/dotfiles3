@@ -21,7 +21,7 @@ else
   Plug 'tpope/vim-fugitive'       " git integration
   Plug 'tpope/vim-fireplace'      " clojure repl
   Plug 'slashmili/alchemist.vim'  " elixir semantics
-  Plug 'Shougo/echodoc.vim'       " show doc at bottom
+  "Plug 'Shougo/echodoc.vim'       " show doc at bottom
 end
 "if filereadable(expand('~/.vimrc.ocaml'))
 "  source ~/.vimrc.ocaml
@@ -40,6 +40,7 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'flxf/uCpp.vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'dleonard0/pony-vim-syntax'
+Plug 'leafgarland/typescript-vim'
 " colors
 Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
@@ -71,7 +72,7 @@ set modeline
 set hlsearch
 set number
 set fillchars+=vert:\ 
-set cmdheight=2
+"set cmdheight=2
 
 " swap files
 set dir=~/.vim/tmp//,.
