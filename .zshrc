@@ -1,12 +1,14 @@
 # additional functions (mainly my prompt)
 fpath=( "$HOME/.zsh" $fpath )
 
-# language support
+# language support and bins
 export GOPATH=~/go
 export PATH="$PATH:$GOPATH/bin"
 type ruby > /dev/null && export PATH=$(ruby -rrubygems -e "puts Gem.user_dir")/bin:$PATH
 export PATH=~/.npm-global/bin:$PATH
+export PATH=~/.cargo/bin:$PATH
 export PATH=~/bin:$PATH
+
 export ANDROID_HOME=/opt/android-sdk
 export EDITOR=vim
 export BROWSER=chromium
@@ -25,6 +27,7 @@ alias ls="ls -F --color=auto"
 alias grep="grep --color=auto"
 alias tmux="tmux -2"
 alias diff="colordiff"
+#type nvim > /dev/null && alias vim=nvim && alias oldvim=vim # sorry bram :<
 alias ..="cd .."
 alias ...="cd ../.."
 function ssht() { ssh -t $@ "tmux attach || tmux new" }
