@@ -27,13 +27,13 @@ alias ls="ls -F --color=auto"
 alias grep="grep --color=auto"
 alias tmux="tmux -2"
 alias diff="colordiff"
-#type nvim > /dev/null && alias vim=nvim && alias oldvim=vim # sorry bram :<
+type nvim > /dev/null && alias vim=nvim && alias oldvim=vim # sorry bram :<
 alias ..="cd .."
 alias ...="cd ../.."
 function ssht() { ssh -t $@ "tmux attach || tmux new" }
-function sshty() { ssht -Y $@ }
-function sshcs() { ssht z394zhan@ubuntu1604-002.student.cs.uwaterloo.ca }
-function sshcsy() { ssht -Y z394zhan@ubuntu1604-002.student.cs.uwaterloo.ca }
+function sshcs() { ssht $@ z394zhan@ubuntu1604-002.student.cs.uwaterloo.ca }
+function sshece() { ssh -A $@ z394zhan@ecelinux4.uwaterloo.ca }
+function sshece1() { ssh -A $@ z394zhan@ecelinux4.uwaterloo.ca -t "ssh -A ecelinux1 -t \"tmux attach || tmux new\"" }
 function mypandoc() { pandoc -V geometry:margin=1in $@ }
 
 # prompt

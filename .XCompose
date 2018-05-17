@@ -33,51 +33,52 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <exclam> <l> <i> <n>        : "∉" U2209  # NOT AN ELEMENT OF
 <Multi_key> <parenleft> <underscore>    : "⊆" U2286  # SUBSET OF OR EQUAL TO
 <Multi_key> <parenleft> <parenleft>     : "⊂" U2282  # SUBSET OF
-<Multi_key> <backslash> <a> <l> <p>     : "α" U3B1  # GREEK SMALL LETTER ALPHA
-<Multi_key> <backslash> <b> <e> <t>     : "β" U3B2  # GREEK SMALL LETTER BETA
-<Multi_key> <backslash> <g> <a> <m>     : "γ" U3B3  # GREEK SMALL LETTER GAMMA
-<Multi_key> <backslash> <d> <e> <l>     : "δ" U3B4  # GREEK SMALL LETTER DELTA
-<Multi_key> <backslash> <e> <p> <s>     : "ε" U3B5  # GREEK SMALL LETTER EPSILON
-<Multi_key> <backslash> <z> <e> <t>     : "ζ" U3B6  # GREEK SMALL LETTER ZETA
-<Multi_key> <backslash> <e> <t> <a>     : "η" U3B7  # GREEK SMALL LETTER ETA
-<Multi_key> <backslash> <t> <h> <e>     : "θ" U3B8  # GREEK SMALL LETTER THETA
-<Multi_key> <backslash> <i> <o> <t>     : "ι" U3B9  # GREEK SMALL LETTER IOTA
-<Multi_key> <backslash> <k> <a> <p>     : "κ" U3BA  # GREEK SMALL LETTER KAPPA
-<Multi_key> <backslash> <l> <a> <m>     : "λ" U3BB  # GREEK SMALL LETTER LAMDA
-<Multi_key> <backslash> <m> <u>         : "μ" U3BC  # GREEK SMALL LETTER MU
-<Multi_key> <backslash> <n> <u>         : "ν" U3BD  # GREEK SMALL LETTER NU
+<Multi_key> <m> <g> <a>                 : "α" U3B1  # GREEK SMALL LETTER ALPHA
+<Multi_key> <m> <g> <b>                 : "β" U3B2  # GREEK SMALL LETTER BETA
+<Multi_key> <m> <g> <g>                 : "γ" U3B3  # GREEK SMALL LETTER GAMMA
+<Multi_key> <m> <g> <d>                 : "δ" U3B4  # GREEK SMALL LETTER DELTA
+<Multi_key> <m> <g> <e>                 : "ε" U3B5  # GREEK SMALL LETTER EPSILON
+<Multi_key> <m> <g> <z>                 : "ζ" U3B6  # GREEK SMALL LETTER ZETA
+<Multi_key> <m> <g> <h>                 : "η" U3B7  # GREEK SMALL LETTER ETA
+<Multi_key> <m> <g> <v>                 : "θ" U3B8  # GREEK SMALL LETTER THETA
+<Multi_key> <m> <g> <i>                 : "ι" U3B9  # GREEK SMALL LETTER IOTA
+<Multi_key> <m> <g> <k>                 : "κ" U3BA  # GREEK SMALL LETTER KAPPA
+<Multi_key> <m> <g> <l>                 : "λ" U3BB  # GREEK SMALL LETTER LAMDA
+<Multi_key> <m> <g> <m>                 : "μ" U3BC  # GREEK SMALL LETTER MU
+<Multi_key> <m> <g> <n>                 : "ν" U3BD  # GREEK SMALL LETTER NU
 <Multi_key> <backslash> <x> <i>         : "ξ" U3BE  # GREEK SMALL LETTER XI
 <Multi_key> <backslash> <o> <m> <i>     : "ο" U3BF  # GREEK SMALL LETTER OMICRON
-<Multi_key> <backslash> <p> <i>         : "π" U3C0  # GREEK SMALL LETTER PI
-<Multi_key> <backslash> <r> <h> <o>     : "ρ" U3C1  # GREEK SMALL LETTER RHO
-<Multi_key> <backslash> <s> <i> <g>     : "σ" U3C3  # GREEK SMALL LETTER SIGMA
-<Multi_key> <backslash> <t> <a> <u>     : "τ" U3C4  # GREEK SMALL LETTER TAU
-<Multi_key> <backslash> <u> <p> <s>     : "υ" U3C5  # GREEK SMALL LETTER UPSILON
-<Multi_key> <backslash> <p> <h> <i>     : "φ" U3C6  # GREEK SMALL LETTER PHI
-<Multi_key> <backslash> <c> <h> <i>     : "χ" U3C7  # GREEK SMALL LETTER CHI
-<Multi_key> <backslash> <p> <s> <i>     : "ψ" U3C8  # GREEK SMALL LETTER PSI
-<Multi_key> <backslash> <o> <m> <e>     : "ω" U3C9  # GREEK SMALL LETTER OMEGA
-<Multi_key> <backslash> <A> <l> <p>     : "Α" U391  # GREEK CAPITAL LETTER ALPHA
-<Multi_key> <backslash> <B> <e> <t>     : "Β" U392  # GREEK CAPITAL LETTER BETA
-<Multi_key> <backslash> <G> <a> <m>     : "Γ" U393  # GREEK CAPITAL LETTER GAMMA
-<Multi_key> <backslash> <D> <e> <l>     : "Δ" U394  # GREEK CAPITAL LETTER DELTA
-<Multi_key> <backslash> <E> <p> <s>     : "Ε" U395  # GREEK CAPITAL LETTER EPSILON
-<Multi_key> <backslash> <Z> <e> <t>     : "Ζ" U396  # GREEK CAPITAL LETTER ZETA
-<Multi_key> <backslash> <E> <t> <a>     : "Η" U397  # GREEK CAPITAL LETTER ETA
-<Multi_key> <backslash> <T> <h> <e>     : "Θ" U398  # GREEK CAPITAL LETTER THETA
-<Multi_key> <backslash> <I> <o> <t>     : "Ι" U399  # GREEK CAPITAL LETTER IOTA
-<Multi_key> <backslash> <K> <a> <p>     : "Κ" U39A  # GREEK CAPITAL LETTER KAPPA
-<Multi_key> <backslash> <L> <a> <m>     : "Λ" U39B  # GREEK CAPITAL LETTER LAMDA
-<Multi_key> <backslash> <M> <u>         : "Μ" U39C  # GREEK CAPITAL LETTER MU
-<Multi_key> <backslash> <N> <u>         : "Ν" U39D  # GREEK CAPITAL LETTER NU
+<Multi_key> <m> <g> <P>                 : "π" U3C0  # GREEK SMALL LETTER PI
+<Multi_key> <m> <g> <R>                 : "ρ" U3C1  # GREEK SMALL LETTER RHO
+<Multi_key> <m> <g> <S>                 : "σ" U3C3  # GREEK SMALL LETTER SIGMA
+<Multi_key> <m> <g> <T>                 : "τ" U3C4  # GREEK SMALL LETTER TAU
+<Multi_key> <m> <g> <U>                 : "υ" U3C5  # GREEK SMALL LETTER UPSILON
+<Multi_key> <m> <g> <J>                 : "φ" U3C6  # GREEK SMALL LETTER PHI
+<Multi_key> <m> <g> <F>                 : "ϕ" U3D5  # GREEK PHI SYMBOL
+<Multi_key> <m> <g> <C>                 : "χ" U3C7  # GREEK SMALL LETTER CHI
+<Multi_key> <m> <g> <Y>                 : "ψ" U3C8  # GREEK SMALL LETTER PSI
+<Multi_key> <m> <g> <O>                 : "ω" U3C9  # GREEK SMALL LETTER OMEGA
+<Multi_key> <m> <g> <A>                 : "Α" U391  # GREEK CAPITAL LETTER ALPHA
+<Multi_key> <m> <g> <B>                 : "Β" U392  # GREEK CAPITAL LETTER BETA
+<Multi_key> <m> <g> <G>                 : "Γ" U393  # GREEK CAPITAL LETTER GAMMA
+<Multi_key> <m> <g> <D>                 : "Δ" U394  # GREEK CAPITAL LETTER DELTA
+<Multi_key> <m> <g> <E>                 : "Ε" U395  # GREEK CAPITAL LETTER EPSILON
+<Multi_key> <m> <g> <Z>                 : "Ζ" U396  # GREEK CAPITAL LETTER ZETA
+<Multi_key> <m> <g> <H>                 : "Η" U397  # GREEK CAPITAL LETTER ETA
+<Multi_key> <m> <g> <V>                 : "Θ" U398  # GREEK CAPITAL LETTER THETA
+<Multi_key> <m> <g> <I>                 : "Ι" U399  # GREEK CAPITAL LETTER IOTA
+<Multi_key> <m> <g> <K>                 : "Κ" U39A  # GREEK CAPITAL LETTER KAPPA
+<Multi_key> <m> <g> <L>                 : "Λ" U39B  # GREEK CAPITAL LETTER LAMDA
+<Multi_key> <m> <g> <M>                 : "Μ" U39C  # GREEK CAPITAL LETTER MU
+<Multi_key> <m> <g> <N>                 : "Ν" U39D  # GREEK CAPITAL LETTER NU
 <Multi_key> <backslash> <X> <i>         : "Ξ" U39E  # GREEK CAPITAL LETTER XI
 <Multi_key> <backslash> <O> <m> <i>     : "Ο" U39F  # GREEK CAPITAL LETTER OMICRON
-<Multi_key> <backslash> <P> <i>         : "Π" U3A0  # GREEK CAPITAL LETTER PI
-<Multi_key> <backslash> <R> <h> <o>     : "Ρ" U3A1  # GREEK CAPITAL LETTER RHO
-<Multi_key> <backslash> <S> <i> <g>     : "Σ" U3A3  # GREEK CAPITAL LETTER SIGMA
-<Multi_key> <backslash> <T> <a> <u>     : "Τ" U3A4  # GREEK CAPITAL LETTER TAU
-<Multi_key> <backslash> <U> <p> <s>     : "Υ" U3A5  # GREEK CAPITAL LETTER UPSILON
-<Multi_key> <backslash> <P> <h> <i>     : "Φ" U3A6  # GREEK CAPITAL LETTER PHI
-<Multi_key> <backslash> <C> <h> <i>     : "Χ" U3A7  # GREEK CAPITAL LETTER CHI
-<Multi_key> <backslash> <P> <s> <i>     : "Ψ" U3A8  # GREEK CAPITAL LETTER PSI
-<Multi_key> <backslash> <O> <m> <e>     : "Ω" U3A9  # GREEK CAPITAL LETTER OMEGA
+<Multi_key> <m> <g> <P>                 : "Π" U3A0  # GREEK CAPITAL LETTER PI
+<Multi_key> <m> <g> <R>                 : "Ρ" U3A1  # GREEK CAPITAL LETTER RHO
+<Multi_key> <m> <g> <S>                 : "Σ" U3A3  # GREEK CAPITAL LETTER SIGMA
+<Multi_key> <m> <g> <T>                 : "Τ" U3A4  # GREEK CAPITAL LETTER TAU
+<Multi_key> <m> <g> <U>                 : "Υ" U3A5  # GREEK CAPITAL LETTER UPSILON
+<Multi_key> <m> <g> <F>                 : "Φ" U3A6  # GREEK CAPITAL LETTER PHI
+<Multi_key> <m> <g> <C>                 : "Χ" U3A7  # GREEK CAPITAL LETTER CHI
+<Multi_key> <m> <g> <Y>                 : "Ψ" U3A8  # GREEK CAPITAL LETTER PSI
+<Multi_key> <m> <g> <O>                 : "Ω" U3A9  # GREEK CAPITAL LETTER OMEGA
