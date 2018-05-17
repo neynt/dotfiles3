@@ -24,6 +24,7 @@ else
   Plug 'mhartington/nvim-typescript'    " typescript semantics
   Plug 'zchee/deoplete-clang'           " c-family langs
   Plug 'eagletmt/neco-ghc'              " haskell
+  Plug 'artur-shaik/vim-javacomplete2'  " java
   if has('nvim')
     Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -42,6 +43,7 @@ Plug 'cespare/vim-toml'
 Plug 'kchmck/vim-coffee-script'
 Plug 'gkz/vim-ls'
 Plug 'petRUShka/vim-sage'
+Plug 'solarnz/thrift.vim'
 "Plug 'rhysd/vim-crystal'
 Plug 'neynt/vim-vue'
 Plug 'digitaltoad/vim-pug'
