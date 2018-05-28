@@ -9,7 +9,8 @@ export PATH=~/.npm-global/bin:$PATH
 export PATH=~/.cargo/bin:$PATH
 export PATH=~/bin:$PATH
 
-export ANDROID_HOME=/opt/android-sdk
+export ANDROID_HOME=/trove/apps/android-sdk
+export ANDROID_SDK_ROOT=$ANDROID_HOME
 export EDITOR=vim
 export BROWSER=chromium
 source ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
@@ -35,6 +36,8 @@ function sshcs() { ssht $@ z394zhan@ubuntu1604-002.student.cs.uwaterloo.ca }
 function sshece() { ssh -A $@ z394zhan@ecelinux4.uwaterloo.ca }
 function sshece1() { ssh -A $@ z394zhan@ecelinux4.uwaterloo.ca -t "ssh -A ecelinux1 -t \"tmux attach || tmux new\"" }
 function mypandoc() { pandoc -V geometry:margin=1in $@ }
+function mypython() { mypy --strict $@ && python $@ }
+function venv() { source venv/bin/activate }
 
 # prompt
 autoload -Uz promptinit

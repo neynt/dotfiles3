@@ -1,0 +1,47 @@
+if has('nvim')
+  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+  Plug 'Shougo/deoplete.nvim'
+endif
+Plug 'tpope/vim-fugitive'             " git integration
+Plug 'slashmili/alchemist.vim'        " elixir semantics
+Plug 'zchee/deoplete-jedi'            " python semantics
+Plug 'mhartington/nvim-typescript'    " typescript semantics
+Plug 'zchee/deoplete-clang'           " c-family semantics
+Plug 'eagletmt/neco-ghc'              " haskell semantics
+Plug 'artur-shaik/vim-javacomplete2'  " java semantics
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+set runtimepath+=~/.vim/plugged/LanguageClient-neovim
+let g:LanguageClient_serverCommands = {
+  \ 'rust': ['rls'],
+  \ }
+let g:LanguageClient_loggingLevel = 'DEBUG'
+
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+let g:deoplete#sources#clang#clang_header  = '/usr/lib/clang/'
+
+inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+"nnoremap <leader>gg :YcmCompleter GoToDefinition<cr>
+"nnoremap <leader>gi :YcmCompleter GoToDeclaration<cr>
+"nnoremap <leader>h :YcmCompleter GetDoc<cr>
+
+augroup typescript_shortcuts
+  autocmd!
+  autocmd FileType typescript nnoremap <leader>gg :TSDef<CR>
+  autocmd FileType typescript nnoremap <leader>ht :TSType<CR>
+  autocmd FileType typescript nnoremap <leader>gt :TSTypeDef<CR>
+augroup END
+
+augroup rust_shortcuts
+  autocmd!
+  autocmd FileType rust nnoremap <leader>gg :call LanguageClient_textDocument_definition()<CR>
+  autocmd FileType rust nnoremap <leader>ht :call LanguageClient_textDocument_hover()<CR>
+augroup END

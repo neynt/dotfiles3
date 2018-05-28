@@ -15,24 +15,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
 if filereadable(expand('~/.vimrc.work'))
   source ~/.vimrc.work
-else
-  "Plug 'Valloric/YouCompleteMe'   " god mode
-  Plug 'tpope/vim-fugitive'       " git integration
-  "Plug 'tpope/vim-sleuth'              " detect indentation
-  Plug 'slashmili/alchemist.vim'        " elixir semantics
-  Plug 'zchee/deoplete-jedi'            " python semantics
-  Plug 'mhartington/nvim-typescript'    " typescript semantics
-  Plug 'zchee/deoplete-clang'           " c-family langs
-  Plug 'eagletmt/neco-ghc'              " haskell
-  Plug 'artur-shaik/vim-javacomplete2'  " java
-  if has('nvim')
-    Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  else
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-    Plug 'Shougo/deoplete.nvim'
-  endif
 end
 "if filereadable(expand('~/.vimrc.ocaml'))
 "  source ~/.vimrc.ocaml
@@ -60,6 +42,10 @@ Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
 call plug#end()
 
+if filereadable(expand('~/.vimrc.deoplete'))
+  source ~/.vimrc.deoplete
+end
+
 let mapleader = ","
 let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
@@ -72,38 +58,6 @@ let g:jellybeans_overrides["background"] = {}
 let g:jellybeans_overrides["background"]["256ctermbg"] = "none"
 let NERDTreeQuitOnOpen = 1
 let g:gruvbox_contrast_dark = "hard"
-"let g:racer_experimental_completer = 1
-"let g:ycm_global_ycm_extra_conf = "~/.ycm_extra_conf.py"
-"let g:ycm_autoclose_preview_window_after_insertion = 1
-"let g:echodoc_enable_at_startup = 1
-
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-set runtimepath+=~/.vim/plugged/LanguageClient-neovim
-let g:LanguageClient_serverCommands = {
-  \ 'rust': ['rls'],
-  \ }
-let g:LanguageClient_loggingLevel = 'DEBUG'
-" paths are good for Arch Linux
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
-let g:deoplete#sources#clang#clang_header  = '/usr/lib/clang/'
-
-inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-augroup typescript_shortcuts
-  autocmd!
-  autocmd FileType typescript nnoremap <leader>gg :TSDef<CR>
-  autocmd FileType typescript nnoremap <leader>ht :TSType<CR>
-  autocmd FileType typescript nnoremap <leader>gt :TSTypeDef<CR>
-augroup END
-
-augroup rust_shortcuts
-  autocmd!
-  autocmd FileType rust nnoremap <leader>gg :call LanguageClient_textDocument_definition()<CR>
-  autocmd FileType rust nnoremap <leader>ht :call LanguageClient_textDocument_hover()<CR>
-augroup END
 
 " Key mapping
 nnoremap <space> <nop>
@@ -113,10 +67,9 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>rt :set sw=2 sts=2 ts=2 expandtab<cr>:retab<cr>
 nnoremap <leader>bp :bp<cr>
 nnoremap <leader>bn :bn<cr>
-"nnoremap <leader>gg :YcmCompleter GoToDefinition<cr>
-"nnoremap <leader>gi :YcmCompleter GoToDeclaration<cr>
-"nnoremap <leader>h :YcmCompleter GetDoc<cr>
 nnoremap <leader>c :pc<cr>
+nnoremap == gg=G''
+nnoremap gq gggqG<C-o><C-o>
 
 set modeline
 set hlsearch
@@ -164,7 +117,8 @@ augroup neynt
   autocmd BufNewFile,BufRead *.vs,*.fs set ft=glsl
 augroup END
 
-colorscheme SerialExperimentsLain  " this is needed, trust me
+" this is needed, trust me; just jellybeans isn't perfect
+colorscheme SerialExperimentsLain
 colorscheme jellybeans
 "colorscheme gruvbox
 
