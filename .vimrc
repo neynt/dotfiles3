@@ -5,6 +5,8 @@ if !has('nvim')
   Plug 'tpope/vim-sensible'
 endif
 Plug 'scrooloose/nerdtree'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'albfan/nerdtree-git-plugin'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -13,13 +15,18 @@ Plug 'tpope/vim-obsession'  " auto sessions
 Plug 'vim-syntastic/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'vim-scripts/gitignore'
 if filereadable(expand('~/.vimrc.work'))
   source ~/.vimrc.work
 end
+if filereadable(expand('~/.vimrc.deoplete'))
+  source ~/.vimrc.deoplete
+end
+Plug 'tpope/vim-fugitive'             " git integration
 "if filereadable(expand('~/.vimrc.ocaml'))
 "  source ~/.vimrc.ocaml
 "end
-" languages
+" language syntax
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
 Plug 'kchmck/vim-coffee-script'
@@ -37,14 +44,12 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'leafgarland/typescript-vim'
 Plug 'supercollider/scvim'
 Plug 'solarnz/thrift.vim'
+Plug 'calviken/vim-gdscript3'
+Plug 'wlangstroth/vim-racket'
 " colors
 Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
 call plug#end()
-
-if filereadable(expand('~/.vimrc.deoplete'))
-  source ~/.vimrc.deoplete
-end
 
 let mapleader = ","
 let g:UltiSnipsExpandTrigger = "<c-j>"
@@ -70,12 +75,16 @@ nnoremap <leader>bn :bn<cr>
 nnoremap <leader>c :pc<cr>
 nnoremap == gg=G''
 nnoremap gq gggqG<C-o><C-o>
+nnoremap <space> :
+vnoremap <space> :
 
 set modeline
 set hlsearch
 set number
 set fillchars+=vert:\ 
 "set cmdheight=2
+
+set pumheight=16
 
 " swap files
 set dir=~/.vim/tmp//,.

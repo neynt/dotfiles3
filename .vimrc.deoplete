@@ -6,13 +6,13 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
   Plug 'Shougo/deoplete.nvim'
 endif
-Plug 'tpope/vim-fugitive'             " git integration
 Plug 'slashmili/alchemist.vim'        " elixir semantics
 Plug 'zchee/deoplete-jedi'            " python semantics
 Plug 'mhartington/nvim-typescript'    " typescript semantics
 Plug 'zchee/deoplete-clang'           " c-family semantics
 Plug 'eagletmt/neco-ghc'              " haskell semantics
-Plug 'artur-shaik/vim-javacomplete2'  " java semantics
+"Plug 'artur-shaik/vim-javacomplete2'  " java semantics
+Plug 'derekwyatt/vim-scala'           " scala semantics
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
