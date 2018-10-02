@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
 if !has('nvim')
   Plug 'tpope/vim-sensible'
 endif
+Plug 'tpope/vim-sleuth'
 Plug 'scrooloose/nerdtree'
 "Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'albfan/nerdtree-git-plugin'
@@ -41,9 +42,10 @@ Plug 'elixir-lang/vim-elixir'
 "Plug 'flxf/uCpp.vim'
 "Plug 'tikhomirov/vim-glsl'
 "Plug 'dleonard0/pony-vim-syntax'
+"Plug 'HerringtonDarkholme/yats.vim'
 Plug 'leafgarland/typescript-vim'
-Plug 'supercollider/scvim'
-Plug 'solarnz/thrift.vim'
+"Plug 'supercollider/scvim'
+"Plug 'solarnz/thrift.vim'
 Plug 'calviken/vim-gdscript3'
 Plug 'wlangstroth/vim-racket'
 " colors
@@ -78,6 +80,21 @@ nnoremap gq gggqG<C-o><C-o>
 nnoremap <space> :
 vnoremap <space> :
 
+" Search for selected text, forwards or backwards.
+" Copied from http://vim.wikia.com/wiki/Search_for_visually_selected_text
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+
+set wrap
+set linebreak
 set modeline
 set hlsearch
 set number
@@ -99,6 +116,10 @@ set autoindent
 "set breakindent
 "set breakindentopt=shift:2
 set nojoinspaces " don't double-space after period with gq
+
+if has('persistent_undo')
+  set undofile
+endif
 
 if has("nvim")
   set guicursor=

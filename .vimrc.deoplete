@@ -4,7 +4,7 @@ if has('nvim')
 else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
-  Plug 'Shougo/deoplete.nvim'
+  "Plug 'Shougo/deoplete.nvim'
 endif
 Plug 'slashmili/alchemist.vim'        " elixir semantics
 Plug 'zchee/deoplete-jedi'            " python semantics

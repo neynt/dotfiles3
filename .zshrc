@@ -16,7 +16,7 @@ if [ -d /trove/apps/android-sdk ]; then
   export PATH=$ANDROID_NDK_ROOT:$PATH
 fi
 export EDITOR=nvim
-export BROWSER=chromium
+export BROWSER=firefox
 source ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 # fuzzy finder
@@ -43,6 +43,11 @@ function sshazure() { ssh -A $@ -i ~/.ssh/student_z394zhan z394zhan@ECE454S18-ss
 function mypandoc() { pandoc -V geometry:margin=1in $@ }
 function mypython() { mypy --strict $@ && python $@ }
 function venv() { source venv/bin/activate }
+
+function run_cpp() {
+  executable="${1%.cpp}"
+  g++ -o $executable $1 && ./$executable
+}
 
 # prompt
 autoload -Uz promptinit
