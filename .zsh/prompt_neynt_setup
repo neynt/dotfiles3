@@ -1,19 +1,35 @@
 # vim:syntax=zsh
 prompt_neynt_setup() {
+  blk="%F{0}"
+  red="%F{1}"
+  grn="%F{2}"
+  ylw="%F{3}"
+  blu="%F{4}"
+  mag="%F{5}"
+  cyn="%F{6}"
+  wht="%F{7}"
+  Blk="%B%F{8}"
+  Red="%B%F{9}"
+  Grn="%B%F{10}"
+  Ylw="%B%F{11}"
+  Blu="%B%F{12}"
+  Mag="%B%F{13}"
+  Cyn="%B%F{14}"
+  Wht="%B%F{15}"
   PROMPT="${prompt_newline}"
   # user@host:/dir
-  PROMPT+="%B%F{cyan}%n%f%b"  # user
-  PROMPT+="%F{white}@%f"  # @
-  PROMPT+="%B%F{green}%m%f%b"  # host
-  PROMPT+="%F{black}:%f"  # :
-  PROMPT+="%B%F{yellow}%~%f%b"  # /dir
+  PROMPT+="$Cyn%n%f%b"  # user
+  PROMPT+="$wht@%f"  # @
+  PROMPT+="$Grn%m%f%b"  # host
+  PROMPT+="$blk:%f"  # :
+  PROMPT+="$Ylw%~%f%b"  # /dir
   PROMPT+="%b"
   # Current time
-  PROMPT+=" %F{white}[%*]%f"
+  PROMPT+=" ${wht}[%*]%f"
   # Exit code if nonzero
-  PROMPT+="%(?,, %F{red}%?%f)"
+  PROMPT+="%(?,, $red%?%f)"
   PROMPT+="${prompt_newline}"
   # Prompt char
-  PROMPT+="%F{red}$%f "
+  PROMPT+="$red$%f "
 }
 prompt_neynt_setup "$@"
