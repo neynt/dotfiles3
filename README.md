@@ -26,10 +26,13 @@ $ ./take.sh ~/.vim/colors
 
 Then, use `install.sh` to replace the original files with a symlink.
 
-## Colors
+## Other scripts
 
 `./mkcolors.py` searches for .tmpl files and generates files without the .tmpl
 extension with variables like `$color4_csv` substituted appropriately.
+
+`./mkcompose.py > .XCompose` generates an .XCompose file from bindings
+expressed in Python.
 
 ## Other configuration
 
@@ -37,11 +40,15 @@ extension with variables like `$color4_csv` substituted appropriately.
 
 - Activities configurator
 - Alternatetab
+- Always zoom workspaces
 - Disable workspace switcher popup
-- Impatience
+- Hide top bar
 - Launch new instance
 - Native window placement
 - Status area horizontal spacing
 - Topicons plus
 - User themes
 - Shellshape
+
+Half of these need hotfixes because GNOME 3 is ruthless to extension
+developers.
