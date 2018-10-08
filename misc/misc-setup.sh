@@ -4,6 +4,4 @@
 npm config set prefix '~/.npm-global'
 
 # Create vim dirs
-mkdir -p ~/.vim/tmp
-mkdir -p ~/.vim/undo
-mkdir -p ~/.vim/backup
+mkdir -p ~/.vim/{after,backup,swap,tmp,undo}
