@@ -20,7 +20,7 @@ prompt_neynt_setup() {
   # user@host:/dir
   PROMPT+="$Cyn%n%f%b"  # user
   PROMPT+="$wht@%f"  # @
-  PROMPT+="$Blk%m%f%b"  # host
+  PROMPT+="$red%m%f%b"  # host
   PROMPT+="$blk:%f"  # :
   PROMPT+="$Ylw%~%f%b"  # /dir
   PROMPT+="%b"
