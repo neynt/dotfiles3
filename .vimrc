@@ -74,6 +74,7 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>rt :set sw=2 sts=2 ts=2 expandtab<cr>:retab<cr>
 nnoremap <leader>bp :bp<cr>
 nnoremap <leader>bn :bn<cr>
+nnoremap <leader>bd :bd<cr>
 nnoremap <leader>c :pc<cr>
 nnoremap == gg=G''
 nnoremap gq gggqG<C-o><C-o>
