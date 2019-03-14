@@ -60,7 +60,6 @@ def load_cards(filename):
             momentum[key] = delta(seconds=5)
 
 def load_saved_data(filename):
-    global unseen
     global next_queue
     global momentum
     try:

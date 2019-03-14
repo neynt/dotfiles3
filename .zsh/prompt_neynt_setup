@@ -19,17 +19,16 @@ prompt_neynt_setup() {
   PROMPT="${prompt_newline}"
   # user@host:/dir
   PROMPT+="$Cyn%n%f%b"  # user
-  PROMPT+="$wht@%f"  # @
-  PROMPT+="$red%m%f%b"  # host
+  PROMPT+="$blk@%f"  # @
+  PROMPT+="$wht%m%f%b"  # host
   PROMPT+="$blk:%f"  # :
   PROMPT+="$Ylw%~%f%b"  # /dir
-  PROMPT+="%b"
   # Current time
   PROMPT+=" ${wht}[%*]%f"
   # Exit code if nonzero
   PROMPT+="%(?,, $red%?%f)"
   PROMPT+="${prompt_newline}"
   # Prompt char
-  PROMPT+="$red$%f "
+  PROMPT+="$red»%f "
 }
 prompt_neynt_setup "$@"

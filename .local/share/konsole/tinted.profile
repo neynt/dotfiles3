@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=false
 ColorScheme=tinted
-Font=Fira Code,10.5,-1,5,25,0,0,0,0,0
+Font=Iosevka,10.5,-1,5,57,0,0,0,0,0
 UseFontLineChararacters=false
 
 [Cursor Options]

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Merge *.pacnew configuration files with their originals
 
-pacnew="$(find /etc -type f -name "*.pacnew")"
+pacnew="$(sudo find /etc -type f -name "*.pacnew")"
 
 # Check if any .pacnew configurations are found
 if [[ -z "$pacnew" ]]; then

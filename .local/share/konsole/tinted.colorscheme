@@ -89,6 +89,7 @@ Color=233,233,233
 Color=255,255,255
 
 [General]
+Blur=false
 Description=Tinted
 Opacity=1
 Wallpaper=

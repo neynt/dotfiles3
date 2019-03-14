@@ -1,4 +1,10 @@
 #!/bin/bash
-DIR=~/code/diary
+DIR=~/code/diary/diary
 EXT=.md
-$EDITOR $DIR/$(date +%F)$EXT
+
+cd $DIR
+TODAY="$(date -d '3 hours ago' +%F)$EXT"
+$EDITOR $TODAY
+if [[ -f $TODAY ]]; then
+  echo 'You wrote' $(wc -w < $TODAY) 'words.'
+fi

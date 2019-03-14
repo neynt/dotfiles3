@@ -6,13 +6,16 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
   "Plug 'Shougo/deoplete.nvim'
 endif
-Plug 'slashmili/alchemist.vim'        " elixir semantics
-Plug 'zchee/deoplete-jedi'            " python semantics
-Plug 'mhartington/nvim-typescript'    " typescript semantics
-Plug 'zchee/deoplete-clang'           " c-family semantics
-Plug 'eagletmt/neco-ghc'              " haskell semantics
-"Plug 'artur-shaik/vim-javacomplete2'  " java semantics
-Plug 'derekwyatt/vim-scala'           " scala semantics
+Plug 'slashmili/alchemist.vim'        " elixir
+Plug 'zchee/deoplete-jedi'            " python
+Plug 'mhartington/nvim-typescript'    " typescript
+Plug 'zchee/deoplete-clang'           " c-family
+Plug 'eagletmt/neco-ghc'              " haskell
+"Plug 'artur-shaik/vim-javacomplete2'  " java
+Plug 'derekwyatt/vim-scala'           " scala
+Plug 'FrigoEU/psc-ide-vim'            " purescript
+Plug 'copy/deoplete-ocaml'            " ocaml through merlin
+"Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }  " TabNine
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -20,28 +23,39 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 set runtimepath+=~/.vim/plugged/LanguageClient-neovim
 let g:LanguageClient_serverCommands = {
   \ 'rust': ['rls'],
+  \ 'reason': ['/home/neynt/bin/reason-language-server.exe'],
   \ }
-let g:LanguageClient_loggingLevel = 'DEBUG'
+"let g:LanguageClient_loggingLevel = 'DEBUG'
 
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
 let g:deoplete#sources#clang#clang_header  = '/usr/lib/clang/'
 
+let g:deoplete#ignore_sources = {}
+let g:deoplete#ignore_sources.ocaml = ['buffer', 'around', 'member', 'tag']
+let g:deoplete#auto_complete_delay = 0
+
 inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-"nnoremap <leader>gg :YcmCompleter GoToDefinition<cr>
-"nnoremap <leader>gi :YcmCompleter GoToDeclaration<cr>
-"nnoremap <leader>h :YcmCompleter GetDoc<cr>
 
 augroup typescript_shortcuts
   autocmd!
   autocmd FileType typescript nnoremap <leader>gg :TSDef<CR>
-  autocmd FileType typescript nnoremap <leader>ht :TSType<CR>
+  autocmd FileType typescript nnoremap <leader>t :TSType<CR>
   autocmd FileType typescript nnoremap <leader>gt :TSTypeDef<CR>
 augroup END
 
 augroup rust_shortcuts
   autocmd!
   autocmd FileType rust nnoremap <leader>gg :call LanguageClient_textDocument_definition()<CR>
-  autocmd FileType rust nnoremap <leader>ht :call LanguageClient_textDocument_hover()<CR>
+  autocmd FileType rust nnoremap <leader>t :call LanguageClient_textDocument_hover()<CR>
+augroup END
+
+augroup purescript_shortcuts
+  autocmd!
+  autocmd FileType purescript nnoremap <leader>t :Ptype<CR>
+augroup END
+
+augroup ocaml_shortcuts
+  autocmd!
+  autocmd FileType ocaml nnoremap <leader>t :MerlinTypeOf<CR>
 augroup END

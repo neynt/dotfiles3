@@ -12,3 +12,6 @@ done
 
 # Resize with right button
 gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
+
+# Save screenshots to Dropbox
+gsettings set org.gnome.gnome-screenshot auto-save-directory 'file:///home/neynt/Dropbox/Screenshots/'

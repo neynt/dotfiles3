@@ -13,10 +13,13 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-obsession'  " auto sessions
+Plug 'vim-scripts/a.vim'
+"Plug 'vim-airline/vim-airline'
 Plug 'vim-syntastic/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-scripts/gitignore'
+Plug 'junegunn/goyo.vim'
 if filereadable(expand('~/.vimrc.work'))
   source ~/.vimrc.work
 end
@@ -24,15 +27,17 @@ if filereadable(expand('~/.vimrc.deoplete'))
   source ~/.vimrc.deoplete
 end
 Plug 'tpope/vim-fugitive'             " git integration
-"if filereadable(expand('~/.vimrc.ocaml'))
-"  source ~/.vimrc.ocaml
-"end
+if filereadable(expand('~/.vimrc.ocaml'))
+  source ~/.vimrc.ocaml
+end
 " language syntax
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
 Plug 'kchmck/vim-coffee-script'
 Plug 'gkz/vim-ls'
 Plug 'petRUShka/vim-sage'
+Plug 'rgrinberg/vim-ocaml'
+Plug 'let-def/ocp-indent-vim'
 Plug 'solarnz/thrift.vim'
 "Plug 'rhysd/vim-crystal'
 Plug 'neynt/vim-vue'
@@ -48,9 +53,13 @@ Plug 'leafgarland/typescript-vim'
 "Plug 'solarnz/thrift.vim'
 Plug 'calviken/vim-gdscript3'
 Plug 'wlangstroth/vim-racket'
+Plug 'iloginow/vim-stylus'
+Plug 'purescript-contrib/purescript-vim'
+Plug 'reasonml-editor/vim-reason-plus'
 " colors
 Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
+Plug 'NLKNguyen/papercolor-theme'
 call plug#end()
 
 let mapleader = ","
@@ -58,7 +67,7 @@ let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 let g:syntastic_mode_map = { 'mode': 'passive' }
-let g:ctrlp_cmd = 'CtrlPBuffer'
+let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 let g:jellybeans_overrides = {}
 let g:jellybeans_overrides["background"] = {}
@@ -67,19 +76,20 @@ let NERDTreeQuitOnOpen = 1
 let g:gruvbox_contrast_dark = "hard"
 
 " Key mapping
-nnoremap <space> <nop>
-nnoremap <leader>ne :NERDTreeToggle<cr>
+nnoremap <leader>bd :bd<cr>
+nnoremap <leader>bn :bn<cr>
+nnoremap <leader>bp :bp<cr>
+nnoremap <leader>c :pc<cr>:lclose<cr>
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>gb :Gblame<cr>
+nnoremap <leader>gy :Goyo<cr>
+nnoremap <leader>f :NERDTreeToggle<cr>
 nnoremap <leader>rt :set sw=2 sts=2 ts=2 expandtab<cr>:retab<cr>
-nnoremap <leader>bp :bp<cr>
-nnoremap <leader>bn :bn<cr>
-nnoremap <leader>bd :bd<cr>
-nnoremap <leader>c :pc<cr>
-nnoremap == gg=G''
-nnoremap gq gggqG<C-o><C-o>
 nnoremap <space> :
 vnoremap <space> :
+nnoremap == gg=G''
+nnoremap gq magggqG`azz
 
 " Search for selected text, forwards or backwards.
 " Copied from http://vim.wikia.com/wiki/Search_for_visually_selected_text
@@ -99,6 +109,7 @@ set linebreak
 set modeline
 set hlsearch
 set number
+set list
 set fillchars+=vert:\ 
 "set cmdheight=2
 
@@ -112,11 +123,17 @@ set backupcopy=yes
 set timeoutlen=1000 ttimeoutlen=0
 
 " tabs
-set ts=2 sts=2 sw=2 smarttab expandtab
+set noexpandtab
 set autoindent
-"set breakindent
+set copyindent
+set preserveindent
+set tabstop=2
+set softtabstop=0
+set shiftwidth=2
+
+"set breakindent " indent long broken lines
 "set breakindentopt=shift:2
-set nojoinspaces " don't double-space after period with gq
+set nojoinspaces " don't double-space after period
 
 if has('persistent_undo')
   set undofile
@@ -132,8 +149,14 @@ endif
 
 " make gvim pretty
 if has("gui_running")
-  set guifont=Fira\ Mono\ 10
+  set guifont=Iosevka\ 10
   set guioptions=aeigt
+endif
+
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
 endif
 
 " Filetype detection, smart plugins and indents
@@ -141,9 +164,10 @@ filetype plugin indent on
 
 augroup neynt
   autocmd!
-  autocmd FileType html setlocal sw=2 sts=2 ts=2
-  autocmd FileType go setlocal sw=2 sts=2 ts=2
-  autocmd FileType cpp setlocal sw=2 sts=2 ts=2
+  "autocmd FileType html setlocal sw=2 sts=2 ts=2
+  "autocmd FileType go setlocal sw=2 sts=2 ts=2
+  "autocmd FileType cpp setlocal sw=2 sts=2 ts=2
+  autocmd FileType haskell setlocal expandtab
   autocmd BufEnter *.vue syntax sync fromstart
   autocmd BufNewFile,BufRead *.vs,*.fs set ft=glsl
 augroup END
