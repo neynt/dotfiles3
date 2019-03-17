@@ -115,7 +115,6 @@ set linebreak
 set modeline
 set hlsearch
 set number
-set list
 set fillchars+=vert:\ 
 "set cmdheight=2
 
@@ -140,6 +139,7 @@ set shiftwidth=2
 "set breakindent " indent long broken lines
 "set breakindentopt=shift:2
 set nojoinspaces " don't double-space after period
+set list " show tabs
 
 if has('persistent_undo')
   set undofile

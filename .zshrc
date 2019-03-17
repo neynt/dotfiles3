@@ -19,7 +19,10 @@ HISTSIZE=1000
 SAVEHIST=1000
 
 # aliases
-alias diff="colordiff"
+#alias diff="colordiff"
+alias ls="ls -F --color=auto"
+alias grep="grep --color=auto"
+alias tmux="tmux -2"
 type nvim > /dev/null && alias vim=nvim && alias oldvim=vim # sorry bram :<
 alias ..="cd .."
 alias ...="cd ../.."

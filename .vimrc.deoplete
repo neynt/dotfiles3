@@ -8,7 +8,7 @@ else
 endif
 Plug 'slashmili/alchemist.vim'        " elixir
 Plug 'zchee/deoplete-jedi'            " python
-Plug 'mhartington/nvim-typescript'    " typescript
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'} " typescript
 Plug 'zchee/deoplete-clang'           " c-family
 Plug 'eagletmt/neco-ghc'              " haskell
 "Plug 'artur-shaik/vim-javacomplete2'  " java
