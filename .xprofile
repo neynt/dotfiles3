@@ -1,12 +1,4 @@
-#!/bin/bash
-# .xprofile for a cinnamon/bspwm/polybar setup.
-
-setxkbmap -option altwin:swap_alt_win  # for apple keyboard
-setxkbmap -option compose:ralt
-cinnamon-session-cinnamon2d &
-cinnamon-screensaver &
-polkit-gnome-authentication-agent-1 &
-gnome-terminal &
-polybar &
-sxhkd &
-bspwm
+xfsettingsd &
+ibus-daemon &
+discord &
+redshift -l 43.5:-80.5 &
