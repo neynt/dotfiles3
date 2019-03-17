@@ -20,16 +20,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-scripts/gitignore'
 Plug 'junegunn/goyo.vim'
-if filereadable(expand('~/.vimrc.work'))
-  source ~/.vimrc.work
-end
-if filereadable(expand('~/.vimrc.deoplete'))
-  source ~/.vimrc.deoplete
-end
 Plug 'tpope/vim-fugitive'             " git integration
-if filereadable(expand('~/.vimrc.ocaml'))
-  source ~/.vimrc.ocaml
-end
 " language syntax
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
@@ -56,11 +47,26 @@ Plug 'wlangstroth/vim-racket'
 Plug 'iloginow/vim-stylus'
 Plug 'purescript-contrib/purescript-vim'
 Plug 'reasonml-editor/vim-reason-plus'
+Plug 'xolox/vim-misc'
+Plug 'tbastos/vim-lua'
 " colors
 Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
 Plug 'NLKNguyen/papercolor-theme'
+if filereadable(expand('~/.vimrc.work'))
+  source ~/.vimrc.work
+end
+if filereadable(expand('~/.vimrc.deoplete'))
+  source ~/.vimrc.deoplete
+end
+if filereadable(expand('~/.vimrc.ocaml'))
+  source ~/.vimrc.ocaml
+end
 call plug#end()
+
+if filereadable(expand('~/.vimrc.after'))
+  source ~/.vimrc.after
+end
 
 let mapleader = ","
 let g:UltiSnipsExpandTrigger = "<c-j>"
@@ -173,7 +179,7 @@ augroup neynt
 augroup END
 
 " this is needed, trust me; just jellybeans isn't perfect
-colorscheme SerialExperimentsLain
+"colorscheme SerialExperimentsLain
 colorscheme jellybeans
 "colorscheme gruvbox
 

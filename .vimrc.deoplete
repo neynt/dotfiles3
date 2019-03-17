@@ -15,6 +15,7 @@ Plug 'eagletmt/neco-ghc'              " haskell
 Plug 'derekwyatt/vim-scala'           " scala
 Plug 'FrigoEU/psc-ide-vim'            " purescript
 Plug 'copy/deoplete-ocaml'            " ocaml through merlin
+Plug 'xolox/vim-lua-ftplugin'         " lua
 "Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }  " TabNine
 
 " Deoplete
@@ -33,6 +34,7 @@ let g:deoplete#sources#clang#clang_header  = '/usr/lib/clang/'
 let g:deoplete#ignore_sources = {}
 let g:deoplete#ignore_sources.ocaml = ['buffer', 'around', 'member', 'tag']
 let g:deoplete#auto_complete_delay = 0
+let g:deoplete#omni#input_patterns = {}
 
 inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
