@@ -22,6 +22,7 @@ Plug 'xolox/vim-lua-ftplugin'         " lua
 let g:deoplete#enable_at_startup = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 set runtimepath+=~/.vim/plugged/LanguageClient-neovim
+let g:LanguageClient_useVirtualText = 0
 let g:LanguageClient_serverCommands = {
   \ 'rust': ['rls'],
   \ 'reason': ['/home/neynt/bin/reason-language-server.exe'],

@@ -1,4 +1,5 @@
 #!/bin/bash
+# Notifies you when the content of a webpage changes.
 OUTPUT=$(mktemp)
 GOLDEN=$(mktemp)
 URL="$1"

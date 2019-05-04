@@ -1,7 +1,11 @@
 #!/bin/bash
-if [ "$#" -ne 1 ]; then
-  echo "Usage: $0 FILE"
-  echo "FILE can be - for stdin."
+if [ "$#" -gt 1 ]; then
+  echo "Usage: $0 [FILE]"
+  echo "If FILE not defined, reads from stdin."
   exit
 fi
-curl -F "image=@$1" https://fumie.neynt.ca/upload
+if [ "$#" -eq 0 ]; then
+  curl -F "image=@-" https://fumie.neynt.ca/upload
+else
+  curl -F "image=@$1" https://fumie.neynt.ca/upload
+fi

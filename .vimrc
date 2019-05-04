@@ -12,15 +12,15 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-obsession'  " auto sessions
+Plug 'tpope/vim-obsession' " auto sessions
 Plug 'vim-scripts/a.vim'
 "Plug 'vim-airline/vim-airline'
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-scripts/gitignore'
 Plug 'junegunn/goyo.vim'
-Plug 'tpope/vim-fugitive'             " git integration
+Plug 'tpope/vim-fugitive' " git integration
 " language syntax
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
@@ -49,10 +49,13 @@ Plug 'purescript-contrib/purescript-vim'
 Plug 'reasonml-editor/vim-reason-plus'
 Plug 'xolox/vim-misc'
 Plug 'tbastos/vim-lua'
+Plug 'idris-hackers/idris-vim'
 " colors
 Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'noahfrederick/vim-noctu'
+"Plug 'w0ng/vim-hybrid'
 if filereadable(expand('~/.vimrc.work'))
   source ~/.vimrc.work
 end
@@ -80,6 +83,8 @@ let g:jellybeans_overrides["background"] = {}
 let g:jellybeans_overrides["background"]["256ctermbg"] = "none"
 let NERDTreeQuitOnOpen = 1
 let g:gruvbox_contrast_dark = "hard"
+
+set lispwords+=λ
 
 " Key mapping
 nnoremap <leader>bd :bd<cr>
@@ -128,7 +133,7 @@ set backupcopy=yes
 set timeoutlen=1000 ttimeoutlen=0
 
 " tabs
-set noexpandtab
+set expandtab
 set autoindent
 set copyindent
 set preserveindent
@@ -178,10 +183,7 @@ augroup neynt
   autocmd BufNewFile,BufRead *.vs,*.fs set ft=glsl
 augroup END
 
-" this is needed, trust me; just jellybeans isn't perfect
-"colorscheme SerialExperimentsLain
 colorscheme jellybeans
-"colorscheme gruvbox
 
 " Syntax highlighting
 syntax on

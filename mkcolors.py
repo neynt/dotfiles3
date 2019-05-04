@@ -16,15 +16,15 @@ import os
 colors = {
     # Color name    Normal     Bright
     'background': ['#000000', '#000000'],
-    'foreground': ['#e9e9e9', '#ffffff'],
-    'color0':     ['#222222', '#5d5d5d'], # Black
-    'color1':     ['#c75646', '#e09690'], # Red
-    'color2':     ['#8eb33b', '#cdee69'], # Green
-    'color3':     ['#d0b03c', '#ffe377'], # Yellow
-    'color4':     ['#72b3cc', '#9cd9f0'], # Blue
-    'color5':     ['#c8a0d1', '#fbb1f9'], # Purple
-    'color6':     ['#218693', '#77dfd8'], # Cyan
-    'color7':     ['#b0b0b0', '#ffffff'], # White
+    'foreground': ['#cccccc', '#cccccc'],
+    'color0':     ['#393939', '#535551'], # Black
+    'color1':     ['#ca674a', '#ea2828'], # Red
+    'color2':     ['#96a967', '#87dd32'], # Green
+    'color3':     ['#d3a94a', '#f7e44d'], # Yellow
+    'color4':     ['#5778c1', '#6f9bca'], # Blue
+    'color5':     ['#9c35ac', '#a97ca4'], # Purple
+    'color6':     ['#6eb5f3', '#32dddd'], # Cyan
+    'color7':     ['#a9a9a9', '#e9e9e7'], # White
 }
 
 paths = [

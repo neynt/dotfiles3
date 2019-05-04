@@ -4,5 +4,5 @@ KEY="/org/gnome/terminal/legacy/profiles:/$PROFILE_ID"
 KEY="${KEY%/}"
 
 dconf write "$KEY/background-color" "'rgb(0,0,0)'"
-dconf write "$KEY/foreground-color" "'rgb(233,233,233)'"
-#dconf write "$KEY/palette" "['rgb(34,34,34)', 'rgb(199,86,70)', 'rgb(142,179,59)', 'rgb(208,176,60)', 'rgb(114,179,204)', 'rgb(200,160,209)', 'rgb(33,134,147)', 'rgb(176,176,176)', 'rgb(93,93,93)', 'rgb(224,150,144)', 'rgb(205,238,105)', 'rgb(255,227,119)', 'rgb(156,217,240)', 'rgb(251,177,249)', 'rgb(119,223,216)', 'rgb(255,255,255)']"
+dconf write "$KEY/foreground-color" "'rgb(204,204,204)'"
+#dconf write "$KEY/palette" "['rgb(57,57,57)', 'rgb(202,103,74)', 'rgb(150,169,103)', 'rgb(211,169,74)', 'rgb(87,120,193)', 'rgb(156,53,172)', 'rgb(110,181,243)', 'rgb(169,169,169)', 'rgb(83,85,81)', 'rgb(234,40,40)', 'rgb(135,221,50)', 'rgb(247,228,77)', 'rgb(111,155,202)', 'rgb(169,124,164)', 'rgb(50,221,221)', 'rgb(233,233,231)']"
