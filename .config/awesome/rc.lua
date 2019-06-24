@@ -1,7 +1,5 @@
 -- If LuaRocks is installed, make sure that packages installed through it are
--- found (e.g. lgi). If LuaRocks is not installed, do nothing.
-pcall(require, "luarocks.loader")
-
+-- found (e.g. lgi). If LuaRocks is not installed, do nothing. pcall(require, "luarocks.loader") 
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -180,6 +178,7 @@ awful.screen.connect_for_each_screen(function(s)
       s.mypromptbox,
     },
     s.mytasklist, -- Middle widget
+    --nil,
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
       --mykeyboardlayout,

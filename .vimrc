@@ -34,7 +34,7 @@ Plug 'solarnz/thrift.vim'
 Plug 'neynt/vim-vue'
 Plug 'digitaltoad/vim-pug'
 Plug 'elixir-lang/vim-elixir'
-"Plug 'JuliaEditorSupport/julia-vim'
+Plug 'JuliaEditorSupport/julia-vim'
 "Plug 'flxf/uCpp.vim'
 "Plug 'tikhomirov/vim-glsl'
 "Plug 'dleonard0/pony-vim-syntax'
@@ -83,6 +83,18 @@ let g:jellybeans_overrides["background"] = {}
 let g:jellybeans_overrides["background"]["256ctermbg"] = "none"
 let NERDTreeQuitOnOpen = 1
 let g:gruvbox_contrast_dark = "hard"
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "-",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "·",
+    \ "Renamed"   : "»",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "x",
+    \ "Dirty"     : "-",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '?',
+    \ "Unknown"   : "?"
+    \ }
 
 set lispwords+=λ
 

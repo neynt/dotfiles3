@@ -1,0 +1,62 @@
+mixin test-family(name)
+  test(qual='any' name='family')
+    string= name
+
+mixin family-pre(name)
+  edit(name='family' mode='prepend' binding='strong')
+    string= name
+
+mixin family-app(name)
+  edit(name='family' mode='append' binding='strong')
+    string= name
+
+doctype xml
+doctype fontconfig SYSTEM 'fonts.dtd'
+fontconfig
+  match(target='font')
+    edit(name='embeddedbitmap' mode='assign')
+      bool false
+
+  match
+    +test-family('serif')
+    +family-pre('Noto Serif')
+    +family-app('Noto Serif CJK JP')
+
+  match
+    +test-family('sans-serif')
+    +family-pre('Roboto')
+    +family-app('Noto Sans CJK JP')
+
+  match
+    +test-family('monospace')
+    +family-pre('Fira Mono')
+    +family-app('Noto Sans')
+    +family-app('Noto Sans CJK JP')
+
+  //match(target='pattern')
+    test(qual='any' name='family')
+      string Noto Sans CJK JP
+    test(name='weight' compare='more')
+      const light
+    edit(name='weight' mode='assign' binding='same')
+      const light
+
+  alias
+    family serif
+    prefer
+      family Noto Serif
+      family Noto Serif CJK JP
+
+  alias
+    family sans-serif
+    prefer
+      family Roboto
+      family Noto Sans
+      family Noto Sans CJK JP
+
+  alias
+    family monospace
+    prefer
+      family Fira Mono
+      family Noto Sans
+      family Noto Sans CJK JP

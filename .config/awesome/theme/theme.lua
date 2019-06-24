@@ -32,13 +32,13 @@ local xcolor14 = xrdb.color14
 local xcolor15 = xrdb.color15
 
 -- Colors
-theme.fg_normal  = xforeground
-theme.fg_focus   = xcolor13
-theme.fg_urgent  = xcolor13
-theme.bg_normal  = xbackground
-theme.bg_focus   = xbackground
+theme.fg_normal  = xcolor15 .. 'cc'
+theme.fg_focus   = xcolor15 .. 'cc'
+theme.fg_urgent  = xcolor1 .. 'cc'
+theme.bg_normal  = 'transparent'
+theme.bg_focus   = 'transparent'
 theme.bg_urgent  = xcolor1
-theme.bg_systray = xbackground
+theme.bg_systray = '#2d2d2d00'
 theme.border_radius = dpi(5)
 theme.systray_icon_spacing = dpi(2)
 
@@ -55,6 +55,12 @@ theme.titlebar_fg_focus  = xcolor7
 theme.titlebar_bg_normal = xbackground
 theme.titlebar_fg_normal = xcolor8
 
+-- Menubar
+theme.menubar_bg_normal = 'transparent'
+theme.menubar_fg_normal = xcolor7
+theme.menubar_bg_focus = 'transparent'
+theme.menubar_fg_focus = xforeground
+
 -- Other variables:
 -- [taglist|tasklist]_[bg|fg]_[focus|urgent|occupied|empty|volatile]
 -- titlebar_[normal|focus]
@@ -68,7 +74,7 @@ theme.menu_width  = dpi(120)
 
 -- Wibar
 theme.wibar_height = dpi(20)
---theme.wibar_bg = '#666666'
+theme.wibar_bg = 'transparent'
 
 -- Tasklist
 theme.tasklist_fg_normal = xcolor8
@@ -78,10 +84,11 @@ theme.tasklist_fg_focus = xcolor7
 theme.notification_border_width = dpi(1)
 theme.notification_border_radius = theme.border_radius
 theme.notification_border_color = theme.border_focus
+theme.notification_bg = xbackground
+theme.notification_fg = xcolor7
 theme.notification_margin = dpi(12)
 theme.notification_padding = dpi(30)
 theme.notification_font = theme.font
-
 
 -- Icons
 theme.taglist_squares_sel         = local_path .. "taglist/squares_sel.png"

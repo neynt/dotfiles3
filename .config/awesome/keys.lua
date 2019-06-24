@@ -138,7 +138,10 @@ keys.clientkeys = gears.table.join(
     c.fullscreen = not c.fullscreen
     c:raise()
   end, { description = "toggle fullscreen", group = "client" }),
-  awful.key({ modkey,           }, "y",      function (c) awful.client.floating.toggle(c) end, { description = "toggle floating", group = "client" }),
+  awful.key({ modkey,           }, "y", function (c)
+    awful.client.floating.toggle(c)
+    c.ontop = c.floating
+  end, { description = "toggle floating", group = "client" }),
   awful.key({ modkey, "Shift"   }, "c",      function (c)
     --naughty.notify({
     --  text = "killing...",
@@ -152,8 +155,14 @@ keys.clientkeys = gears.table.join(
   --  c:kill()
   --end, { description = "close", group = "client" }),
   awful.key({ modkey,           }, "Return", function (c) c:swap(awful.client.getmaster()) end, { description = "move to master", group = "client" }),
-  awful.key({ modkey,           }, "o",      function (c) c:move_to_screen() end,    { description = "move to screen", group = "client" }),
-  awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop end, { description = "toggle keep on top", group = "client" }),
+
+  awful.key({ modkey,           }, "o",      function (c)
+    c:move_to_screen()
+  end, { description = "move to screen", group = "client" }),
+
+  awful.key({ modkey,           }, "t",      function (c)
+    c.ontop = not c.ontop
+  end, { description = "toggle keep on top", group = "client" }),
 
   -- The client currently has the input focus, so it cannot be
   -- minimized, since minimized clients can't have the focus.
@@ -178,22 +187,23 @@ keys.taglist_buttons = gears.table.join(
   awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end))
 
 keys.tasklist_buttons = gears.table.join(
-  awful.button({ }, 1, function (c)
-    if c == client.focus then
-      c.minimized = true
-    else
-      c:emit_signal("request::activate", "tasklist", { raise = true })
-    end
-  end),
+  --awful.button({ }, 1, function (c)
+  --  if c == client.focus then
+  --    c.minimized = true
+  --  else
+  --    c:emit_signal("request::activate", "tasklist", { raise = true })
+  --  end
+  --end),
   awful.button({ }, 3, function()
     awful.menu.client_list({ theme = { width = 250 } })
-  end),
-  awful.button({ }, 4, function ()
-    awful.client.focus.byidx(1)
-  end),
-  awful.button({ }, 5, function ()
-    awful.client.focus.byidx(-1)
-  end))
+  end)
+  --awful.button({ }, 4, function ()
+  --  awful.client.focus.byidx(1)
+  --end),
+  --awful.button({ }, 5, function ()
+  --  awful.client.focus.byidx(-1)
+  --end)
+)
 
 keys.clientbuttons = gears.table.join(
   awful.button({ }, 1, function (c)
