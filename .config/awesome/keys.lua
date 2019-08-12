@@ -57,24 +57,16 @@ keys.globalkeys = gears.table.join(
 
 
   -- Media keys
-  awful.key({ }, "XF86AudioRaiseVolume", function ()
-    awful.spawn.with_shell("volume.sh up")
-end),
-  awful.key({ }, "XF86AudioLowerVolume", function ()
-    awful.spawn.with_shell("volume.sh down")
-  end),
-  awful.key({ }, "XF86AudioMute", function ()
-    awful.spawn.with_shell("volume.sh toggle")
-  end),
-  awful.key({ }, "XF86MonBrightnessUp", function ()
-    awful.spawn.with_shell("brightness.sh up")
-  end),
-  awful.key({ }, "XF86MonBrightnessDown", function ()
-    awful.spawn.with_shell("brightness.sh down")
-  end),
+  awful.key({ }, "XF86AudioRaiseVolume",     function () awful.spawn.with_shell("volume.sh up") end),
+  awful.key({ }, "XF86AudioLowerVolume",     function () awful.spawn.with_shell("volume.sh down") end),
+  awful.key({ }, "XF86AudioMute",            function () awful.spawn.with_shell("volume.sh toggle") end),
+  awful.key({ }, "XF86MonBrightnessUp",      function () awful.spawn.with_shell("brightness.sh up") end),
+  awful.key({ }, "XF86MonBrightnessDown",    function () awful.spawn.with_shell("brightness.sh down") end),
   awful.key({                    }, "Print", function () awful.spawn.with_shell("screenshot.sh") end),
   awful.key({ "Control",         }, "Print", function () awful.spawn.with_shell("screenshot.sh -f") end),
   awful.key({ "Control", "Shift" }, "Print", function () awful.spawn.with_shell("screenshot.sh -c") end),
+
+  awful.key({ "Control", "Mod1"  }, "l",     function () awful.spawn.with_shell("slock") end),
 
   awful.key({ modkey, "Control" }, "n",
     function ()
@@ -89,7 +81,8 @@ end),
     { description = "restore minimized", group = "client" }),
 
   -- Prompt
-  awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end, { description = "run prompt", group = "launcher" }),
+  awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
+    { description = "run prompt", group = "launcher" }),
 
   awful.key({ modkey }, "x",
     function ()
@@ -170,33 +163,30 @@ keys.clientkeys = gears.table.join(
   awful.key({ modkey,           }, "m", function (c) c.maximized = not c.maximized c:raise() end, { description = "(un)maximize", group = "client" })
 )
 
-keys.taglist_buttons = gears.table.join(
-  awful.button({ }, 1, function(t) t:view_only() end),
-  awful.button({ modkey }, 1, function(t)
-    if client.focus then
-      client.focus:move_to_tag(t)
-    end
-  end),
-  awful.button({ }, 3, awful.tag.viewtoggle),
-  awful.button({ modkey }, 3, function(t)
-    if client.focus then
-      client.focus:toggle_tag(t)
-    end
-  end),
-  awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-  awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end))
+keys.taglist_buttons = gears.table.join
+( awful.button({ }, 1, function(t) t:view_only() end)
+--, awful.button({ modkey }, 1, function(t)
+--    if client.focus then
+--      client.focus:move_to_tag(t)
+--    end
+--  end)
+, awful.button({ }, 3, awful.tag.viewtoggle)
+--, awful.button({ modkey }, 3, function(t)
+--    if client.focus then
+--      client.focus:toggle_tag(t)
+--    end
+--  end)
+--, awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end)
+--, awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+)
 
 keys.tasklist_buttons = gears.table.join(
-  --awful.button({ }, 1, function (c)
-  --  if c == client.focus then
-  --    c.minimized = true
-  --  else
-  --    c:emit_signal("request::activate", "tasklist", { raise = true })
-  --  end
-  --end),
-  awful.button({ }, 3, function()
-    awful.menu.client_list({ theme = { width = 250 } })
+  awful.button({ }, 1, function (c)
+    c:emit_signal("request::activate", "tasklist", { raise = true })
   end)
+  --awful.button({ }, 3, function()
+  --  awful.menu.client_list({ theme = { width = 250 } })
+  --end),
   --awful.button({ }, 4, function ()
   --  awful.client.focus.byidx(1)
   --end),

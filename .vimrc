@@ -16,7 +16,8 @@ Plug 'tpope/vim-obsession' " auto sessions
 Plug 'vim-scripts/a.vim'
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-syntastic/syntastic'
-Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
+Plug 'jremmen/vim-ripgrep'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-scripts/gitignore'
 Plug 'junegunn/goyo.vim'
@@ -52,15 +53,14 @@ Plug 'tbastos/vim-lua'
 Plug 'idris-hackers/idris-vim'
 " colors
 Plug 'morhetz/gruvbox'
-Plug 'tomasr/molokai'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'noahfrederick/vim-noctu'
-"Plug 'w0ng/vim-hybrid'
 if filereadable(expand('~/.vimrc.work'))
   source ~/.vimrc.work
 end
 if filereadable(expand('~/.vimrc.deoplete'))
   source ~/.vimrc.deoplete
+end
+if filereadable(expand('~/.vimrc.coc'))
+  source ~/.vimrc.coc
 end
 if filereadable(expand('~/.vimrc.ocaml'))
   source ~/.vimrc.ocaml
@@ -76,8 +76,8 @@ let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 let g:syntastic_mode_map = { 'mode': 'passive' }
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+"let g:ctrlp_cmd = 'CtrlP'
+"let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 let g:jellybeans_overrides = {}
 let g:jellybeans_overrides["background"] = {}
 let g:jellybeans_overrides["background"]["256ctermbg"] = "none"
@@ -108,23 +108,15 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>gy :Goyo<cr>
 nnoremap <leader>f :NERDTreeToggle<cr>
-nnoremap <leader>rt :set sw=2 sts=2 ts=2 expandtab<cr>:retab<cr>
 nnoremap <space> :
 vnoremap <space> :
-nnoremap == gg=G''
-nnoremap gq magggqG`azz
 
-" Search for selected text, forwards or backwards.
+" Search for selected text.
 " Copied from http://vim.wikia.com/wiki/Search_for_visually_selected_text
 vnoremap <silent> * :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
   \gvy/<C-R><C-R>=substitute(
   \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
-vnoremap <silent> # :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy?<C-R><C-R>=substitute(
-  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 
 set wrap
@@ -157,6 +149,7 @@ set shiftwidth=2
 "set breakindentopt=shift:2
 set nojoinspaces " don't double-space after period
 set list " show tabs
+set splitbelow " preview window on bottom
 
 if has('persistent_undo')
   set undofile

@@ -6,13 +6,7 @@ if [[ -f ~/.sharedrc ]]; then
 fi
 
 # env vars
-source /usr/share/fzf/key-bindings.zsh 2>/dev/null || true
-source /usr/share/fzf/completion.zsh 2>/dev/null || true
 source ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
-# fuzzy finder
-source /usr/share/fzf/key-bindings.zsh > /dev/null 2> /dev/null || true
-source /usr/share/fzf/completion.zsh > /dev/null 2> /dev/null || true
 
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
@@ -80,3 +74,7 @@ unsetopt share_history
 if [[ -f ~/.zshrc.work ]]; then
   source ~/.zshrc.work
 fi
+
+# fuzzy finder
+source /usr/share/fzf/key-bindings.zsh > /dev/null 2> /dev/null || true
+source /usr/share/fzf/completion.zsh > /dev/null 2> /dev/null || true

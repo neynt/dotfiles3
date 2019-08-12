@@ -23,9 +23,4 @@ eval `dircolors -b ~/.dir_colors`
 alias ls='ls -F --color=auto'
 alias grep="grep --color=auto"
 alias emacs="emacsclient -nw"
-
-if [ -d ~/.tmux/plugins/tmux-resurrect ]; then
-  alias tm='tmux attach || { (while ! tmux run-shell ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh; do sleep 0.2; done) & tmux; }'
-else
-  alias tm='tmux attach || tmux'
-fi
+alias tm='tmux attach || tmux'
