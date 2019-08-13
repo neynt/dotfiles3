@@ -24,3 +24,4 @@ alias ls='ls -F --color=auto'
 alias grep="grep --color=auto"
 alias emacs="emacsclient -nw"
 alias tm='tmux attach || tmux'
+alias vim=nvim
