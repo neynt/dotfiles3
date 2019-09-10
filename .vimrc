@@ -22,6 +22,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'vim-scripts/gitignore'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-fugitive' " git integration
+Plug 'dense-analysis/ale'
 " language syntax
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
@@ -53,6 +54,8 @@ Plug 'tbastos/vim-lua'
 Plug 'idris-hackers/idris-vim'
 " colors
 Plug 'morhetz/gruvbox'
+
+let mapleader = ","
 if filereadable(expand('~/.vimrc.work'))
   source ~/.vimrc.work
 end
@@ -71,7 +74,6 @@ if filereadable(expand('~/.vimrc.after'))
   source ~/.vimrc.after
 end
 
-let mapleader = ","
 let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
@@ -81,7 +83,7 @@ let g:syntastic_mode_map = { 'mode': 'passive' }
 let g:jellybeans_overrides = {}
 let g:jellybeans_overrides["background"] = {}
 let g:jellybeans_overrides["background"]["256ctermbg"] = "none"
-let NERDTreeQuitOnOpen = 1
+"let NERDTreeQuitOnOpen = 1
 let g:gruvbox_contrast_dark = "hard"
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "-",

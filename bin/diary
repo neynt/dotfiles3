@@ -1,10 +1,56 @@
 #!/bin/bash
-DIR=~/code/diary/diary
-EXT=.md
 
-cd $DIR
-TODAY="$(date -d '3 hours ago' +%F)$EXT"
-$EDITOR $TODAY
-if [[ -f $TODAY ]]; then
-  echo 'You wrote' $(wc -w < $TODAY) 'words.'
+DIARY_FILE="$HOME/Dropbox/diary.bin"
+
+SCRATCH_DIR=$(mktemp -d)
+DIARY_DIR="diary"
+TAR_GZ="diary.tar.gz"
+
+echo "who are you?"
+read -s PASSWORD
+
+unpack() {
+  cd $SCRATCH_DIR
+  cp $DIARY_FILE $TAR_GZ.gpg
+  result=$?
+  if echo $PASSWORD | gpg --batch --yes --passphrase-fd 0 -o $TAR_GZ -d $TAR_GZ.gpg 2> /dev/null; then
+    tar -xzf $TAR_GZ
+  else
+    echo "i don't know you"
+    exit 1
+  fi
+}
+
+mydate() {
+  date -d '3 hours ago' $@
+}
+
+write_stuff() {
+  cd $SCRATCH_DIR
+  mkdir -p $DIARY_DIR
+  cd $DIARY_DIR
+  YYYY="$(mydate +%Y)"
+  MM="$(mydate +%m)"
+  DD="$(mydate +%d)"
+  mkdir -p $YYYY/$MM
+  FILE="$YYYY/$MM/$DD.md"
+  $EDITOR $FILE
+  if [[ -f $FILE ]]; then
+    echo 'You wrote' $(wc -w < $FILE) 'words.'
+  fi
+}
+
+repack() {
+  cd $SCRATCH_DIR
+  tar -czf $TAR_GZ.new $DIARY_DIR
+  echo $PASSWORD | gpg --batch --yes --passphrase-fd 0 -o $TAR_GZ.gpg.new 2> /dev/null -c $TAR_GZ.new
+  rm -f $DIARY_FILE
+  cp $TAR_GZ.gpg.new $DIARY_FILE
+  rm -r $SCRATCH_DIR
+}
+
+if [[ -e $DIARY_FILE ]]; then
+  unpack
 fi
+write_stuff
+repack

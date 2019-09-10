@@ -15,6 +15,7 @@ to      "IMG_6970.jpg"
 import argparse
 import re
 import os
+import pathlib
 
 parser = argparse.ArgumentParser(description='Mass regex rename of files.')
 parser.add_argument('orig_format', metavar='ORIG_REGEX', type=str,
@@ -60,7 +61,13 @@ def main():
         print('Files unchanged.')
     else:
         for filename, new_filename in renames:
-            os.rename(filename, new_filename)
+            path = pathlib.Path(filename)
+            new_path = pathlib.Path(new_filename)
+            if new_path.exists():
+                print(f'{path} not renamed; {new_path} already exists')
+                continue
+            new_path.parent.mkdir(parents=True, exist_ok=True)
+            path.rename(new_path)
         print('Files renamed.')
 
 if __name__ == '__main__':

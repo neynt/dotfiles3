@@ -5,6 +5,10 @@ if [[ -f ~/.sharedrc ]]; then
   source ~/.sharedrc
 fi
 
+if [[ -f ~/.sharedrc.local ]]; then
+  source ~/.sharedrc
+fi
+
 # env vars
 source ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
