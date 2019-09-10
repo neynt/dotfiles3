@@ -19,7 +19,7 @@ parser.add_argument('files', nargs='+', help='files to rename')
 parser.add_argument('-d', '--dry', action='store_true',
                     help="don't actually modify the files")
 parser.add_argument('-t', '--transform', metavar='LAMBDA', type=str, action='append',
-                    help='create an additional format arg by transforming the'
+                    help='create an additional format arg by transforming the '
                          'existing format args using LAMBDA')
 
 def main():
@@ -34,11 +34,13 @@ def main():
 
     # Replace files!
     for filename in args.files:
-        if len(args.files) > 1:
-            print(f'=== {filename} ===')
         content = open(filename).read()
         # Find one to determine the number of groups
         one_match = pattern.search(content)
+        if not one_match:
+            print(f'=== {filename} === (no changes)')
+            continue
+        print(f'=== {filename} ===')
         n = len(one_match.groups())
 
         # Find all so we know what they originally looked like
@@ -48,9 +50,16 @@ def main():
         
         demo_parts = []
         new_parts = []
+
         for xs, orig_match in itertools.zip_longest(itertools.zip_longest(*[parts[i::n+1] for i in range(n+1)]), orig_matches):
             orig_text = xs[0]
-            demo_parts.append(orig_text)
+            orig_text_lines = orig_text.splitlines()
+            if len(orig_text_lines) <= 6:
+                demo_parts.append(orig_text)
+            else:
+                demo_parts.append('\n'.join(orig_text_lines[:3]))
+                demo_parts.append('\n...\n')
+                demo_parts.append('\n'.join(orig_text_lines[-3:]))
             new_parts.append(orig_text)
 
             match_parts = xs[1:]
@@ -63,9 +72,9 @@ def main():
                 demo_parts.append(C_RESET)
 
         print(''.join(demo_parts))
-        new_content = ''.join(new_parts)
 
         if not args.dry:
+            new_content = ''.join(new_parts)
             open(filename, 'w').write(new_content)
 
 if __name__ == '__main__':
