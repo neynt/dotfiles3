@@ -9,7 +9,7 @@ if [[ -f ~/.sharedrc ]]; then
   source ~/.sharedrc
 fi
 
-PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
 
 # Adding the kdesrc-build directory to the path
 export PATH="$HOME/kde/src/kdesrc-build:$PATH"
