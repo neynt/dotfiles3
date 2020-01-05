@@ -1,9 +1,10 @@
-export QT_IM_MODULE=ibus
+#export QT_IM_MODULE=ibus
 xfsettingsd &
-ibus-daemon &
-discord &
+#(cd ~/code/plover/ && ./launch.sh) &
+#discord &
 nm-applet &
 cbatticon &
 #hexchat &
 dropbox &
+#(sleep 1 && ibus-daemon) &
 #redshift -l 43.5:-80.5 &

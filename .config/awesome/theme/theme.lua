@@ -9,7 +9,8 @@ local theme = {}
 
 -- Misc
 theme.wallpaper = local_path .. "background.png"
-theme.font = "Fira Sans Condensed Book 9.5"
+--theme.font = "Fira Sans Condensed Book 9.5"
+theme.font = "Iosevka 10.5"
 theme.tasklist_disable_icon = true
 
 local xbackground = xrdb.background
@@ -17,7 +18,7 @@ local xforeground = xrdb.foreground
 local xcolor0 = xrdb.color0
 local xcolor1 = xrdb.color1
 local xcolor2 = xrdb.color2
-local xcolor3 = xrdb.color3
+local xcolor3 = xrdb.color2
 local xcolor4 = xrdb.color4
 local xcolor5 = xrdb.color5
 local xcolor6 = xrdb.color6
@@ -38,13 +39,14 @@ theme.fg_urgent  = xcolor1 .. 'cc'
 theme.bg_normal  = 'transparent'
 theme.bg_focus   = 'transparent'
 theme.bg_urgent  = xcolor1
-theme.bg_systray = '#2d2d2d00'
-theme.border_radius = dpi(5)
+theme.bg_systray = '#00000000'
+theme.border_radius = dpi(3)
 theme.systray_icon_spacing = dpi(2)
 
 -- Borders
-theme.useless_gap   = dpi(5)
-theme.border_width  = dpi(2)
+theme.useless_gap_orig = dpi(3)
+theme.useless_gap   = theme.useless_gap_orig
+theme.border_width  = dpi(1)
 theme.border_normal = xcolor0
 theme.border_focus  = xcolor8
 theme.border_marked = xcolor1
@@ -57,7 +59,7 @@ theme.titlebar_fg_normal = xcolor8
 
 -- Menubar
 theme.menubar_bg_normal = 'transparent'
-theme.menubar_fg_normal = xcolor7
+theme.menubar_fg_normal = xcolor8
 theme.menubar_bg_focus = 'transparent'
 theme.menubar_fg_focus = xforeground
 
@@ -75,6 +77,11 @@ theme.menu_width  = dpi(120)
 -- Wibar
 theme.wibar_height = dpi(20)
 theme.wibar_bg = 'transparent'
+
+-- Taglist
+theme.taglist_fg_focus = xcolor13
+theme.taglist_fg_occupied = xcolor8
+theme.taglist_fg_empty = xbackground
 
 -- Tasklist
 theme.tasklist_fg_normal = xcolor8

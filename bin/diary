@@ -1,10 +1,16 @@
 #!/bin/bash
 
 DIARY_FILE="$HOME/Dropbox/diary.bin"
+LOCK_FILE="$HOME/Dropbox/diary.bin.lock"
 
 SCRATCH_DIR=$(mktemp -d)
 DIARY_DIR="diary"
 TAR_GZ="diary.tar.gz"
+
+if [[ -e $LOCK_FILE ]]; then
+  echo "Lock file exists ($LOCK_FILE), do you already have me open?"
+  exit 1
+fi
 
 echo "who are you?"
 read -s PASSWORD
@@ -17,6 +23,7 @@ unpack() {
     tar -xzf $TAR_GZ
   else
     echo "i don't know you"
+    rm -f $LOCK_FILE
     exit 1
   fi
 }
@@ -49,8 +56,10 @@ repack() {
   rm -r $SCRATCH_DIR
 }
 
+touch $LOCK_FILE
 if [[ -e $DIARY_FILE ]]; then
   unpack
 fi
 write_stuff
 repack
+rm -f $LOCK_FILE

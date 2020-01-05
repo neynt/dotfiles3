@@ -10,3 +10,12 @@ if [[ -f ~/.sharedrc ]]; then
 fi
 
 PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+# Adding the kdesrc-build directory to the path
+export PATH="$HOME/kde/src/kdesrc-build:$PATH"
+
+# Creating alias for running software built with kdesrc-build
+kdesrc-run ()
+{
+  source "$HOME/kde/build/$1/prefix.sh" && "$HOME/kde/usr/bin/$1"
+}

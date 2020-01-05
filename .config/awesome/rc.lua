@@ -126,16 +126,54 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
-g = {}
+-- smartly maximize if there is only one tiled client
+function smart_borders (s)
+  local layout = awful.layout.getname(awful.layout.get(s))
+
+  local num_tiled = 0
+  for _, c in pairs(s.clients) do
+    if not c.floating then
+      num_tiled = num_tiled + 1
+    end
+  end
+
+  if layout == "floating" then
+    num_tiled = 2
+  end
+
+  for _, c in pairs(s.clients) do
+    if num_tiled <= 1 or layout == "max" then
+      c.border_width = 0
+      beautiful.useless_gap = 0
+    else
+      c.border_width = beautiful.border_width
+      beautiful.useless_gap = beautiful.useless_gap_orig
+    end
+    if c.floating or layout == "floating" then
+      -- Floaters are always on top, bordered, and above
+      --c.size_hints_honor = true
+      c.border_width = beautiful.border_width
+      if not c.fullscreen then
+        -- and above
+        c.above = true
+      end
+    else
+      c.above = false
+      --c.size_hints_honor = false
+    end
+  end
+end
+
 awful.screen.connect_for_each_screen(function(s)
   -- Wallpaper
   set_wallpaper(s)
 
   -- Each screen has its own tag table.
-  awful.tag({ " ", " ", " ", " ", " ", " ", " ", " ", " ", " " }, s, awful.layout.suit.tile)
+  awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" }, s, awful.layout.suit.tile)
 
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()
+
   -- Create an imagebox widget which will contain an icon indicating which layout we're using.
   -- We need one layoutbox per screen.
   s.mylayoutbox = awful.widget.layoutbox(s)
@@ -155,7 +193,7 @@ awful.screen.connect_for_each_screen(function(s)
   -- Create a tasklist widget
   s.mytasklist = awful.widget.tasklist {
     screen  = s,
-    filter  = awful.widget.tasklist.filter.currenttags,
+    filter  = awful.widget.tasklist.filter.focused,
     buttons = keys.tasklist_buttons
   }
 
@@ -163,7 +201,6 @@ awful.screen.connect_for_each_screen(function(s)
   local systray = wibox.widget.systray()
   systray:set_base_size(16)
   s.systray = wibox.container.margin(systray, 8, 8, 1, 3)
-  g.systray = s.systray
 
   -- Create the wibox
   s.mywibox = awful.wibar({ position = "top", screen = s })
@@ -171,22 +208,25 @@ awful.screen.connect_for_each_screen(function(s)
   -- Add widgets to the wibox
   s.mywibox:setup {
     layout = wibox.layout.align.horizontal,
-    { -- Left widgets
-      layout = wibox.layout.fixed.horizontal,
+    -- Left widgets
+    { layout = wibox.layout.fixed.horizontal,
       --mylauncher,
       s.mytaglist,
       s.mypromptbox,
     },
     s.mytasklist, -- Middle widget
     --nil,
-    { -- Right widgets
-      layout = wibox.layout.fixed.horizontal,
+    -- Right widgets
+    { layout = wibox.layout.fixed.horizontal,
       --mykeyboardlayout,
       s.systray,
       mytextclock,
       wibox.container.margin(s.mylayoutbox, 8, 3, 1, 3),
     },
   }
+
+  s:connect_signal("arrange", function() smart_borders(s) end)
+  s:connect_signal("tag::history::update", function() smart_borders(s) end)
 end)
 -- }}}
 
@@ -215,11 +255,11 @@ awful.rules.rules = {
   },
 
   -- Disallow Godot from maximizing itself.
-  { rule = { class = "Godot" },
-    properties = {
-      maximized = false,
-    },
-  },
+  { rule = { class = "Godot" }, properties = { maximized = false, }, },
+  { rule = { class = "Godot_Editor" }, properties = { maximized = false, }, },
+
+  { rule = { class = "Godot_Editor" }, properties = { maximized = false, }, },
+  { rule = { name = "Plover: Suggestions" }, properties = { floating = false, }, },
 
   -- Floating clients.
   { rule_any = {
@@ -293,6 +333,8 @@ local adjust_client = function (c)
     --c.ontop = false
     --c.size_hints_honor = false
   end
+
+  --smart_borders(c.screen)
 end
 
 -- Signal function to execute when a new client appears.
