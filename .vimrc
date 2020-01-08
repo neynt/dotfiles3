@@ -1,5 +1,6 @@
 set nocompatible
 
+" Plug packages {{{
 call plug#begin('~/.vim/plugged')
 if !has('nvim')
   Plug 'tpope/vim-sensible'
@@ -68,7 +69,9 @@ if filereadable(expand('~/.vimrc.coc'))
   source ~/.vimrc.coc
 end
 call plug#end()
+" }}}
 
+" Lets {{{
 let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
@@ -93,8 +96,9 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 let g:suda_smart_edit = 1
+" }}}
 
-" Key mapping
+" Key mapping {{{
 nnoremap <leader>bd :bd<cr>
 nnoremap <leader>bn :bn<cr>
 nnoremap <leader>bp :bp<cr>
@@ -116,7 +120,9 @@ vnoremap <silent> * :<C-U>
   \gvy/<C-R><C-R>=substitute(
   \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
+" }}}
 
+" Sets {{{
 set lispwords+=λ
 set wrap
 set linebreak
@@ -175,6 +181,7 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
+" }}}
 
 " Filetype detection, smart plugins and indents
 filetype plugin indent on
@@ -187,6 +194,7 @@ augroup neynt
   autocmd FileType haskell setlocal expandtab
   autocmd BufEnter *.vue syntax sync fromstart
   autocmd BufNewFile,BufRead *.vs,*.fs set ft=glsl
+  autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
 colorscheme jellybeans
@@ -194,6 +202,7 @@ colorscheme jellybeans
 " Syntax highlighting
 syntax on
 
+" opam {{{
 " ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
 let s:opam_share_dir = system("opam config var share")
 let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
@@ -226,3 +235,4 @@ for tool in s:opam_packages
   endif
 endfor
 " ## end of OPAM user-setup addition for vim / base ## keep this line
+" }}}
