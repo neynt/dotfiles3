@@ -9,8 +9,9 @@ local theme = {}
 
 -- Misc
 theme.wallpaper = local_path .. "background.png"
---theme.font = "Fira Sans Condensed Book 9.5"
-theme.font = "Iosevka 10.5"
+--theme.font = "Ubuntu Condensed Regular 9.5"
+--theme.font = "-windows-dina-medium-r-normal--12-90-96-96-c-70-iso8859-1"
+theme.font = "Iosevka 10"
 theme.tasklist_disable_icon = true
 
 local xbackground = xrdb.background
@@ -48,7 +49,7 @@ theme.useless_gap_orig = dpi(3)
 theme.useless_gap   = theme.useless_gap_orig
 theme.border_width  = dpi(1)
 theme.border_normal = xcolor0
-theme.border_focus  = xcolor8
+theme.border_focus  = xcolor13
 theme.border_marked = xcolor1
 
 -- Titlebars

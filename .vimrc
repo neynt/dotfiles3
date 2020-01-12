@@ -192,9 +192,10 @@ augroup neynt
   "autocmd FileType go setlocal sw=2 sts=2 ts=2
   "autocmd FileType cpp setlocal sw=2 sts=2 ts=2
   autocmd FileType haskell setlocal expandtab
+  autocmd FileType vim setlocal foldmethod=marker
+  autocmd FileType markdown setlocal textwidth=80
   autocmd BufEnter *.vue syntax sync fromstart
   autocmd BufNewFile,BufRead *.vs,*.fs set ft=glsl
-  autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
 colorscheme jellybeans
