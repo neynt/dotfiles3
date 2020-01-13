@@ -1,3 +1,6 @@
+URxvt.scrollBar: false
+*.font:          xft:Iosevka:size=10.5
+
 ! special
 *.foreground:   #cccccc
 *.background:   #000000
