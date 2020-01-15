@@ -24,7 +24,7 @@ parser.add_argument('-t', '--transform', metavar='LAMBDA', type=str, action='app
 
 def main():
     args = parser.parse_args()
-    pattern = re.compile(args.orig_format)
+    pattern = re.compile(args.orig_format, re.DOTALL)
 
     # Eval transformation functions, if any
     transforms = []
