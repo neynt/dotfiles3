@@ -108,10 +108,14 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>gy :Goyo<cr>
 nnoremap <leader>f :NERDTreeToggle<cr>
+nnoremap <leader>rt :set expandtab<cr>:retab<cr>
+nnoremap <leader>n :nohlsearch<cr>
+"nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
 nnoremap <space> :
 vnoremap <space> :
 nnoremap H ^
 nnoremap L $
+nnoremap / /\v
 
 " Search for selected text.
 " Copied from http://vim.wikia.com/wiki/Search_for_visually_selected_text
