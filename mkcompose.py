@@ -116,6 +116,15 @@ mgY       Ψ
 mgO       Ω
 """)
 
+# Low tone
+macros += pairs("""
+av ǎ
+ev ě
+iv ǐ
+ov ǒ
+uv ǔ
+""")
+
 print('include "/usr/share/X11/locale/en_US.UTF-8/Compose"')
 for seq, char in macros:
     seq_codes = ['Multi_key'] + [keynames.get(c, c) for c in seq]

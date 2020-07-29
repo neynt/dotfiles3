@@ -65,6 +65,7 @@ keys.globalkeys = gears.table.join(
   awful.key({                    }, "Print", function () awful.spawn.with_shell("screenshot.sh") end),
   awful.key({ "Control",         }, "Print", function () awful.spawn.with_shell("screenshot.sh -f") end),
   awful.key({ "Control", "Shift" }, "Print", function () awful.spawn.with_shell("screenshot.sh -c") end),
+  awful.key({ "Mod1"             }, "Print", function () awful.spawn.with_shell("ocr.sh") end),
 
   awful.key({ "Control", "Mod1"  }, "l",     function () awful.spawn.with_shell("slock") end),
 

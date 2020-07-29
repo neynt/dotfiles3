@@ -21,14 +21,12 @@ SAVEHIST=1000
 alias ls="ls -F --color=auto"
 alias grep="grep --color=auto"
 alias tmux="tmux -2"
-type nvim > /dev/null && alias vim=nvim && alias oldvim=vim # sorry bram :<
 alias ..="cd .."
 alias ...="cd ../.."
 function ssht() { ssh -t $@ "tmux attach || tmux new" }
-function sshcs() { ssht $@ z394zhan@ubuntu1604-002.student.cs.uwaterloo.ca }
 function mypandoc() { pandoc -V geometry:margin=1in $@ }
-function mypython() { mypy --strict $@ && python $@ }
 function venv() { source venv/bin/activate }
+#alias vim="[ -f Session.vim ] && vim -S || vim"
 
 # prompt
 autoload -Uz promptinit
@@ -82,3 +80,4 @@ fi
 # fuzzy finder
 source /usr/share/fzf/key-bindings.zsh > /dev/null 2> /dev/null || true
 source /usr/share/fzf/completion.zsh > /dev/null 2> /dev/null || true
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh || true

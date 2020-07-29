@@ -5,7 +5,7 @@
 # Based off screenshot script found in elenapan/dotfiles
 
 SCREENSHOTS_DIR=~/Dropbox/Screenshots
-TIMESTAMP="$(date +%Y-%m-%d.%H:%M:%S)"
+TIMESTAMP="$(date +%Y-%m-%d.%H.%M.%S)"
 FILENAME=$SCREENSHOTS_DIR/$TIMESTAMP.screenshot.png
 
 # maim flags:

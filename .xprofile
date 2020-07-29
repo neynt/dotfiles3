@@ -3,7 +3,7 @@ xfsettingsd &
 #(cd ~/code/plover/ && ./launch.sh) &
 #discord &
 nm-applet &
-cbatticon &
+#cbatticon &
 #hexchat &
 dropbox &
 #(sleep 1 && ibus-daemon) &

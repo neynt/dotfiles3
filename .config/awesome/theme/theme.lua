@@ -9,9 +9,11 @@ local theme = {}
 
 -- Misc
 theme.wallpaper = local_path .. "background.png"
---theme.font = "Ubuntu Condensed Regular 9.5"
+--theme.font = "Ubuntu Ultra Condensed Regular 9.5"
 --theme.font = "-windows-dina-medium-r-normal--12-90-96-96-c-70-iso8859-1"
-theme.font = "Iosevka 10"
+--theme.font = "Iosevka 10"
+--theme.font = "Fira Sans Ultra Condensed 9.5"
+theme.font = "curie 8"
 theme.tasklist_disable_icon = true
 
 local xbackground = xrdb.background
@@ -37,8 +39,8 @@ local xcolor15 = xrdb.color15
 theme.fg_normal  = xcolor15 .. 'cc'
 theme.fg_focus   = xcolor15 .. 'cc'
 theme.fg_urgent  = xcolor1 .. 'cc'
-theme.bg_normal  = 'transparent'
-theme.bg_focus   = 'transparent'
+theme.bg_normal  = '#000000'
+theme.bg_focus   = '#000000'
 theme.bg_urgent  = xcolor1
 theme.bg_systray = '#00000000'
 theme.border_radius = dpi(3)
@@ -49,7 +51,7 @@ theme.useless_gap_orig = dpi(3)
 theme.useless_gap   = theme.useless_gap_orig
 theme.border_width  = dpi(1)
 theme.border_normal = xcolor0
-theme.border_focus  = xcolor13
+theme.border_focus  = xcolor7
 theme.border_marked = xcolor1
 
 -- Titlebars
@@ -59,9 +61,9 @@ theme.titlebar_bg_normal = xbackground
 theme.titlebar_fg_normal = xcolor8
 
 -- Menubar
-theme.menubar_bg_normal = 'transparent'
+theme.menubar_bg_normal = '#000000'
 theme.menubar_fg_normal = xcolor8
-theme.menubar_bg_focus = 'transparent'
+theme.menubar_bg_focus = '#000000'
 theme.menubar_fg_focus = xforeground
 
 -- Other variables:
@@ -77,7 +79,7 @@ theme.menu_width  = dpi(120)
 
 -- Wibar
 theme.wibar_height = dpi(20)
-theme.wibar_bg = 'transparent'
+theme.wibar_bg = '#000000'
 
 -- Taglist
 theme.taglist_fg_focus = xcolor13
@@ -87,6 +89,14 @@ theme.taglist_fg_empty = xbackground
 -- Tasklist
 theme.tasklist_fg_normal = xcolor8
 theme.tasklist_fg_focus = xcolor7
+theme.tasklist_sticky = '[s] '
+theme.tasklist_floating = '[f] '
+theme.tasklist_ontop = '[^] '
+theme.tasklist_above = '[\'] '
+theme.tasklist_below = '[,] '
+theme.tasklist_maximized_horizontal = '[-] '
+theme.tasklist_maximized_vertical = '[|] '
+theme.tasklist_maximized = '[+] '
 
 -- Notifications
 theme.notification_border_width = dpi(1)

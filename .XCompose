@@ -82,3 +82,8 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <m> <g> <C>                 : "Χ" U3A7  # GREEK CAPITAL LETTER CHI
 <Multi_key> <m> <g> <Y>                 : "Ψ" U3A8  # GREEK CAPITAL LETTER PSI
 <Multi_key> <m> <g> <O>                 : "Ω" U3A9  # GREEK CAPITAL LETTER OMEGA
+<Multi_key> <a> <v>                     : "ǎ" U1CE  # LATIN SMALL LETTER A WITH CARON
+<Multi_key> <e> <v>                     : "ě" U11B  # LATIN SMALL LETTER E WITH CARON
+<Multi_key> <i> <v>                     : "ǐ" U1D0  # LATIN SMALL LETTER I WITH CARON
+<Multi_key> <o> <v>                     : "ǒ" U1D2  # LATIN SMALL LETTER O WITH CARON
+<Multi_key> <u> <v>                     : "ǔ" U1D4  # LATIN SMALL LETTER U WITH CARON

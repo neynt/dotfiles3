@@ -10,10 +10,11 @@ Plug 'scrooloose/nerdtree'
 "Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'albfan/nerdtree-git-plugin'
 Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-obsession' " auto sessions
+Plug 'tpope/vim-unimpaired'
 Plug 'vim-scripts/a.vim'
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-syntastic/syntastic'
@@ -24,7 +25,7 @@ Plug 'vim-scripts/gitignore'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-fugitive' " git integration
 "Plug 'dense-analysis/ale'
-Plug 'lambdalisue/suda.vim'
+"Plug 'lambdalisue/suda.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " language syntax
@@ -57,6 +58,7 @@ Plug 'reasonml-editor/vim-reason-plus'
 Plug 'xolox/vim-misc'
 Plug 'tbastos/vim-lua'
 Plug 'idris-hackers/idris-vim'
+Plug 'PProvost/vim-ps1'
 
 " colors
 Plug 'morhetz/gruvbox'
@@ -103,10 +105,15 @@ nnoremap <leader>bd :bd<cr>
 nnoremap <leader>bn :bn<cr>
 nnoremap <leader>bp :bp<cr>
 nnoremap <leader>c :pc<cr>:lclose<cr>
+nnoremap <leader>cn :cnext<cr>
+nnoremap <leader>cp :cprev<cr>
+"nnoremap <leader>en :lnext<cr>
+"nnoremap <leader>ep :lprev<cr>
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>gy :Goyo<cr>
+nnoremap <leader>rg :Rg 
 nnoremap <leader>f :NERDTreeToggle<cr>
 nnoremap <leader>rt :set expandtab<cr>:retab<cr>
 nnoremap <leader>n :nohlsearch<cr>
@@ -115,7 +122,7 @@ nnoremap <space> :
 vnoremap <space> :
 nnoremap H ^
 nnoremap L $
-nnoremap / /\v
+"nnoremap / /\v
 
 " Search for selected text.
 " Copied from http://vim.wikia.com/wiki/Search_for_visually_selected_text
@@ -136,7 +143,6 @@ set number
 set fillchars+=vert:\ 
 "set cmdheight=2
 set autoread
-au FocusGained,BufEnter * :checktime
 
 set pumheight=16
 
@@ -153,13 +159,13 @@ set autoindent
 set copyindent
 set preserveindent
 set tabstop=2
-set softtabstop=0
+set softtabstop=2
 set shiftwidth=2
 
 "set breakindent " indent long broken lines
 "set breakindentopt=shift:2
 set nojoinspaces " don't double-space after period
-set list " show tabs
+set list       " show tabs
 set splitbelow " preview window on bottom
 
 if has('persistent_undo')
@@ -176,7 +182,7 @@ endif
 
 " make gvim pretty
 if has("gui_running")
-  set guifont=Iosevka\ 10
+  set guifont=curie\ 9
   set guioptions=aeigt
 endif
 
@@ -195,11 +201,16 @@ augroup neynt
   "autocmd FileType html setlocal sw=2 sts=2 ts=2
   "autocmd FileType go setlocal sw=2 sts=2 ts=2
   "autocmd FileType cpp setlocal sw=2 sts=2 ts=2
+  autocmd FileType perl setlocal sw=2 sts=2 ts=2
   autocmd FileType haskell setlocal expandtab
   autocmd FileType vim setlocal foldmethod=marker
   autocmd FileType markdown setlocal textwidth=80
   autocmd BufEnter *.vue syntax sync fromstart
   autocmd BufNewFile,BufRead *.vs,*.fs set ft=glsl
+
+  " for :set autoread
+  autocmd FocusGained,BufEnter * :checktime
+  autocmd CursorHold * checktime
 augroup END
 
 colorscheme jellybeans
@@ -209,35 +220,35 @@ syntax on
 
 " opam {{{
 " ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
-let s:opam_share_dir = system("opam config var share")
-let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
-
-let s:opam_configuration = {}
-
-function! OpamConfOcpIndent()
-  execute "set rtp^=" . s:opam_share_dir . "/ocp-indent/vim"
-endfunction
-let s:opam_configuration['ocp-indent'] = function('OpamConfOcpIndent')
-
-function! OpamConfOcpIndex()
-  execute "set rtp+=" . s:opam_share_dir . "/ocp-index/vim"
-endfunction
-let s:opam_configuration['ocp-index'] = function('OpamConfOcpIndex')
-
-function! OpamConfMerlin()
-  let l:dir = s:opam_share_dir . "/merlin/vim"
-  execute "set rtp+=" . l:dir
-endfunction
-let s:opam_configuration['merlin'] = function('OpamConfMerlin')
-
-let s:opam_packages = ["ocp-indent", "ocp-index", "merlin"]
-let s:opam_check_cmdline = ["opam list --installed --short --safe --color=never"] + s:opam_packages
-let s:opam_available_tools = split(system(join(s:opam_check_cmdline)))
-for tool in s:opam_packages
-  " Respect package order (merlin should be after ocp-index)
-  if count(s:opam_available_tools, tool) > 0
-    call s:opam_configuration[tool]()
-  endif
-endfor
+"let s:opam_share_dir = system("opam config var share")
+"let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
+"
+"let s:opam_configuration = {}
+"
+"function! OpamConfOcpIndent()
+"  execute "set rtp^=" . s:opam_share_dir . "/ocp-indent/vim"
+"endfunction
+"let s:opam_configuration['ocp-indent'] = function('OpamConfOcpIndent')
+"
+"function! OpamConfOcpIndex()
+"  execute "set rtp+=" . s:opam_share_dir . "/ocp-index/vim"
+"endfunction
+"let s:opam_configuration['ocp-index'] = function('OpamConfOcpIndex')
+"
+"function! OpamConfMerlin()
+"  let l:dir = s:opam_share_dir . "/merlin/vim"
+"  execute "set rtp+=" . l:dir
+"endfunction
+"let s:opam_configuration['merlin'] = function('OpamConfMerlin')
+"
+"let s:opam_packages = ["ocp-indent", "ocp-index", "merlin"]
+"let s:opam_check_cmdline = ["opam list --installed --short --safe --color=never"] + s:opam_packages
+"let s:opam_available_tools = split(system(join(s:opam_check_cmdline)))
+"for tool in s:opam_packages
+"  " Respect package order (merlin should be after ocp-index)
+"  if count(s:opam_available_tools, tool) > 0
+"    call s:opam_configuration[tool]()
+"  endif
+"endfor
 " ## end of OPAM user-setup addition for vim / base ## keep this line
 " }}}
