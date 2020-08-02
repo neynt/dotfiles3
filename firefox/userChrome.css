@@ -1,6 +1,11 @@
+:root[uidensity="compact"] {
+    --tab-min-height: 28px;
+}
+
 tab, .tabbrowser-tabs *|tab {
     background: #000 !important;
     text-shadow: none !important;
+    border-radius: 2px 2px 0 0 !important;
 }
 
 /* Tab width */
@@ -27,8 +32,12 @@ tab, .tabbrowser-tabs *|tab {
     -moz-appearance: none !important;
 }
 
-.tabbrowser-arrowscrollbox {
+#tabbrowser-arrowscrollbox {
     background: #000 !important;
+}
+
+#tabs-newtab-button {
+    display: none;
 }
 
 .tab-close-button {
@@ -53,3 +62,7 @@ tab, .tabbrowser-tabs *|tab {
 }
 
 /* Other */
+
+#navigator-toolbox {
+    --tabs-border-color: rgba(0, 0, 0, 0.0) !important;
+}

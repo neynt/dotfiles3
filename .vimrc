@@ -25,7 +25,7 @@ Plug 'vim-scripts/gitignore'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-fugitive' " git integration
 "Plug 'dense-analysis/ale'
-"Plug 'lambdalisue/suda.vim'
+Plug 'lambdalisue/suda.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " language syntax

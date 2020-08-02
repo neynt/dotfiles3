@@ -16,6 +16,7 @@ theme.wallpaper = local_path .. "background.png"
 theme.font = "curie 8"
 theme.tasklist_disable_icon = true
 
+local darkgrey = '#000000'
 local xbackground = xrdb.background
 local xforeground = xrdb.foreground
 local xcolor0 = xrdb.color0
@@ -39,15 +40,15 @@ local xcolor15 = xrdb.color15
 theme.fg_normal  = xcolor15 .. 'cc'
 theme.fg_focus   = xcolor15 .. 'cc'
 theme.fg_urgent  = xcolor1 .. 'cc'
-theme.bg_normal  = '#000000'
-theme.bg_focus   = '#000000'
+theme.bg_normal  = darkgrey
+theme.bg_focus   = darkgrey
 theme.bg_urgent  = xcolor1
 theme.bg_systray = '#00000000'
 theme.border_radius = dpi(3)
 theme.systray_icon_spacing = dpi(2)
 
 -- Borders
-theme.useless_gap_orig = dpi(3)
+theme.useless_gap_orig = dpi(2)
 theme.useless_gap   = theme.useless_gap_orig
 theme.border_width  = dpi(1)
 theme.border_normal = xcolor0
@@ -55,15 +56,15 @@ theme.border_focus  = xcolor7
 theme.border_marked = xcolor1
 
 -- Titlebars
-theme.titlebar_bg_focus  = xbackground
+theme.titlebar_bg_focus  = darkgrey
 theme.titlebar_fg_focus  = xcolor7
-theme.titlebar_bg_normal = xbackground
+theme.titlebar_bg_normal = darkgrey
 theme.titlebar_fg_normal = xcolor8
 
 -- Menubar
-theme.menubar_bg_normal = '#000000'
+theme.menubar_bg_normal = darkgrey
 theme.menubar_fg_normal = xcolor8
-theme.menubar_bg_focus = '#000000'
+theme.menubar_bg_focus = darkgrey
 theme.menubar_fg_focus = xforeground
 
 -- Other variables:
@@ -79,12 +80,12 @@ theme.menu_width  = dpi(120)
 
 -- Wibar
 theme.wibar_height = dpi(20)
-theme.wibar_bg = '#000000'
+theme.wibar_bg = darkgrey
 
 -- Taglist
-theme.taglist_fg_focus = xcolor13
+theme.taglist_fg_focus = xcolor7
 theme.taglist_fg_occupied = xcolor8
-theme.taglist_fg_empty = xbackground
+theme.taglist_fg_empty = darkgrey
 
 -- Tasklist
 theme.tasklist_fg_normal = xcolor8
