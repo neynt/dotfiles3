@@ -1,8 +1,8 @@
 [user]
-	email = hyriodula@gmail.com
-	name = Jim Zhang
+  email = hyriodula@gmail.com
+  name = neynt
 [push]
-	default = simple
+  default = simple
 [color]
   diff = auto
   status = auto
