@@ -25,3 +25,4 @@ alias grep="grep --color=auto"
 alias emacs="emacsclient -nw"
 alias tm='tmux attach || tmux'
 alias msfconsole="msfconsole --quiet -x \"db_connect ${USER}@msf\""
+alias mpva='mpv --lavfi-complex="[aid1]asplit[ao][a]; [a]showcqt[vo]"'

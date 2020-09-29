@@ -7,8 +7,8 @@ if !has('nvim')
 endif
 Plug 'tpope/vim-sleuth'
 Plug 'scrooloose/nerdtree'
-"Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'albfan/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'albfan/nerdtree-git-plugin'
 Plug 'ConradIrwin/vim-bracketed-paste'
 "Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -25,7 +25,7 @@ Plug 'vim-scripts/gitignore'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-fugitive' " git integration
 "Plug 'dense-analysis/ale'
-Plug 'lambdalisue/suda.vim'
+"Plug 'lambdalisue/suda.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " language syntax
@@ -85,9 +85,9 @@ let g:jellybeans_overrides["background"] = {}
 let g:jellybeans_overrides["background"]["256ctermbg"] = "none"
 let NERDTreeQuitOnOpen = 1
 let g:gruvbox_contrast_dark = "hard"
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "-",
-    \ "Staged"    : "✚",
+    \ "Staged"    : "+",
     \ "Untracked" : "·",
     \ "Renamed"   : "»",
     \ "Unmerged"  : "═",
@@ -142,8 +142,8 @@ set hlsearch
 set number
 set fillchars+=vert:\ 
 "set cmdheight=2
-set autoread
-
+"set autoread
+set autochdir
 set pumheight=16
 
 " swap files
@@ -173,7 +173,7 @@ if has('persistent_undo')
 endif
 
 if has("nvim")
-  set guicursor=
+  "set guicursor=
 endif
 
 if has("mouse")
@@ -201,6 +201,7 @@ augroup neynt
   "autocmd FileType html setlocal sw=2 sts=2 ts=2
   "autocmd FileType go setlocal sw=2 sts=2 ts=2
   "autocmd FileType cpp setlocal sw=2 sts=2 ts=2
+  autocmd FileType c setlocal sw=2 sts=2 ts=2
   autocmd FileType perl setlocal sw=2 sts=2 ts=2
   autocmd FileType haskell setlocal expandtab
   autocmd FileType vim setlocal foldmethod=marker
@@ -209,8 +210,8 @@ augroup neynt
   autocmd BufNewFile,BufRead *.vs,*.fs set ft=glsl
 
   " for :set autoread
-  autocmd FocusGained,BufEnter * :checktime
-  autocmd CursorHold * checktime
+  "autocmd FocusGained,BufEnter * :checktime
+  "autocmd CursorHold * checktime
 augroup END
 
 colorscheme jellybeans
