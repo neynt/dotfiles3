@@ -10,7 +10,7 @@ fi
 
 for config in $pacnew; do
   # Diff original and new configuration to merge
-  vimdiff ${config%\.*} $config
+  SUDO_EDITOR=vimdiff sudoedit ${config%\.*} $config
   # Remove .pacnew file?
   while true; do
     read -p " Delete \""$config"\"? (Y/n): " Yn
