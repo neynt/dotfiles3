@@ -1,5 +1,5 @@
 [ -f ~/.xprofile ] && . ~/.xprofile
 setxkbmap -option compose:ralt
 setxkbmap -option ctrl:nocaps
-#redshift-gtk &
-exec awesome
+redshift-gtk &
+dbus-launch awesome

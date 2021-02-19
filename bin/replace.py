@@ -47,7 +47,7 @@ def main():
         orig_matches = [m.group(0) for m in pattern.finditer(content)]
 
         parts = pattern.split(content)
-        
+
         demo_parts = []
         new_parts = []
 
@@ -63,7 +63,7 @@ def main():
             new_parts.append(orig_text)
 
             match_parts = xs[1:]
-            if any(match_parts):
+            if orig_match:
                 match_parts = [x if x else '' for x in match_parts]
                 result = args.new_format.format(*match_parts)
                 new_parts.append(result)

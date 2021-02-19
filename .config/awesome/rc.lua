@@ -66,7 +66,7 @@ beautiful.init(gears.filesystem.get_configuration_dir() .. "theme/theme.lua")
 beautiful.notification_shape = rrect(beautiful.notification_border_radius)
 
 -- This is used later as the default terminal and editor to run.
-terminal = "konsole"
+terminal = "alacritty"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -423,4 +423,4 @@ client.connect_signal("property::floating", adjust_client)
 awful.spawn("setxkbmap -option compose:ralt")
 awful.spawn("setxkbmap -option ctrl:nocaps")
 awful.spawn("xinput set-prop 'DLL07BE:01 06CB:7A13 Touchpad' 'libinput Disable While Typing Enabled' 0")
-awful.spawn("xcalib /home/neynt/code/dotfiles3/icm/XPS15-9560.icm")
+--awful.spawn("xcalib /home/neynt/code/dotfiles3/icm/XPS15-9560.icm")
