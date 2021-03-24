@@ -19,9 +19,11 @@ prompt_neynt_setup() {
   PROMPT="${prompt_newline}"
   # user@host:/dir
   PROMPT+="$Blu%n%f%b"  # user
-  PROMPT+="$blk@%f"  # @
+  #PROMPT+="$blk@%f"  # @
+  PROMPT+="%f "
   PROMPT+="$grn%m%f%b"  # host
-  PROMPT+="$blk:%f"  # :
+  #PROMPT+="$blk:%f"  # :
+  PROMPT+="%f "
   PROMPT+="$Ylw%~%f%b"  # /dir
   # Current time
   PROMPT+=" ${wht}[%*]%f"
