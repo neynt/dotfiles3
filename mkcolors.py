@@ -4,6 +4,7 @@ import glob
 import itertools
 import string
 import os
+import stat
 
 # List of all color template strings available:
 # ${COLOR}_hex: e.g. #ff0000
@@ -62,6 +63,10 @@ filenames = itertools.chain(
 for filename in filenames:
     print(filename)
     new_filename = os.path.splitext(filename)[0]
+    os.remove(new_filename)
     tmpl = string.Template(open(filename).read())
     new_content = tmpl.safe_substitute(tmpl_subs)
     open(new_filename, 'w').write(new_content)
+    mode = os.stat(new_filename).st_mode
+    ro_mask = 0o777 ^ (stat.S_IWUSR | stat.S_IWGRP | stat.S_IWOTH)
+    os.chmod(new_filename, mode & ro_mask)

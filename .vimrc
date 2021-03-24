@@ -105,6 +105,7 @@ nnoremap <leader>bd :bd<cr>
 nnoremap <leader>bn :bn<cr>
 nnoremap <leader>bp :bp<cr>
 nnoremap <leader>c :pc<cr>:lclose<cr>
+nnoremap <leader>= :cd %:p:h<cr>
 nnoremap <leader>cn :cnext<cr>
 nnoremap <leader>cp :cprev<cr>
 "nnoremap <leader>en :lnext<cr>
@@ -114,7 +115,16 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>gy :Goyo<cr>
 nnoremap <leader>rg :Rg 
-nnoremap <leader>f :NERDTreeToggle<cr>
+
+function! s:my_nerd_tree_find()
+  if &filetype ==# 'nerdtree' || &filetype ==# ''
+    execute ':NERDTreeToggle'
+  else
+    execute ':NERDTreeFind'
+  endif
+endfunction
+
+nnoremap <silent> <leader>f :call <sid>my_nerd_tree_find()<cr>
 nnoremap <leader>rt :set expandtab<cr>:retab<cr>
 nnoremap <leader>n :nohlsearch<cr>
 "nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
