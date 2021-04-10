@@ -59,6 +59,7 @@ Plug 'xolox/vim-misc'
 Plug 'tbastos/vim-lua'
 Plug 'idris-hackers/idris-vim'
 Plug 'PProvost/vim-ps1'
+Plug 'ziglang/zig.vim'
 
 " colors
 Plug 'morhetz/gruvbox'
@@ -105,7 +106,7 @@ nnoremap <leader>bd :bd<cr>
 nnoremap <leader>bn :bn<cr>
 nnoremap <leader>bp :bp<cr>
 nnoremap <leader>c :pc<cr>:lclose<cr>
-nnoremap <leader>= :cd %:p:h<cr>
+nnoremap <silent> <leader>h :cd %:p:h<cr>
 nnoremap <leader>cn :cnext<cr>
 nnoremap <leader>cp :cprev<cr>
 "nnoremap <leader>en :lnext<cr>

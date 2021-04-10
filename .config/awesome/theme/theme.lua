@@ -39,7 +39,7 @@ local xcolor15 = xrdb.color15
 -- Colors
 theme.fg_normal  = xcolor15 .. 'cc'
 theme.fg_focus   = xcolor15 .. 'cc'
-theme.fg_urgent  = xcolor1 .. 'cc'
+theme.fg_urgent  = xbackground .. 'cc'
 theme.bg_normal  = darkgrey
 theme.bg_focus   = darkgrey
 theme.bg_urgent  = xcolor1
