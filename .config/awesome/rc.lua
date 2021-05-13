@@ -257,8 +257,6 @@ awful.rules.rules = {
   -- Disallow Godot from maximizing itself.
   { rule = { class = "Godot" }, properties = { maximized = false, }, },
   { rule = { class = "Godot_Editor" }, properties = { maximized = false, }, },
-
-  { rule = { class = "Godot_Editor" }, properties = { maximized = false, }, },
   { rule = { name = "Plover: Suggestions" }, properties = { floating = false, }, },
 
   -- Floating clients.
@@ -316,12 +314,12 @@ awful.rules.rules = {
 local adjust_client = function (c)
   if c.fullscreen or c.maximized then
     -- Don't draw a border for maximized windows.
-    c.border_width = 0
-    c.shape = nil
+    --c.border_width = 0
+    --c.shape = nil
   else
-    c.border_width = beautiful.border_width
+    --c.border_width = beautiful.border_width
     -- Rounded borders
-    c.shape = rrect(beautiful.border_radius)
+    --c.shape = rrect(beautiful.border_radius)
   end
 
   if c.floating or (c.first_tag and c.first_tag.layout == awful.layout.suit.floating) then
