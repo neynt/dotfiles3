@@ -62,7 +62,7 @@ Plug 'PProvost/vim-ps1'
 Plug 'ziglang/zig.vim'
 
 " colors
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
 
 let mapleader = ","
 if filereadable(expand('~/.vimrc.local'))
