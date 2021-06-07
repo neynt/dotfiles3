@@ -151,7 +151,7 @@ function smart_borders (s)
     end
     if c.floating or layout == "floating" then
       -- Floaters are always on top, bordered, and above
-      --c.size_hints_honor = true
+      c.size_hints_honor = true
       c.border_width = beautiful.border_width
       if not c.fullscreen then
         -- and above
@@ -159,7 +159,7 @@ function smart_borders (s)
       end
     else
       c.above = false
-      --c.size_hints_honor = false
+      c.size_hints_honor = false
     end
   end
 end
@@ -169,7 +169,7 @@ awful.screen.connect_for_each_screen(function(s)
   set_wallpaper(s)
 
   -- Each screen has its own tag table.
-  awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" }, s, awful.layout.suit.tile)
+  awful.tag({ " ", " ", " ", " ", " ", " ", " ", " ", " ", " " }, s, awful.layout.suit.tile)
 
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()
@@ -214,18 +214,20 @@ awful.screen.connect_for_each_screen(function(s)
       s.mytaglist,
       s.mypromptbox,
     },
-    s.mytasklist, -- Middle widget
+    wibox.container.margin(
+      s.mytasklist, -- Middle widget
+      5, 0, 0, 0
+    ),
     --nil,
     -- Right widgets
     { layout = wibox.layout.fixed.horizontal,
       --mykeyboardlayout,
       s.systray,
       mytextclock,
-      wibox.container.margin(s.mylayoutbox, 8, 3, 1, 3),
+      --wibox.container.margin(s.mylayoutbox, 8, 3, 1, 3),
     },
   }
 
-  s:connect_signal("arrange", function() smart_borders(s) end)
   s:connect_signal("tag::history::update", function() smart_borders(s) end)
 end)
 -- }}}
@@ -315,11 +317,11 @@ local adjust_client = function (c)
   if c.fullscreen or c.maximized then
     -- Don't draw a border for maximized windows.
     --c.border_width = 0
-    --c.shape = nil
+    c.shape = nil
   else
     --c.border_width = beautiful.border_width
     -- Rounded borders
-    --c.shape = rrect(beautiful.border_radius)
+    c.shape = rrect(beautiful.border_radius)
   end
 
   if c.floating or (c.first_tag and c.first_tag.layout == awful.layout.suit.floating) then
@@ -332,7 +334,7 @@ local adjust_client = function (c)
     --c.size_hints_honor = false
   end
 
-  --smart_borders(c.screen)
+  smart_borders(c.screen)
 end
 
 -- Signal function to execute when a new client appears.
@@ -410,15 +412,22 @@ end)
 --  c:emit_signal("request::activate", "mouse_enter", {raise = false})
 --end)
 
-client.connect_signal("focus",   function(c) c.border_color = beautiful.border_focus  end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("focus",   function(c)
+  c.border_color = beautiful.border_focus
+  adjust_client(c)
+end)
+client.connect_signal("unfocus", function(c)
+  c.border_color = beautiful.border_normal
+end)
 -- }}}
 
 client.connect_signal("property::maximized", adjust_client)
 client.connect_signal("property::fullscreen", adjust_client)
 client.connect_signal("property::floating", adjust_client)
+client.connect_signal("request::unmanage", adjust_client)
 
 awful.spawn("setxkbmap -option compose:ralt")
 awful.spawn("setxkbmap -option ctrl:nocaps")
 awful.spawn("xinput set-prop 'DLL07BE:01 06CB:7A13 Touchpad' 'libinput Disable While Typing Enabled' 0")
+awful.spawn("ibus-daemon -drx")
 --awful.spawn("xcalib /home/neynt/code/dotfiles3/icm/XPS15-9560.icm")

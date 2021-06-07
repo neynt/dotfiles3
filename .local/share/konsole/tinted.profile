@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=false
 ColorScheme=tinted
-Font=curie,9,-1,5,57,0,0,0,0,0,Medium
+Font=JetBrains Mono,13,-1,5,50,0,0,0,0,0
 UseFontLineChararacters=false
 
 [Cursor Options]

@@ -12,8 +12,8 @@ theme.wallpaper = local_path .. "background.png"
 --theme.font = "Ubuntu Ultra Condensed Regular 9.5"
 --theme.font = "-windows-dina-medium-r-normal--12-90-96-96-c-70-iso8859-1"
 --theme.font = "Iosevka 10"
---theme.font = "Fira Sans Ultra Condensed 9.5"
-theme.font = "curie 8"
+theme.font = "Fira Sans Condensed 9.5"
+--theme.font = "curie 8"
 theme.tasklist_disable_icon = true
 
 local darkgrey = '#000000'
@@ -44,13 +44,13 @@ theme.bg_normal  = darkgrey
 theme.bg_focus   = darkgrey
 theme.bg_urgent  = xcolor1
 theme.bg_systray = '#00000000'
-theme.border_radius = dpi(3)
+theme.border_radius = dpi(5)
 theme.systray_icon_spacing = dpi(2)
 
 -- Borders
 theme.useless_gap_orig = dpi(2)
 theme.useless_gap   = theme.useless_gap_orig
-theme.border_width  = dpi(1)
+theme.border_width  = dpi(2)
 theme.border_normal = xcolor0
 theme.border_focus  = xcolor7
 theme.border_marked = xcolor1
@@ -100,7 +100,7 @@ theme.tasklist_maximized_vertical = '[|] '
 theme.tasklist_maximized = '[+] '
 
 -- Notifications
-theme.notification_border_width = dpi(1)
+theme.notification_border_width = dpi(2)
 theme.notification_border_radius = theme.border_radius
 theme.notification_border_color = theme.border_focus
 theme.notification_bg = xbackground

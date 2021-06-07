@@ -157,6 +157,7 @@ set fillchars+=vert:\
 "set autoread
 "set autochdir
 set pumheight=16
+set scrolloff=5 " min context around cursor
 
 " swap files
 set dir=~/.vim/tmp//,.

@@ -128,25 +128,25 @@ bar {
   tray_output none
 
   colors {
-    background #000000
-    statusline #cccccc
+    background $background_hex
+    statusline $foreground_hex
     separator  #666666
 
     #                  border, bg, text
-    focused_workspace  #000000 #000000 #a9a9a9
-    active_workspace   #000000 #000000 #393939
-    inactive_workspace #000000 #000000 #535551
-    urgent_workspace   #000000 #000000 #cccccc
-    binding_mode       #000000 #000000 #cccccc
+    focused_workspace  $background_hex $background_hex $color7_hex
+    active_workspace   $background_hex $background_hex $color0_hex
+    inactive_workspace $background_hex $background_hex $color0_bright_hex
+    urgent_workspace   $background_hex $background_hex $foreground_hex
+    binding_mode       $background_hex $background_hex $foreground_hex
   }
 }
 
 #                       border, bg, text, indicator, child_border
-client.focused          #000000 #285577 #FFFFFF #ca674a #535551
-client.focused_inactive #000000 #5F676A #FFFFFF #96a967 #000000
-client.unfocused        #000000 #222222 #888888 #d3a94a #000000
-client.urgent           #000000 #900000 #FFFFFF #5778c1 #000000
-client.placeholder      #000000 #0C0C0C #FFFFFF #9c35ac #000000
+client.focused          $background_hex #285577 #FFFFFF $color1_hex $color0_bright_hex
+client.focused_inactive $background_hex #5F676A #FFFFFF $color2_hex $background_hex
+client.unfocused        $background_hex #222222 #888888 $color3_hex $background_hex
+client.urgent           $background_hex #900000 #FFFFFF $color4_hex $background_hex
+client.placeholder      $background_hex #0C0C0C #FFFFFF $color5_hex $background_hex
 client.background       #FFFFFF
 
 focus_follows_mouse no
