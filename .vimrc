@@ -134,6 +134,7 @@ vnoremap <space> :
 nnoremap H ^
 nnoremap L $
 "nnoremap / /\v
+vnoremap <silent><Leader>y "yy <Bar> :call system('xclip -selection clipboard', @y)<cr>
 
 " Search for selected text.
 " Copied from http://vim.wikia.com/wiki/Search_for_visually_selected_text
@@ -176,7 +177,8 @@ set shiftwidth=2
 "set breakindent " indent long broken lines
 "set breakindentopt=shift:2
 set nojoinspaces " don't double-space after period
-set list       " show tabs
+set list       " show whitespace
+set listchars=tab:-->
 set splitbelow " preview window on bottom
 
 if has('persistent_undo')

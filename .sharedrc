@@ -1,28 +1,23 @@
 # vim: set ft=sh:
 
 # env vars
-export PATH=~/.local/bin:$PATH
-[ -d ~/bin ] && export PATH=~/bin:$PATH
-type ruby > /dev/null && export PATH=$(ruby -rrubygems -e "puts Gem.user_dir")/bin:$PATH
-[ -d ~/.npm-global/bin ] && export PATH=~/.npm-global/bin:$PATH
-[ -d ~/.cargo/bin ] && export PATH=~/.cargo/bin:$PATH
-[ -d ~/go ] && export GOPATH=~/go && export PATH="$PATH:$GOPATH/bin"
-if [ -d /data/apps/android-sdk ]; then
-  export ANDROID_HOME=/data/apps/android-sdk
-  export ANDROID_SDK_ROOT=$ANDROID_HOME
-  export ANDROID_NDK_ROOT=$ANDROID_HOME/ndk-bundle
-  export PATH=$ANDROID_SDK_ROOT/tools:$PATH
-  export PATH=$ANDROID_NDK_ROOT:$PATH
-fi
 export EDITOR=nvim
 export BROWSER=firefox
-export PYTHONPATH=~/.local/lib/python/site-packages:$PYTHONPATH
+[ -f ~/.dir_colors ] && eval `dircolors -b ~/.dir_colors`
+
+# everyone wants their own little bin
+[ -d ~/.gem/ruby ] && export PATH=$(ruby -rrubygems -e "puts Gem.user_dir")/bin:$PATH
+[ -d ~/.npm-global/bin ] && export PATH=~/.npm-global/bin:$PATH
+[ -d ~/.cargo/bin ] && export PATH=~/.cargo/bin:$PATH
+[ -d ~/.local/bin ] && export PATH=~/.local/bin:$PATH
+[ -d ~/bin ] && export PATH=~/bin:$PATH
+[ -d ~/go ] && export GOPATH=~/go && export PATH="$PATH:$GOPATH/bin"
+[ -d ~/.local/lib/python/site-packages ] && export PYTHONPATH=~/.local/lib/python/site-packages:$PYTHONPATH
 
 # aliases
-eval `dircolors -b ~/.dir_colors`
 alias ls='ls -F --color=auto'
 alias grep="grep --color=auto"
-alias emacs="emacsclient -nw"
+alias emacs="emacs -nw"
 alias tm='tmux attach || tmux'
 alias msfconsole="msfconsole --quiet -x \"db_connect ${USER}@msf\""
 alias mpva='mpv --lavfi-complex="[aid1]asplit[ao][a]; [a]showcqt=fps=60:gamma=1.3:gamma2=5:count=6[vo]"'
