@@ -1,11 +1,15 @@
 :root[uidensity="compact"] {
     --tab-min-height: 28px;
+    --tab-max-height: 20px;
+    --proton-tab-block-margin: 0px !important;
+    --panelview-toolbarbutton-focus-box-shadow: none !important;
 }
 
 tab, .tabbrowser-tabs *|tab {
     background: #000 !important;
     text-shadow: none !important;
     border-radius: 2px 2px 0 0 !important;
+    max-height: var(--tab-max-height);
 }
 
 /* Tab width */
@@ -45,6 +49,9 @@ tab, .tabbrowser-tabs *|tab {
 }
 
 /* URL bar */
+#urlbar-background {
+    display: none !important;
+}
 #urlbar, .searchbar-textbox, urlbar-container {
     background-color: #fff !important;
     color: #000 !important;

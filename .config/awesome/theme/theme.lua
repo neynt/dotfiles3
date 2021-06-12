@@ -56,9 +56,9 @@ theme.border_focus  = xcolor7
 theme.border_marked = xcolor1
 
 -- Titlebars
-theme.titlebar_bg_focus  = darkgrey
+theme.titlebar_bg_focus  = xbackground
 theme.titlebar_fg_focus  = xcolor7
-theme.titlebar_bg_normal = darkgrey
+theme.titlebar_bg_normal = xbackground
 theme.titlebar_fg_normal = xcolor8
 
 -- Menubar

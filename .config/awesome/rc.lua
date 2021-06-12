@@ -368,7 +368,6 @@ client.connect_signal("request::titlebars", function(c)
     end))
   --]]
 
-  --[[
   local titlebar_padding = {
     layout = wibox.layout.fixed.horizontal,
   }
@@ -377,7 +376,6 @@ client.connect_signal("request::titlebars", function(c)
   awful.titlebar(c, { size = beautiful.useless_gap, position = 'bottom' }) : setup(titlebar_padding)
   awful.titlebar(c, { size = beautiful.useless_gap, position = 'right' }) : setup(titlebar_padding)
   awful.titlebar(c, { size = beautiful.useless_gap, position = 'left' }) : setup(titlebar_padding)
-  --]]
 
   --[[
   awful.titlebar(c) : setup {
