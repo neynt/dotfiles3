@@ -1,8 +1,7 @@
 #!/bin/bash
-PROFILE_ID="$(dconf list /org/gnome/terminal/legacy/profiles:/ | grep ":" | head -n1)"
+PROFILE_ID="$(dconf list /org/gnome/terminal/legacy/profiles:/ | head -n1 | xargs)"
 KEY="/org/gnome/terminal/legacy/profiles:/$PROFILE_ID"
 KEY="${KEY%/}"
-echo $KEY
 
 dconf write "$KEY/background-color" "'rgb(0,0,0)'"
 dconf write "$KEY/foreground-color" "'rgb(204,204,204)'"

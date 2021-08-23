@@ -1,4 +1,5 @@
-# vim:syntax=zsh
+# vim: syntax=zsh
+
 prompt_neynt_setup() {
   blk="%F{0}"
   red="%F{1}"

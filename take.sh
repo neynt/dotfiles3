@@ -17,5 +17,6 @@ dest="$DIR/$rel_dest"
 mkdir -p $(dirname $dest)
 cp -r $src $dest
 echo "Copied $src --> $dest"
-echo "Now take control with:"
+echo "Now taking control with:"
 echo "./install.sh $rel_dest"
+./install.sh $rel_dest

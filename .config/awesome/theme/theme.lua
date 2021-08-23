@@ -48,9 +48,9 @@ theme.border_radius = dpi(5)
 theme.systray_icon_spacing = dpi(2)
 
 -- Borders
-theme.useless_gap_orig = dpi(2)
+theme.useless_gap_orig = dpi(3)
 theme.useless_gap   = theme.useless_gap_orig
-theme.border_width  = dpi(2)
+theme.border_width  = dpi(1)
 theme.border_normal = xcolor0
 theme.border_focus  = xcolor7
 theme.border_marked = xcolor1
@@ -120,7 +120,9 @@ theme.awesome_icon           = local_path .. "awesome-icon.png"
 theme.menu_submenu_icon      = themes_path .. "default/submenu.png"
 
 theme.layout_tile       = local_path .. "layouts/tile.png"
---theme.layout_tileleft   = local_path .. "layouts/tileleft.png"
+theme.layout_tileleft   = local_path .. "layouts/tileleft.png"
+theme.layout_centerfair = local_path .. "layouts/centerfair.png"
+theme.layout_centerwork = local_path .. "layouts/centerwork.png"
 --theme.layout_tilebottom = local_path .. "layouts/tilebottom.png"
 --theme.layout_tiletop    = local_path .. "layouts/tiletop.png"
 --theme.layout_fairv      = local_path .. "layouts/fairv.png"

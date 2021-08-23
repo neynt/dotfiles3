@@ -38,6 +38,15 @@ tab, .tabbrowser-tabs *|tab {
 
 #tabbrowser-arrowscrollbox {
     background: #000 !important;
+    max-height: 20px;
+}
+
+#new-tab-button {
+    display: none;
+}
+
+#alltabs-button {
+    display: none;
 }
 
 #tabs-newtab-button {

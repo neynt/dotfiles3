@@ -23,7 +23,7 @@ alias grep="grep --color=auto"
 alias tmux="tmux -2"
 alias ..="cd .."
 alias ...="cd ../.."
-function ssht() { ssh -t $@ "tmux attach || tmux new" }
+function ssht() { ssh -tt "$@" 'zsh -c "tmux attach -u || tmux new -u"' }
 function mypandoc() { pandoc -V geometry:margin=1in $@ }
 function venv() { source venv/bin/activate }
 #alias vim="[ -f Session.vim ] && vim -S || vim"

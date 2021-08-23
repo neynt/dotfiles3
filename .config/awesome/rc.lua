@@ -16,6 +16,9 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
+-- Better layouts (3rd party)
+local lain = require("lain")
+
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -71,9 +74,13 @@ editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
+lain.layout.termfair.nmaster = 3
+lain.layout.termfair.ncol = 1
 awful.layout.layouts = {
-  awful.layout.suit.tile,
-  awful.layout.suit.floating,
+  lain.layout.centerwork,
+  lain.layout.termfair.center,
+  awful.layout.suit.tile.right,
+  --awful.layout.suit.floating,
 }
 -- }}}
 
@@ -142,7 +149,8 @@ function smart_borders (s)
   end
 
   for _, c in pairs(s.clients) do
-    if num_tiled <= 1 or layout == "max" then
+    --if num_tiled <= 1 or layout == "max" then
+    if layout == "max" then
       c.border_width = 0
       beautiful.useless_gap = 0
     else
@@ -169,7 +177,7 @@ awful.screen.connect_for_each_screen(function(s)
   set_wallpaper(s)
 
   -- Each screen has its own tag table.
-  awful.tag({ " ", " ", " ", " ", " ", " ", " ", " ", " ", " " }, s, awful.layout.suit.tile)
+  awful.tag({ " ", " ", " ", " ", " ", " ", " ", " ", " ", " " }, s, awful.layout.layouts[1])
 
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()
@@ -224,7 +232,7 @@ awful.screen.connect_for_each_screen(function(s)
       --mykeyboardlayout,
       s.systray,
       mytextclock,
-      --wibox.container.margin(s.mylayoutbox, 8, 3, 1, 3),
+      wibox.container.margin(s.mylayoutbox, 8, 3, 1, 3),
     },
   }
 

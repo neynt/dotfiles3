@@ -18,10 +18,10 @@ for filename in "$@"; do
 
   if [[ -d "$ln_target" ]]; then
     rm -rf -i $ln_source || true
-    echo "linking directory: $ln_source -> $ln_target"
+    echo "Linking directory: $ln_source -> $ln_target"
   elif [[ -f "$ln_target" ]]; then
     rm -f -i $ln_source || true
-    echo "linking file $ln_source -> $ln_target"
+    echo "Linking file $ln_source -> $ln_target"
   else
     echo "$filename is not a file or directory" >&2
   fi

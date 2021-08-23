@@ -2,6 +2,7 @@
   "coc.preferences.hoverTarget": "float",
   "python.jediEnabled": true,
   "python.jediPath": "/usr/lib/python3.8/site-packages/",
+  "deno.config": "./tsconfig.json",
   "languageserver": {
     "ocaml": {
       "command": "ocaml-language-server",

@@ -1,0 +1,77 @@
+#!/bin/bash
+set -euo pipefail
+
+if [[ $# -lt 1 ]]; then
+  echo "workon what?"
+  grep -E '  [a-z]+)$' $0
+  exit 1
+fi
+
+function forever() {
+  echo "bash -c \"while true; do $@; sleep 1; done\""
+}
+
+case $1 in
+  sangatsu)
+    mcomix '/loot/books/March comes in like a lion (raw)/sangatsu3-2x.zip' &
+    chapter="$(($(date +%U -d "yesterday") - 8))"
+    mcomix "/loot/books/March comes in like a lion (eng)/"3-gatsu_no_Lion_v*_c${chapter}_*.zip &
+    firefox 'https://jisho.org/' 'https://translate.google.com/' 'https://en.wiktionary.org/' &
+    (cd ~/code/notes && konsole -e vim ~/code/notes/books/sangatsu-no-raion.md) &
+    ;;
+  spice)
+    calibre &
+    (cd ~/code/notes && konsole -e vim ~/code/notes/books/ookami-to-koushinryou.md) &
+    firefox 'https://jisho.org/' 'https://translate.google.com/' 'https://en.wiktionary.org/' &
+    ;;
+  tobira)
+    konsole -e vim ~/code/notes/books/tobira.md &
+    ;;
+  waver)
+    if tmux has-session -t 'waver'; then
+      echo 'session "waver" already exists'
+      exit 1
+    fi
+    tmux new-session -s waver workon waver-internal
+    ;;
+  waver-internal)
+    cd ~/code/waver/
+    tmux split-pane -h ./build.sh
+    tmux split-pane -v ./watch.sh
+    vim -S
+    ;;
+  tsundiary)
+    if tmux has-session -t 'tsundiary'; then
+      echo 'session "tsundiary" already exists'
+      exit 1
+    fi
+    tmux new-session -s tsundiary workon tsundiary-internal
+    ;;
+  tsundiary-internal)
+    cd ~/code/tsundiary2/
+    tmux split-pane -h ./watch-server.sh
+    tmux split-pane -v ./watch-web.sh
+    vim -S
+    ;;
+  namanamashii)
+    if tmux has-session -t 'namanamashii'; then
+      echo 'session "namanamashii" already exists'
+      exit 1
+    fi
+    tmux new-session -s namanamashii workon namanamashii-internal
+    ;;
+  namanamashii-internal)
+    cd ~/code/namanamashii/
+    firefox --new-window localhost:8081 &
+    tmux split-pane -v "$(forever ./do.sh watch-client)"
+    tmux split-pane -h "$(forever ./do.sh run-server)"
+    tmux split-pane -h "$(forever ./do.sh dev-server)"
+    tmux resize-pane -y 20
+    vim -S
+    $SHELL
+    ;;
+  *)
+    echo "huh?"
+    grep -E '  [a-z]+)$' $0
+    ;;
+esac
