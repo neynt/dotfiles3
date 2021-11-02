@@ -87,3 +87,4 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <i> <v>                     : "ǐ" U1D0  # LATIN SMALL LETTER I WITH CARON
 <Multi_key> <o> <v>                     : "ǒ" U1D2  # LATIN SMALL LETTER O WITH CARON
 <Multi_key> <u> <v>                     : "ǔ" U1D4  # LATIN SMALL LETTER U WITH CARON
+<Multi_key> <1> <0> <0>                 : "💯" U1F4AF  # HUNDRED POINTS SYMBOL

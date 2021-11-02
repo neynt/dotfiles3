@@ -23,6 +23,11 @@ tab, .tabbrowser-tabs *|tab {
     color: #000 !important;
 }
 
+.tab-background {
+    margin: 0;
+    margin-block: 0 !important;
+}
+
 /* Tab hover */
 .tabbrowser-tab[selected="true"][pinned="true"]:hover, .tabbrowser-tab:not([pinned]):hover, .tabs-newtab-button:hover {
     /*background: #000 !important;

@@ -2,7 +2,7 @@
 
 # env vars
 export EDITOR=nvim
-export BROWSER=firefox
+export BROWSER=brave
 [ -f ~/.dir_colors ] && eval `dircolors -b ~/.dir_colors`
 
 # everyone wants their own happy little bin

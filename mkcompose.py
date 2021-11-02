@@ -116,13 +116,18 @@ mgY       Ψ
 mgO       Ω
 """)
 
-# Low tone
+# Pinyin low tone
 macros += pairs("""
 av ǎ
 ev ě
 iv ǐ
 ov ǒ
 uv ǔ
+""")
+
+# Emojis
+macros += pairs("""
+100 💯
 """)
 
 print('include "/usr/share/X11/locale/en_US.UTF-8/Compose"')

@@ -1,5 +1,3 @@
--- If LuaRocks is installed, make sure that packages installed through it are
--- found (e.g. lgi). If LuaRocks is not installed, do nothing. pcall(require, "luarocks.loader") 
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -55,7 +53,6 @@ do
   end)
 end
 
-
 -- Utils
 rrect = function(radius)
   return function(cr, width, height)
@@ -80,7 +77,6 @@ awful.layout.layouts = {
   lain.layout.centerwork,
   lain.layout.termfair.center,
   awful.layout.suit.tile.right,
-  --awful.layout.suit.floating,
 }
 -- }}}
 
@@ -115,7 +111,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+mytextclock = wibox.widget.textclock("%Y-%m-%d (%a) %H:%M", 1)
 
 -- Create a wibox for each screen and add it
 local function set_wallpaper(s)
@@ -320,7 +316,6 @@ awful.rules.rules = {
 -- }}}
 
 -- {{{ Signals
-
 local adjust_client = function (c)
   if c.fullscreen or c.maximized then
     -- Don't draw a border for maximized windows.
@@ -363,60 +358,14 @@ end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
-  -- buttons for the titlebar
-  --[[
-  local buttons = gears.table.join(
-    awful.button({ }, 1, function()
-      c:emit_signal("request::activate", "titlebar", { raise = true })
-      awful.mouse.client.move(c)
-    end),
-    awful.button({ }, 3, function()
-      c:emit_signal("request::activate", "titlebar", { raise = true })
-      awful.mouse.client.resize(c)
-    end))
-  --]]
-
   local titlebar_padding = {
     layout = wibox.layout.fixed.horizontal,
   }
-
   awful.titlebar(c, { size = beautiful.useless_gap, position = 'top' }) : setup(titlebar_padding)
   awful.titlebar(c, { size = beautiful.useless_gap, position = 'bottom' }) : setup(titlebar_padding)
   awful.titlebar(c, { size = beautiful.useless_gap, position = 'right' }) : setup(titlebar_padding)
   awful.titlebar(c, { size = beautiful.useless_gap, position = 'left' }) : setup(titlebar_padding)
-
-  --[[
-  awful.titlebar(c) : setup {
-    { -- Left
-      --awful.titlebar.widget.iconwidget(c),
-      buttons = buttons,
-      layout  = wibox.layout.fixed.horizontal
-    },
-    { -- Middle
-      { -- Title
-        align  = "center",
-        widget = awful.titlebar.widget.titlewidget(c),
-      },
-      buttons = buttons,
-      layout  = wibox.layout.flex.horizontal,
-    },
-    { -- Right
-      --awful.titlebar.widget.floatingbutton(c),
-      awful.titlebar.widget.maximizedbutton(c),
-      --awful.titlebar.widget.stickybutton(c),
-      --awful.titlebar.widget.ontopbutton(c),
-      awful.titlebar.widget.closebutton(c),
-      layout = wibox.layout.fixed.horizontal(),
-    },
-    layout = wibox.layout.align.horizontal,
-  }
-  --]]
 end)
-
--- Focus follows mouse
---client.connect_signal("mouse::enter", function(c)
---  c:emit_signal("request::activate", "mouse_enter", {raise = false})
---end)
 
 client.connect_signal("focus",   function(c)
   c.border_color = beautiful.border_focus
@@ -436,4 +385,3 @@ awful.spawn("setxkbmap -option compose:ralt")
 awful.spawn("setxkbmap -option ctrl:nocaps")
 awful.spawn("xinput set-prop 'DLL07BE:01 06CB:7A13 Touchpad' 'libinput Disable While Typing Enabled' 0")
 awful.spawn("ibus-daemon -drx")
---awful.spawn("xcalib /home/neynt/code/dotfiles3/icm/XPS15-9560.icm")

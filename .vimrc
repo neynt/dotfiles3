@@ -19,7 +19,7 @@ Plug 'vim-scripts/a.vim'
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-syntastic/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'jremmen/vim-ripgrep'
+"Plug 'jremmen/vim-ripgrep'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-scripts/gitignore'
 Plug 'junegunn/goyo.vim'
@@ -27,6 +27,7 @@ Plug 'tpope/vim-fugitive' " git integration
 "Plug 'dense-analysis/ale'
 "Plug 'lambdalisue/suda.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'github/copilot.vim', { 'branch': 'release' }
 
 " language syntax
 Plug 'rust-lang/rust.vim'
@@ -149,6 +150,7 @@ vnoremap <silent> * :<C-U>
 set lispwords+=λ
 set wrap
 set linebreak
+set formatoptions-=t  " no automatic wrapping
 set modeline
 set hlsearch
 set number

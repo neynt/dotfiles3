@@ -105,19 +105,16 @@ env:
 # Font configuration
 font:
   normal:
-    #family: "Iosevka"
-    family: curie
-    style: Regular
+    family: 'Iosevka'
+    style: Medium
+    antialias: false
   bold:
-    #family: curie
     style: Bold
   italic:
-    #family: curie
     style: Regular
   bold_italic:
-    #family: curie
     style: Bold
-  size: 5.5
+  size: 6.5
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter

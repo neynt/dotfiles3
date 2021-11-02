@@ -11,9 +11,9 @@ local theme = {}
 theme.wallpaper = local_path .. "background.png"
 --theme.font = "Ubuntu Ultra Condensed Regular 9.5"
 --theme.font = "-windows-dina-medium-r-normal--12-90-96-96-c-70-iso8859-1"
---theme.font = "Iosevka 10"
-theme.font = "Fira Sans Condensed 9.5"
---theme.font = "curie 8"
+--theme.font = "Iosevka Medium 9.5"
+--theme.font = "Fira Sans Condensed 9.5"
+theme.font = "curie 8"
 theme.tasklist_disable_icon = true
 
 local darkgrey = '#000000'

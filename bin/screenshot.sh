@@ -1,15 +1,8 @@
 #!/bin/bash
 # Screenshot wrapper
-# Uses maim (which uses slop)
-# "Friendship ended with scrot. Now maim is my best friend."
-# Based off screenshot script found in elenapan/dotfiles
-
-SCREENSHOTS_DIR=~/Dropbox/Screenshots
-TIMESTAMP="$(date +%Y-%m-%d.%H.%M.%S)"
-FILENAME=$SCREENSHOTS_DIR/$TIMESTAMP.screenshot.png
 
 # maim flags:
-# -u option hides cursor
+# -u: hide cursor
 
 if [[ "$1" = "-f" ]]; then
   # Full screenshot to clipboard.
@@ -21,6 +14,12 @@ elif [[ "$1" = "-c" ]]; then
   notify-send "Screenshot copied to clipboard." --urgency low
 else
   # Full screenshot
-  maim -u $FILENAME
-  notify-send "Screenshot saved to $FILENAME" --urgency low
+  screenshots_dir=/loot/screenshots
+  date="$(date +%Y-%m-%d)"
+  time="$(date +%H:%M:%S)"
+  active_window="$(xprop -id $(xdotool getwindowfocus) -notype WM_NAME | cut -d\" -f2 | tr '/' '_')"
+  filename="$screenshots_dir/$date/$time - $active_window.png"
+  mkdir -p "$(dirname "$filename")"
+  maim -u "$filename"
+  notify-send "Screenshot saved to $filename" --urgency low
 fi

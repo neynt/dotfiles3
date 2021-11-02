@@ -4,8 +4,7 @@ export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export PATH=~/bin/:$PATH
-setxkbmap -option compose:ralt
-setxkbmap -option ctrl:nocaps
+setxkbmap -option compose:ralt,ctrl:nocaps
 redshift-gtk -l 40.72:-74.02 -t 6500:4500 &
 keepassxc &
 discord --no-sandbox &
