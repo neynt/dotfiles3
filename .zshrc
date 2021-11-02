@@ -6,7 +6,7 @@ if [[ -f ~/.sharedrc ]]; then
 fi
 
 if [[ -f ~/.sharedrc.local ]]; then
-  source ~/.sharedrc
+  source ~/.sharedrc.local
 fi
 
 # env vars
