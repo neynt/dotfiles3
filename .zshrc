@@ -10,7 +10,7 @@ if [[ -f ~/.sharedrc.local ]]; then
 fi
 
 # env vars
-source ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+[[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
@@ -46,8 +46,6 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
 fi
 bindkey -e
 bindkey '^r' history-incremental-search-backward
-bindkey "${terminfo[khome]}" beginning-of-line
-bindkey "${terminfo[kend]}"  end-of-line
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 
