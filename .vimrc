@@ -27,11 +27,11 @@ Plug 'tpope/vim-fugitive' " git integration
 "Plug 'dense-analysis/ale'
 "Plug 'lambdalisue/suda.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'github/copilot.vim', { 'branch': 'release' }
+"Plug 'github/copilot.vim', { 'branch': 'release' }
+Plug 'djoshea/vim-autoread'
 
 " language syntax
 Plug 'rust-lang/rust.vim'
-Plug 'cespare/vim-toml'
 Plug 'kchmck/vim-coffee-script'
 Plug 'gkz/vim-ls'
 Plug 'petRUShka/vim-sage'
@@ -106,6 +106,7 @@ let g:suda_smart_edit = 1
 nnoremap <leader>bd :bd<cr>
 nnoremap <leader>bn :bn<cr>
 nnoremap <leader>bp :bp<cr>
+nnoremap <leader>a :A<cr>
 nnoremap <leader>c :pc<cr>:lclose<cr>
 nnoremap <silent> <leader>h :cd %:p:h<cr>
 nnoremap <leader>cn :cnext<cr>
@@ -148,7 +149,7 @@ vnoremap <silent> * :<C-U>
 
 " Sets {{{
 set lispwords+=λ
-set wrap
+"set wrap
 set linebreak
 set formatoptions-=t  " no automatic wrapping
 set modeline
@@ -176,6 +177,7 @@ set preserveindent
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+set signcolumn=number
 
 "set breakindent " indent long broken lines
 "set breakindentopt=shift:2
@@ -221,7 +223,7 @@ augroup neynt
   autocmd FileType perl setlocal sw=2 sts=2 ts=2
   autocmd FileType haskell setlocal expandtab
   autocmd FileType vim setlocal foldmethod=marker
-  autocmd FileType markdown setlocal textwidth=80
+  "autocmd FileType markdown setlocal textwidth=80
   autocmd BufEnter *.vue syntax sync fromstart
   autocmd BufNewFile,BufRead *.vs,*.fs set ft=glsl
 
@@ -235,37 +237,7 @@ colorscheme jellybeans
 " Syntax highlighting
 syntax on
 
-" opam user-setup {{{
-" ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
-"let s:opam_share_dir = system("opam config var share")
-"let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
-"
-"let s:opam_configuration = {}
-"
-"function! OpamConfOcpIndent()
-"  execute "set rtp^=" . s:opam_share_dir . "/ocp-indent/vim"
-"endfunction
-"let s:opam_configuration['ocp-indent'] = function('OpamConfOcpIndent')
-"
-"function! OpamConfOcpIndex()
-"  execute "set rtp+=" . s:opam_share_dir . "/ocp-index/vim"
-"endfunction
-"let s:opam_configuration['ocp-index'] = function('OpamConfOcpIndex')
-"
-"function! OpamConfMerlin()
-"  let l:dir = s:opam_share_dir . "/merlin/vim"
-"  execute "set rtp+=" . l:dir
-"endfunction
-"let s:opam_configuration['merlin'] = function('OpamConfMerlin')
-"
-"let s:opam_packages = ["ocp-indent", "ocp-index", "merlin"]
-"let s:opam_check_cmdline = ["opam list --installed --short --safe --color=never"] + s:opam_packages
-"let s:opam_available_tools = split(system(join(s:opam_check_cmdline)))
-"for tool in s:opam_packages
-"  " Respect package order (merlin should be after ocp-index)
-"  if count(s:opam_available_tools, tool) > 0
-"    call s:opam_configuration[tool]()
-"  endif
-"endfor
-" ## end of OPAM user-setup addition for vim / base ## keep this line
+" ocaml {{{
+let g:opamshare = substitute(system('opam var share'), '\n$', '', '''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
 " }}}

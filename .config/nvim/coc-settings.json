@@ -3,7 +3,7 @@
   "languageserver": {
     "ocaml": {
       "command": "opam",
-      "args": ["exec", "--", "ocamllsp"],
+      "args": ["exec", "--",  "ocamllsp"],
       "filetypes": ["ocaml"]
     },
     "clangd": {
