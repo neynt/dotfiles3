@@ -27,7 +27,7 @@ Plug 'tpope/vim-fugitive' " git integration
 "Plug 'dense-analysis/ale'
 "Plug 'lambdalisue/suda.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'github/copilot.vim', { 'branch': 'release' }
+"Plug 'github/copilot.vim', { 'branch': 'release' }
 
 " language syntax
 Plug 'rust-lang/rust.vim'

@@ -25,7 +25,8 @@ def basename_no_ext(path):
     return path.split('/')[-1].rsplit('.', 1)[0]
 
 def get_metadata(path, field):
-    data = subprocess.run(['exiftool', '-' + field, '-b', path], stdout=subprocess.PIPE).stdout.decode('utf-8')
+    print('get_metadata', path, field)
+    data = subprocess.run(['exiftool', '-' + field, '-b', path], stdout=subprocess.PIPE).stdout.decode('utf-8', 'ignore')
     if len(data) == 0:
         return None
     return data
