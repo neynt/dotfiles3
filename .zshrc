@@ -10,7 +10,8 @@ if [[ -f ~/.sharedrc.local ]]; then
 fi
 
 # env vars
-[[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+# opam configuration
+[[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null
 
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
