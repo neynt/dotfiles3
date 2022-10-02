@@ -3,7 +3,7 @@
 # Diary script. Keeps a diary in an encrypted file, unzipping/zipping it
 # whenever you want to modify it.
 
-DIARY_FILE="$HOME/Google Drive/My Drive/diary.bin"
+DIARY_FILE="$HOME/diary.bin"
 LOCK_FILE="$HOME/diary.bin.lock"
 
 SCRATCH_DIR=$(mktemp -d)

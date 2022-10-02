@@ -82,3 +82,10 @@ I don't use GNOME shell anymore but when I did, I used these extensions:
 - Shellshape
 
 Half of these need hotfixes because GNOME 3 is ruthless to extension developers.
+
+### MacOS
+
+I capitulated. Useful apps:
+
+- Rectangle
+- LinearMouse

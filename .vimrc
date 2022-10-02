@@ -19,7 +19,7 @@ Plug 'vim-scripts/a.vim'
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-syntastic/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
-"Plug 'jremmen/vim-ripgrep'
+Plug 'jremmen/vim-ripgrep'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-scripts/gitignore'
 Plug 'junegunn/goyo.vim'
@@ -118,6 +118,7 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>gy :Goyo<cr>
 nnoremap <leader>rg :Rg 
+nnoremap <leader>ht :MerlinTypeOf<cr>
 
 function! s:my_nerd_tree_find()
   if &filetype ==# 'nerdtree' || &filetype ==# ''

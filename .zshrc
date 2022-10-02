@@ -14,8 +14,10 @@ fi
 [[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null
 
 HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=100000
+SAVEHIST=100000
+setopt histignorealldups
+setopt share_history
 
 # aliases
 #alias diff="colordiff"
@@ -68,9 +70,6 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 autoload -Uz compinit
 compinit
-
-setopt histignorealldups
-unsetopt share_history
 
 if [[ -f ~/.zshrc.work ]]; then
   source ~/.zshrc.work
