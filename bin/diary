@@ -3,62 +3,65 @@
 # Diary script. Keeps a diary in an encrypted file, unzipping/zipping it
 # whenever you want to modify it.
 
-DIARY_FILE="$HOME/diary.bin"
-LOCK_FILE="$HOME/diary.bin.lock"
+diary_file="$HOME/loot/diary.bin"
+lock_file="$HOME/loot/diary.bin.lock"
+scratch_dir="$(mktemp -d)"
+diary_dir="diary"
+tar_gz="diary.tar.gz"
 
-SCRATCH_DIR=$(mktemp -d)
-DIARY_DIR="diary"
-TAR_GZ="diary.tar.gz"
-
-if [[ -e $LOCK_FILE ]]; then
-  echo "Lock file exists ($LOCK_FILE), do you already have the diary open?"
+if [[ -e $lock_file ]]; then
+  echo "Lock file exists ($lock_file), do you already have the diary open?"
   exit 1
 fi
 
 echo "Password?"
-read -s PASSWORD
+read -rs password
 
 unpack() {
-  cd "$SCRATCH_DIR"
-  cp "$DIARY_FILE" "$TAR_GZ".gpg
-  result=$?
-  if echo "$PASSWORD" | gpg --batch --yes --passphrase-fd 0 -o $TAR_GZ -d $TAR_GZ.gpg 2> /dev/null; then
-    tar -xzf "$TAR_GZ"
+  cd "$scratch_dir" || exit
+  cp "$diary_file" "$tar_gz".gpg
+  if echo "$password" | gpg --batch --yes --passphrase-fd 0 -o $tar_gz -d $tar_gz.gpg 2> /dev/null; then
+    tar -xzf "$tar_gz"
   else
     echo "I can neither confirm nor deny the existence of the diary."
-    rm -f "$LOCK_FILE"
+    rm -f "$lock_file"
     exit 1
   fi
 }
 
 write_stuff() {
-  cd "$SCRATCH_DIR"
-  mkdir -p "$DIARY_DIR"
-  cd "$DIARY_DIR"
+  cd "$scratch_dir" || exit
+  mkdir -p "$diary_dir"
+  cd "$diary_dir" || exit
   YYYY="$(date +%Y)"
   MM="$(date +%m)"
   DD="$(date +%d)"
-  mkdir -p $YYYY/$MM
+  mkdir -p "$YYYY/$MM"
   FILE="$YYYY/$MM/$DD.md"
   $EDITOR "$FILE"
   if [[ -f "$FILE" ]]; then
-    echo 'You wrote' $(wc -w < $FILE) 'words.'
+    printf "You wrote %d words.\n" "$(wc -w < "$FILE")"
   fi
 }
 
 repack() {
-  cd "$SCRATCH_DIR"
-  tar -czf "$TAR_GZ.new" "$DIARY_DIR"
-  echo "$PASSWORD" | gpg --batch --yes --passphrase-fd 0 -o "$TAR_GZ.gpg.new" 2> /dev/null -c "$TAR_GZ.new"
-  rm -f "$DIARY_FILE"
-  cp "$TAR_GZ.gpg.new" "$DIARY_FILE"
-  rm -r "$SCRATCH_DIR"
+  cd "$scratch_dir" || exit
+  if [ -f $diary_dir/change_password ]; then
+    echo 'Changing password.'
+    password="$(cat $diary_dir/change_password)"
+    rm $diary_dir/change_password
+  fi
+  tar -czf "$tar_gz.new" "$diary_dir"
+  echo "$password" | gpg --batch --yes --passphrase-fd 0 -o "$tar_gz.gpg.new" 2> /dev/null -c "$tar_gz.new"
+  rm -f "$diary_file"
+  cp "$tar_gz.gpg.new" "$diary_file"
+  rm -r "$scratch_dir"
 }
 
-touch "$LOCK_FILE"
-if [[ -e "$DIARY_FILE" ]]; then
+touch "$lock_file"
+if [[ -e "$diary_file" ]]; then
   unpack
 fi
 write_stuff
 repack
-rm -f "$LOCK_FILE"
+rm -f "$lock_file"

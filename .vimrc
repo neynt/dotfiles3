@@ -1,5 +1,8 @@
 set nocompatible
 
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+
 " Plug packages {{{
 call plug#begin('~/.vim/plugged')
 if !has('nvim')
@@ -37,13 +40,13 @@ Plug 'gkz/vim-ls'
 Plug 'petRUShka/vim-sage'
 Plug 'rgrinberg/vim-ocaml'
 Plug 'let-def/ocp-indent-vim'
-Plug 'solarnz/thrift.vim'
-Plug 'alaviss/nim.nvim'
+"Plug 'solarnz/thrift.vim'
+"Plug 'alaviss/nim.nvim'
 "Plug 'rhysd/vim-crystal'
-Plug 'neynt/vim-vue'
+"Plug 'neynt/vim-vue'
 Plug 'digitaltoad/vim-pug'
-Plug 'elixir-lang/vim-elixir'
-Plug 'JuliaEditorSupport/julia-vim'
+"Plug 'elixir-lang/vim-elixir'
+"Plug 'JuliaEditorSupport/julia-vim'
 "Plug 'flxf/uCpp.vim'
 "Plug 'tikhomirov/vim-glsl'
 "Plug 'dleonard0/pony-vim-syntax'
@@ -51,14 +54,14 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'leafgarland/typescript-vim'
 "Plug 'supercollider/scvim'
 "Plug 'solarnz/thrift.vim'
-Plug 'calviken/vim-gdscript3'
-Plug 'wlangstroth/vim-racket'
+"Plug 'calviken/vim-gdscript3'
+"Plug 'wlangstroth/vim-racket'
 Plug 'iloginow/vim-stylus'
-Plug 'purescript-contrib/purescript-vim'
-Plug 'reasonml-editor/vim-reason-plus'
+"Plug 'purescript-contrib/purescript-vim'
+"Plug 'reasonml-editor/vim-reason-plus'
 Plug 'xolox/vim-misc'
-Plug 'tbastos/vim-lua'
-Plug 'idris-hackers/idris-vim'
+"Plug 'tbastos/vim-lua'
+"Plug 'idris-hackers/idris-vim'
 Plug 'PProvost/vim-ps1'
 Plug 'ziglang/zig.vim'
 
