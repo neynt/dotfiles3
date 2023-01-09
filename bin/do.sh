@@ -24,6 +24,30 @@ function decaf() {
   sudo pmset -b sleep 5; sudo pmset -b disablesleep 0
 }
 
+function trigger() {
+  # Example: trigger sage plots.sage
+  # will run 'sage plots.sage' whenever 'plots.sage' changes.
+  script_file="${@: -1}"
+  while fswatch -1  > /dev/null; do
+    $@
+  done
+}
+
+function trigger-in() {
+  # Example: trigger-in python3 script.py data.in 
+  # will run 'sage plots.sage' whenever 'plots.sage' or data.in changes.
+  set +e
+  input_file="${@: -1}"
+  script_file="${@:(-2):1}"
+  script_command="${@:1:$#-1}"
+  while :; do
+    clear
+    $script_command < $input_file
+    fswatch -1 "$script_file" > /dev/null
+    clear
+  done
+}
+
 if [[ $# -eq 0 ]]; then
   echo "commands are:"
   grep -E "^function" "$this_script" | cut -d' ' -f2 | sed 's/..$//'

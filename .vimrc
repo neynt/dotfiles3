@@ -16,6 +16,7 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 "Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession' " auto sessions
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-scripts/a.vim'
@@ -32,6 +33,7 @@ Plug 'tpope/vim-fugitive' " git integration
 Plug 'tmux-plugins/vim-tmux-focus-events'
 "Plug 'github/copilot.vim', { 'branch': 'release' }
 Plug 'djoshea/vim-autoread'
+Plug 'neovim/nvim-lspconfig'
 
 " language syntax
 Plug 'rust-lang/rust.vim'
@@ -64,6 +66,7 @@ Plug 'xolox/vim-misc'
 "Plug 'idris-hackers/idris-vim'
 Plug 'PProvost/vim-ps1'
 Plug 'ziglang/zig.vim'
+Plug 'zah/nim.vim'
 
 " colors
 "Plug 'morhetz/gruvbox'
