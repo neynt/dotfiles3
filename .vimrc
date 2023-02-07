@@ -190,7 +190,7 @@ set signcolumn=number
 "set breakindentopt=shift:2
 set nojoinspaces " don't double-space after period
 set list       " show whitespace
-set listchars=tab:-->
+"set listchars=tab:-->
 set splitbelow " preview window on bottom
 
 if has('persistent_undo')
