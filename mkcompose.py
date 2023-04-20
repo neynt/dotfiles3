@@ -13,7 +13,7 @@ keynames = dict([line.split() for line in """
 _ underscore
 | bar
 ~ asciitilde
-\ backslash
+\\ backslash
 ( parenleft
 ) parenright
 """.strip().splitlines()])

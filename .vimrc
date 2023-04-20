@@ -93,6 +93,7 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-stand
 let g:jellybeans_overrides = {}
 let g:jellybeans_overrides["background"] = {}
 let g:jellybeans_overrides["background"]["guibg"] = "NONE"
+"let g:jellybeans_use_gui_italics = 0
 let NERDTreeQuitOnOpen = 1
 "let g:gruvbox_contrast_dark = "hard"
 let g:NERDTreeGitStatusIndicatorMapCustom = {
