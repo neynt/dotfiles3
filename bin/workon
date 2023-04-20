@@ -3,12 +3,12 @@ set -euo pipefail
 
 if [[ $# -lt 1 ]]; then
   echo "workon what?"
-  grep -E '  [a-z]+)$' $0
+  grep -E '  [a-z-]+)$' $0
   exit 1
 fi
 
 function forever() {
-  echo "bash -c \"while true; do $@; sleep 1; done\""
+  echo "bash -c \"while true; do $@; sleep 0.5; done\""
 }
 
 case $1 in
@@ -71,6 +71,14 @@ case $1 in
     tmux resize-pane -y 20
     vim -S
     $SHELL
+    ;;
+  crypto-monitor)
+    sudo echo "getting sudo for crypto-monitor"
+    tmux new-window -n 'htop'    "$(forever sudo htop)"
+    tmux new-window -n 'mainnet' "$(forever sudo journalctl -u geth-mainnet   -f)"
+    tmux split-pane -v           "$(forever sudo journalctl -u nimbus-mainnet -f)"
+    tmux new-window -n 'goerli'  "$(forever sudo journalctl -u geth-goerli    -f)"
+    tmux split-pane -v           "$(forever sudo journalctl -u nimbus-goerli  -f)"
     ;;
   *)
     echo "huh?"

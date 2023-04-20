@@ -1,7 +1,5 @@
 #!/bin/bash
-
-# NPM
-npm config set prefix '~/.npm-global'
+set -euo pipefail
 
 # Create vim dirs
 mkdir -p ~/.vim/{after,backup,swap,tmp,undo}

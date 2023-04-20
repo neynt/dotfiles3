@@ -5,9 +5,9 @@ if [ "$#" -gt 1 ]; then
   exit
 fi
 if [ "$#" -eq 0 ]; then
-  curl -F "image=@-" https://fumie.neynt.ca/upload
+  curl -F "file=@-" https://uploadere.neynt.ca/upload
   echo
 else
-  curl -F "image=@$1" https://fumie.neynt.ca/upload
+  curl -F "file=@$1" https://uploadere.neynt.ca/upload
   echo
 fi

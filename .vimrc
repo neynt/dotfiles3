@@ -70,6 +70,7 @@ Plug 'zah/nim.vim'
 
 " colors
 "Plug 'morhetz/gruvbox'
+"Plug 'josephwecker/murphytango.vim'
 
 let mapleader = ","
 if filereadable(expand('~/.vimrc.local'))
@@ -90,9 +91,9 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 let g:jellybeans_overrides = {}
 let g:jellybeans_overrides["background"] = {}
-let g:jellybeans_overrides["background"]["256ctermbg"] = "none"
+let g:jellybeans_overrides["background"]["guibg"] = "NONE"
 let NERDTreeQuitOnOpen = 1
-let g:gruvbox_contrast_dark = "hard"
+"let g:gruvbox_contrast_dark = "hard"
 let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "-",
     \ "Staged"    : "+",
@@ -124,7 +125,9 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>gy :Goyo<cr>
 nnoremap <leader>rg :Rg 
-nnoremap <leader>ht :MerlinTypeOf<cr>
+"nnoremap <leader>ht :MerlinTypeOf<cr>
+nnoremap <leader>dt :diffthis<cr>
+nnoremap <leader>dn :diffoff<cr>
 
 function! s:my_nerd_tree_find()
   if &filetype ==# 'nerdtree' || &filetype ==# ''
@@ -245,6 +248,6 @@ colorscheme jellybeans
 syntax on
 
 " ocaml {{{
-let g:opamshare = substitute(system('opam var share'), '\n$', '', '''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
+"let g:opamshare = substitute(system('opam var share'), '\n$', '', '''')
+"execute "set rtp+=" . g:opamshare . "/merlin/vim"
 " }}}
