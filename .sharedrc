@@ -3,6 +3,7 @@
 # env vars
 export EDITOR=nvim
 export BROWSER=brave
+export COLORTERM=truecolor
 [ -f ~/.dir_colors ] && eval `dircolors -b ~/.dir_colors`
 
 # everyone wants their own happy little bin
