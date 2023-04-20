@@ -11,6 +11,6 @@
   ui = true
   pager = true
 [diff]
-  external = /Users/neynt/.opam/default/bin/patdiff-git-wrapper
+  external = ~/.opam/default/bin/patdiff-git-wrapper
 [init]
   defaultBranch = main
