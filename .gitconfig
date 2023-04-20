@@ -14,3 +14,5 @@
   external = ~/.opam/default/bin/patdiff-git-wrapper
 [init]
   defaultBranch = main
+[annex]
+  thin = true

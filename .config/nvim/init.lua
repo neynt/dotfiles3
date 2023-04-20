@@ -40,19 +40,47 @@ local on_attach = function(client, bufnr)
   --vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
+function package_json_with_marker(marker)
+  return function(startpath)
+    local has_marker = false
+    local M = lspconfig.util
+    startpath = M.strip_archive_subpath(startpath)
+    return M.search_ancestors(startpath, function(path)
+      if M.path.is_file(M.path.join(path, marker)) then
+        has_marker = true
+      end
+      if M.path.is_file(M.path.join(path, 'package.json')) then
+        if has_marker then
+          return path
+        end
+      end
+    end)
+  end
+end
+
 local lsp_flags = {
   -- This is the default in Nvim 0.7+
   debounce_text_changes = 150,
 }
-lspconfig['pyright'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
+lspconfig.pyright.setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
 }
-lspconfig['tsserver'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
+lspconfig.tsserver.setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+  root_dir = package_json_with_marker('.ts-root')
 }
-lspconfig['nimls'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
+lspconfig.nimls.setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+lspconfig.rust_analyzer.setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+lspconfig.denols.setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+  root_dir = package_json_with_marker('.deno-root')
 }

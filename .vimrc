@@ -67,6 +67,7 @@ Plug 'xolox/vim-misc'
 Plug 'PProvost/vim-ps1'
 Plug 'ziglang/zig.vim'
 Plug 'zah/nim.vim'
+Plug 'evanleck/vim-svelte'
 
 " colors
 "Plug 'morhetz/gruvbox'

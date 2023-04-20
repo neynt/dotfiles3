@@ -3,8 +3,8 @@
 # Diary script. Keeps a diary in an encrypted file, unzipping/zipping it
 # whenever you want to modify it.
 
-diary_file="$HOME/loot/diary.bin"
-lock_file="$HOME/loot/diary.bin.lock"
+diary_file="$HOME/stash/diary.bin"
+lock_file="$HOME/stash/diary.bin.lock"
 scratch_dir="$(mktemp -d)"
 diary_dir="diary"
 tar_gz="diary.tar.gz"

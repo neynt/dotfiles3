@@ -3,9 +3,9 @@ set -euo pipefail
 this_script="$0"
 
 function push-loot() {
-  if nc -z saltblock-arch 22 2>/dev/null; then
+  if nc -z saltblock-arch.local 22 2>/dev/null; then
     echo 'transferring over home network'
-    rsync -abviuP --suffix .old "$HOME/loot/" saltblock-arch:/loot
+    rsync -abviuP --suffix .old "$HOME/loot/" saltblock-arch.local:/loot
   else
     echo 'transferring over internet'
     rsync -abviuP --suffix .old --port 4202 "$HOME/loot/" saltblock-arch:/loot
@@ -27,15 +27,19 @@ function decaf() {
 function trigger() {
   # Example: trigger sage plots.sage
   # will run 'sage plots.sage' whenever 'plots.sage' changes.
+  set +e
   script_file="${@: -1}"
-  while fswatch -1  > /dev/null; do
-    $@
+  while :; do
+    clear
+    "$@"
+    fswatch --latency=0.1 -1 "$script_file" > /dev/null
+    clear
   done
 }
 
 function trigger-in() {
   # Example: trigger-in python3 script.py data.in 
-  # will run 'sage plots.sage' whenever 'plots.sage' or data.in changes.
+  # will run 'python3 script.py < data.in' whenever script.py or data.in changes.
   set +e
   input_file="${@: -1}"
   script_file="${@:(-2):1}"
@@ -43,9 +47,18 @@ function trigger-in() {
   while :; do
     clear
     $script_command < $input_file
-    fswatch -1 "$script_file" > /dev/null
+    fswatch --latency=0.1 -1 "$script_file" > /dev/null
     clear
   done
+}
+
+function compress-dir() {
+  tar --zstd -cf "${1%/}.tar.zst" "${1%/}"
+  rm -r "$1"
+}
+
+function extract-zstd() {
+  tar --zstd -xf "$1"
 }
 
 if [[ $# -eq 0 ]]; then
