@@ -61,6 +61,21 @@ function extract-zstd() {
   tar --zstd -xf "$1"
 }
 
+function sync-loot-old-with-rsync() {
+  # -a: archive mode (-rlptgoD)
+  # -b: make backups with --suffix .old
+  # -v: verbose
+  # -i: itemize changes
+  # -u: update; skip files that are newer on receiver
+  # -P: keep partially transferred files, show progress
+  rsync -abviuP --backup-dir=/mnt/trove/loot-conflicts /loot/ /mnt/trove/loot
+}
+
+function sync-annex() {
+  git annex add
+  git annex sync --content
+}
+
 if [[ $# -eq 0 ]]; then
   echo "commands are:"
   grep -E "^function" "$this_script" | cut -d' ' -f2 | sed 's/..$//'
