@@ -76,6 +76,19 @@ function sync-annex() {
   git annex sync --content
 }
 
+function mkv-list-subs() {
+  ffprobe \
+    -print_format csv \
+    -select_streams s \
+    -show_entries stream=index:stream_tags=language,title \
+    "$@" \
+    2>/dev/null
+}
+
+function mkv-extract-subs() {
+  ffmpeg -i "$1" -map 0:s:$2 -f srt - 2>/dev/null
+}
+
 if [[ $# -eq 0 ]]; then
   echo "commands are:"
   grep -E "^function" "$this_script" | cut -d' ' -f2 | sed 's/..$//'

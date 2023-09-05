@@ -51,7 +51,7 @@ case $1 in
     cd ~/code/tsundiary2/
     tmux split-pane -h "$(forever ./do.sh watch-client)"
     tmux split-pane -v -l '66%' "$(forever ./do.sh watch-server)"
-    tmux split-pane -v -l '50%' "$(forever ./do.sh dev-server)"
+    tmux split-pane -v -l '50%' "$(forever ./do.sh dev-web-server)"
     tmux resize-pane -y 20
     while true; do vim -S; done
     ;;
@@ -81,7 +81,7 @@ case $1 in
     tmux split-pane -v           "$(forever sudo journalctl -u nimbus-goerli  -f)"
     ;;
   *)
-    echo "huh?"
+    echo "workon what?"
     grep -E '  [a-z]+)$' $0
     ;;
 esac

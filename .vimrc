@@ -27,11 +27,12 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-scripts/gitignore'
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-fugitive' " git integration
 "Plug 'dense-analysis/ale'
 "Plug 'lambdalisue/suda.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'github/copilot.vim'
+"Plug 'github/copilot.vim'
 Plug 'djoshea/vim-autoread'
 Plug 'neovim/nvim-lspconfig'
 
@@ -130,6 +131,8 @@ nnoremap <leader>rg :Rg
 "nnoremap <leader>ht :MerlinTypeOf<cr>
 nnoremap <leader>dt :diffthis<cr>
 nnoremap <leader>dn :diffoff<cr>
+xnoremap ga <Plug>(EasyAlign)
+nnoremap ga <Plug>(EasyAlign)
 
 function! s:my_nerd_tree_find()
   if &filetype ==# 'nerdtree' || &filetype ==# ''

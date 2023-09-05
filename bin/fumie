@@ -1,13 +1,13 @@
 #!/bin/bash
-if [ "$#" -gt 1 ]; then
+if [ "$#" -gt 2 ]; then
   echo "Usage: $0 [FILE]"
   echo "If FILE not defined, reads from stdin."
   exit
 fi
-if [ "$#" -eq 0 ]; then
-  curl -F "file=@-" https://uploadere.neynt.ca/upload
-  echo
-else
-  curl -F "file=@$1" https://uploadere.neynt.ca/upload
-  echo
-fi
+file=${1:-"-"}
+filename=${2:-${1:-"x.txt"}}
+curl \
+  -H 'Origin: https://uploadere.neynt.ca' \
+  -F "file=@${file};filename=${filename}" \
+  https://uploadere.neynt.ca/upload
+echo

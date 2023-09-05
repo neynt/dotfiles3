@@ -15,6 +15,7 @@ export COLORTERM=truecolor
 [ -d ~/bin ] && export PATH=~/bin:$PATH
 [ -d ~/go ] && export GOPATH=~/go && export PATH="$PATH:$GOPATH/bin"
 [ -d ~/.local/lib/python/site-packages ] && export PYTHONPATH=~/.local/lib/python/site-packages:$PYTHONPATH
+[ -d /usr/local/share/android-commandlinetools/ ] && export ANDROID_SDK_ROOT=/usr/local/share/android-commandlinetools/
 
 # aliases
 alias ls='ls -F --color=auto'

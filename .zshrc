@@ -71,6 +71,10 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 autoload -Uz compinit
 compinit
 
+# select-word-style
+autoload -Uz select-word-style
+select-word-style bash
+
 if [[ -f ~/.zshrc.work ]]; then
   source ~/.zshrc.work
 fi

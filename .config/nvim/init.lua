@@ -84,3 +84,7 @@ lspconfig.denols.setup{
   flags = lsp_flags,
   root_dir = package_json_with_marker('.deno-root')
 }
+lspconfig.ocamllsp.setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
