@@ -74,6 +74,7 @@ editor_cmd = terminal .. " -e " .. editor
 lain.layout.termfair.nmaster = 3
 lain.layout.termfair.ncol = 1
 awful.layout.layouts = {
+  awful.layout.suit.floating,
   lain.layout.centerwork,
   lain.layout.termfair.center,
   awful.layout.suit.tile.right,
