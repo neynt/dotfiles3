@@ -22,7 +22,7 @@ prompt_neynt_setup() {
   PROMPT+="$Blu%n%f%b"  # user
   #PROMPT+="$blk@%f"  # @
   PROMPT+="%f "
-  PROMPT+="$grn%m%f%b"  # host
+  PROMPT+="$Mag%m%f%b"  # host
   #PROMPT+="$blk:%f"  # :
   PROMPT+="%f "
   PROMPT+="$Ylw%~%f%b"  # /dir
