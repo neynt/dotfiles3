@@ -1,10 +1,19 @@
+--vim.g.loaded_netrw = 1
+--vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
+
+vim.g.mapleader = ','
+vim.g.maplocalleader = '\\'
+
 vim.cmd([[
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
 ]])
 
-local lspconfig = require 'lspconfig'
+require("config.lazy")
+
+local lspconfig = require('lspconfig')
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -13,6 +22,8 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
+vim.keymap.set('v', '<', '<gv')
+vim.keymap.set('v', '>', '>gv')
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer

@@ -1,7 +1,7 @@
 # vim: set ft=sh:
 
 # env vars
-export EDITOR=nvim
+export EDITOR=hx
 export BROWSER=brave
 export COLORTERM=truecolor
 [ -f ~/.dir_colors ] && eval `dircolors -b ~/.dir_colors`

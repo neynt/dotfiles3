@@ -22,7 +22,21 @@ prompt_neynt_setup() {
   PROMPT+="$Blu%n%f%b"  # user
   #PROMPT+="$blk@%f"  # @
   PROMPT+="%f "
-  PROMPT+="$Mag%m%f%b"  # host
+  case $HOST in
+    gris-macos)
+      PROMPT+="$wht"
+      ;;
+    saltblock-arch)
+      PROMPT+="$Cyn"
+      ;;
+    hanabi)
+      PROMPT+="$Mag"
+      ;;
+    *)
+      PROMPT+="$grn"
+    ;;
+  esac
+  PROMPT+="%m%f%b"  # host
   #PROMPT+="$blk:%f"  # :
   PROMPT+="%f "
   PROMPT+="$Ylw%~%f%b"  # /dir

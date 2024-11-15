@@ -3,65 +3,42 @@
 # Diary script. Keeps a diary in an encrypted file, unzipping/zipping it
 # whenever you want to modify it.
 
-diary_file="$HOME/stash/diary.bin"
-lock_file="$HOME/stash/diary.bin.lock"
-scratch_dir="$(mktemp -d)"
-diary_dir="diary"
-tar_gz="diary.tar.gz"
+diary_root="/Users/neynt/stash/diary"
 
-if [[ -e $lock_file ]]; then
-  echo "Lock file exists ($lock_file), do you already have the diary open?"
+if [[ ! -d "$diary_root" ]]; then
+  echo "Diary is not mounted. Mount it with Veracrypt."
   exit 1
 fi
 
-echo "Password?"
-read -rs password
+cd "$diary_root"
 
-unpack() {
-  cd "$scratch_dir" || exit
-  cp "$diary_file" "$tar_gz".gpg
-  if echo "$password" | gpg --batch --yes --passphrase-fd 0 -o $tar_gz -d $tar_gz.gpg 2> /dev/null; then
-    tar -xzf "$tar_gz"
-  else
-    echo "I can neither confirm nor deny the existence of the diary."
-    rm -f "$lock_file"
-    exit 1
+now=$(date "+%s")
+yyyymmdd=$(date -r $((now - 3600 * 4)) "+%Y-%m-%d")
+yyyy="$(echo $yyyymmdd | cut -d '-' -f1)"
+mm="$(  echo $yyyymmdd | cut -d '-' -f2)"
+dd="$(  echo $yyyymmdd | cut -d '-' -f3)"
+today_file="$yyyy/$yyyy-$mm-$dd.md"
+$EDITOR "$today_file"
+
+blue="\033[1;34m"
+green="\033[1;32m"
+nocolor="\033[0m"
+for days_ago in 3650 365 92 30 7 1; do
+  yyyymmdd=$(date -r $((now - 3600 * 4 - 86400 * days_ago)) "+%Y-%m-%d")
+  yyyy="$(echo $yyyymmdd | cut -d '-' -f1)"
+  mm="$(  echo $yyyymmdd | cut -d '-' -f2)"
+  dd="$(  echo $yyyymmdd | cut -d '-' -f3)"
+  file="$yyyy/$yyyy-$mm-$dd.md"
+  if [[ -f "$file" ]]; then
+    echo
+    echo -e "${green}## $yyyymmdd ($days_ago days ago)${nocolor}"
+    echo
+    cat $file
+    echo
   fi
-}
+done
 
-write_stuff() {
-  cd "$scratch_dir" || exit
-  mkdir -p "$diary_dir"
-  cd "$diary_dir" || exit
-  YYYY="$(date +%Y)"
-  MM="$(date +%m)"
-  DD="$(date +%d)"
-  mkdir -p "$YYYY/$MM"
-  FILE="$YYYY/$MM/$DD.md"
-  $EDITOR "$FILE"
-  if [[ -f "$FILE" ]]; then
-    printf "You wrote %d words.\n" "$(wc -w < "$FILE")"
-  fi
-}
-
-repack() {
-  cd "$scratch_dir" || exit
-  if [ -f $diary_dir/change_password ]; then
-    echo 'Changing password.'
-    password="$(cat $diary_dir/change_password)"
-    rm $diary_dir/change_password
-  fi
-  tar -czf "$tar_gz.new" "$diary_dir"
-  echo "$password" | gpg --batch --yes --passphrase-fd 0 -o "$tar_gz.gpg.new" 2> /dev/null -c "$tar_gz.new"
-  rm -f "$diary_file"
-  cp "$tar_gz.gpg.new" "$diary_file"
-  rm -r "$scratch_dir"
-}
-
-touch "$lock_file"
-if [[ -e "$diary_file" ]]; then
-  unpack
+if [[ -f "$today_file" ]]; then
+  echo
+  printf "${blue}You wrote %d words today.${nocolor}\n" "$(wc -w < "$today_file")"
 fi
-write_stuff
-repack
-rm -f "$lock_file"

@@ -1,0 +1,9 @@
+theme = "my_jellybeans"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[keys.normal.g]
+q = ":reflow"

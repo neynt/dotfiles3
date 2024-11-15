@@ -89,6 +89,30 @@ function mkv-extract-subs() {
   ffmpeg -i "$1" -map 0:s:$2 -f srt - 2>/dev/null
 }
 
+function oneoff-rename() {
+  set +e
+  # Find all directories that match the YYYY pattern
+  find . -type d -regex './[0-9][0-9][0-9][0-9]' | while read -r year_dir; do
+    echo $year_dir
+    year=$(basename "$year_dir")
+    
+    # Find all files in the year directory that match the MM/DD.md pattern
+    find "$year_dir" -type f -regex '.*/[0-9][0-9]/[0-9][0-9]\.md' | while read -r file; do
+        dir=$(dirname "$file")
+        filename=$(basename "$file")
+        month=$(basename "$dir")
+        
+        # Construct the new filename
+        new_filename="${year}-${month}-${filename}"
+        new_filepath="${year_dir}/${new_filename}"
+        
+        # Rename the file
+        mv "$file" "$new_filepath"
+        echo "Renamed: $file -> $new_filepath"
+    done
+done
+}
+
 if [[ $# -eq 0 ]]; then
   echo "commands are:"
   grep -E "^function" "$this_script" | cut -d' ' -f2 | sed 's/..$//'

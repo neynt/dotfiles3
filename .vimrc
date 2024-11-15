@@ -1,88 +1,11 @@
 set nocompatible
+scriptencoding utf-8
+set encoding=utf-8
+set fileencodings=utf-8
 
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
-
-" Plug packages {{{
-call plug#begin('~/.vim/plugged')
-if !has('nvim')
-  Plug 'tpope/vim-sensible'
-endif
-Plug 'tpope/vim-sleuth'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-"Plug 'albfan/nerdtree-git-plugin'
-Plug 'ConradIrwin/vim-bracketed-paste'
-"Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-obsession' " auto sessions
-Plug 'tpope/vim-unimpaired'
-Plug 'vim-scripts/a.vim'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-syntastic/syntastic'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'jremmen/vim-ripgrep'
-Plug 'easymotion/vim-easymotion'
-Plug 'vim-scripts/gitignore'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/vim-easy-align'
-Plug 'tpope/vim-fugitive' " git integration
-"Plug 'dense-analysis/ale'
-"Plug 'lambdalisue/suda.vim'
-Plug 'tmux-plugins/vim-tmux-focus-events'
-"Plug 'github/copilot.vim'
-Plug 'djoshea/vim-autoread'
-Plug 'neovim/nvim-lspconfig'
-
-" language syntax
-Plug 'rust-lang/rust.vim'
-Plug 'kchmck/vim-coffee-script'
-Plug 'gkz/vim-ls'
-Plug 'petRUShka/vim-sage'
-Plug 'rgrinberg/vim-ocaml'
-Plug 'let-def/ocp-indent-vim'
-"Plug 'solarnz/thrift.vim'
-"Plug 'alaviss/nim.nvim'
-"Plug 'rhysd/vim-crystal'
-"Plug 'neynt/vim-vue'
-Plug 'digitaltoad/vim-pug'
-"Plug 'elixir-lang/vim-elixir'
-"Plug 'JuliaEditorSupport/julia-vim'
-"Plug 'flxf/uCpp.vim'
-"Plug 'tikhomirov/vim-glsl'
-"Plug 'dleonard0/pony-vim-syntax'
-"Plug 'HerringtonDarkholme/yats.vim'
-Plug 'leafgarland/typescript-vim'
-"Plug 'supercollider/scvim'
-"Plug 'solarnz/thrift.vim'
-"Plug 'calviken/vim-gdscript3'
-"Plug 'wlangstroth/vim-racket'
-Plug 'iloginow/vim-stylus'
-"Plug 'purescript-contrib/purescript-vim'
-"Plug 'reasonml-editor/vim-reason-plus'
-Plug 'xolox/vim-misc'
-"Plug 'tbastos/vim-lua'
-"Plug 'idris-hackers/idris-vim'
-Plug 'PProvost/vim-ps1'
-Plug 'ziglang/zig.vim'
-Plug 'zah/nim.vim'
-Plug 'evanleck/vim-svelte'
-
-" colors
-"Plug 'morhetz/gruvbox'
-"Plug 'josephwecker/murphytango.vim'
-
 let mapleader = ","
-if filereadable(expand('~/.vimrc.local'))
-  source ~/.vimrc.local
-end
-if filereadable(expand('~/.vimrc.coc'))
-  source ~/.vimrc.coc
-end
-call plug#end()
-" }}}
 
 " Lets {{{
 let g:UltiSnipsExpandTrigger = "<c-j>"
@@ -133,16 +56,6 @@ nnoremap <leader>dt :diffthis<cr>
 nnoremap <leader>dn :diffoff<cr>
 xnoremap ga <Plug>(EasyAlign)
 nnoremap ga <Plug>(EasyAlign)
-
-function! s:my_nerd_tree_find()
-  if &filetype ==# 'nerdtree' || &filetype ==# ''
-    execute ':NERDTreeToggle'
-  else
-    execute ':NERDTreeFind'
-  endif
-endfunction
-
-nnoremap <silent> <leader>f :call <sid>my_nerd_tree_find()<cr>
 nnoremap <leader>rt :set expandtab<cr>:retab<cr>
 nnoremap <leader>n :nohlsearch<cr>
 "nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
@@ -173,7 +86,7 @@ set number
 set fillchars+=vert:\ 
 "set cmdheight=2
 "set autoread
-"set autochdir
+set autochdir
 set pumheight=16
 set scrolloff=5 " min context around cursor
 
@@ -231,13 +144,16 @@ filetype plugin indent on
 
 augroup neynt
   autocmd!
-  "autocmd FileType html setlocal sw=2 sts=2 ts=2
-  "autocmd FileType go setlocal sw=2 sts=2 ts=2
-  "autocmd FileType cpp setlocal sw=2 sts=2 ts=2
-  autocmd FileType c setlocal sw=2 sts=2 ts=2
-  autocmd FileType perl setlocal sw=2 sts=2 ts=2
-  autocmd FileType haskell setlocal expandtab
-  autocmd FileType vim setlocal foldmethod=marker
+  autocmd FileType html      setlocal sw=2 sts=2 ts=2
+  autocmd FileType go        setlocal sw=2 sts=2 ts=2
+  autocmd FileType cpp       setlocal sw=2 sts=2 ts=2
+  autocmd FileType c         setlocal sw=2 sts=2 ts=2
+  autocmd FileType perl      setlocal sw=2 sts=2 ts=2
+  autocmd FileType haskell   setlocal expandtab
+  autocmd FileType vim       setlocal foldmethod=marker
+  autocmd FileType ocaml     setlocal sw=2 sts=2 ts=2
+  autocmd FileType python    setlocal sw=4 sts=4 ts=4
+  autocmd FileType markdown  setlocal sw=2 sts=2 ts=2
   "autocmd FileType markdown setlocal textwidth=80
   autocmd BufEnter *.vue syntax sync fromstart
   autocmd BufNewFile,BufRead *.vs,*.fs set ft=glsl
