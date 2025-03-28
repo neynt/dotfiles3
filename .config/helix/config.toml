@@ -1,9 +1,19 @@
 theme = "my_jellybeans"
 
+[editor]
+auto-pairs = false
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
 select = "underline"
+
+[keys.normal]
+"}" = ["move_next_word_end", "select_mode", "insert_at_line_start", "move_line_down", "goto_next_paragraph", "normal_mode", "goto_prev_paragraph", "goto_next_paragraph", "trim_selections"]
+"{" = ["move_next_word_start", "select_mode", "insert_at_line_end", "move_line_up", "goto_prev_paragraph", "normal_mode", "goto_next_paragraph", "goto_prev_paragraph", "trim_selections"]
+
+[keys.normal."space"]
+o = "file_picker_in_current_buffer_directory"
 
 [keys.normal.g]
 q = ":reflow"

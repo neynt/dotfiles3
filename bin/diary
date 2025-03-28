@@ -23,7 +23,9 @@ $EDITOR "$today_file"
 blue="\033[1;34m"
 green="\033[1;32m"
 nocolor="\033[0m"
-for days_ago in 3650 365 92 30 7 1; do
+echo
+cat prompt.md
+for days_ago in 3650 365 92 30 7 2 1 0; do
   yyyymmdd=$(date -r $((now - 3600 * 4 - 86400 * days_ago)) "+%Y-%m-%d")
   yyyy="$(echo $yyyymmdd | cut -d '-' -f1)"
   mm="$(  echo $yyyymmdd | cut -d '-' -f2)"
@@ -31,7 +33,7 @@ for days_ago in 3650 365 92 30 7 1; do
   file="$yyyy/$yyyy-$mm-$dd.md"
   if [[ -f "$file" ]]; then
     echo
-    echo -e "${green}## $yyyymmdd ($days_ago days ago)${nocolor}"
+    printf "${green}## $yyyymmdd ($days_ago days ago, %d words)${nocolor}\n" "$(wc -w < "$file")"
     echo
     cat $file
     echo
