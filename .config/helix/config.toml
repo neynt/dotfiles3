@@ -3,6 +3,9 @@ theme = "my_jellybeans"
 [editor]
 auto-pairs = false
 
+[editor.soft-wrap]
+enable = true
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"

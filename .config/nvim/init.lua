@@ -77,7 +77,7 @@ lspconfig.pyright.setup{
   on_attach = on_attach,
   flags = lsp_flags,
 }
-lspconfig.tsserver.setup{
+lspconfig.ts_ls.setup{
   on_attach = on_attach,
   flags = lsp_flags,
   root_dir = package_json_with_marker('.ts-root')

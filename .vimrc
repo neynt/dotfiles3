@@ -86,7 +86,7 @@ set number
 set fillchars+=vert:\ 
 "set cmdheight=2
 "set autoread
-set autochdir
+"set autochdir
 set pumheight=16
 set scrolloff=5 " min context around cursor
 

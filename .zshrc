@@ -83,3 +83,4 @@ fi
 source /usr/share/fzf/key-bindings.zsh > /dev/null 2> /dev/null || true
 source /usr/share/fzf/completion.zsh > /dev/null 2> /dev/null || true
 #source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh || true
+alias claude="/Users/neynt/.claude/local/claude"

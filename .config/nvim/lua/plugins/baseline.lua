@@ -64,7 +64,7 @@ return {
   -- { "vim-scripts/a.vim" },
   -- { "vim-airline/vim-airline" },
   -- { "vim-syntastic/syntastic" },
-  -- { "ctrlpvim/ctrlp.vim" },
+  { "ctrlpvim/ctrlp.vim" },
   { "jremmen/vim-ripgrep" },
   { "easymotion/vim-easymotion" },
   { "vim-scripts/gitignore" },

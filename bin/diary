@@ -2,8 +2,26 @@
 #
 # Diary script. Keeps a diary in an encrypted file, unzipping/zipping it
 # whenever you want to modify it.
+# Added: Support for specifying an explicit date to use as "today"
 
 diary_root="/Users/neynt/stash/diary"
+
+# Process command line arguments
+# If -d or --date is provided, use that date as "today"
+specified_date=""
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -d|--date)
+      specified_date="$2"
+      shift 2
+      ;;
+    *)
+      echo "Unknown option: $1"
+      echo "Usage: $0 [-d|--date YYYY-MM-DD|yesterday|today|tomorrow]"
+      exit 1
+      ;;
+  esac
+done
 
 if [[ ! -d "$diary_root" ]]; then
   echo "Diary is not mounted. Mount it with Veracrypt."
@@ -12,11 +30,43 @@ fi
 
 cd "$diary_root"
 
+# Calculate the date to use
 now=$(date "+%s")
-yyyymmdd=$(date -r $((now - 3600 * 4)) "+%Y-%m-%d")
+if [[ -n "$specified_date" ]]; then
+  # Handle relative dates like "yesterday", "tomorrow", etc.
+  case "$specified_date" in
+    yesterday)
+      now=$(date -v-1d "+%s")
+      yyyymmdd=$(date -r $((now - 3600 * 4)) "+%Y-%m-%d")
+      ;;
+    tomorrow)
+      now=$(date -v+1d "+%s")
+      yyyymmdd=$(date -r $((now - 3600 * 4)) "+%Y-%m-%d")
+      ;;
+    today)
+      yyyymmdd=$(date -r $((now - 3600 * 4)) "+%Y-%m-%d")
+      ;;
+    *[0-9]*-*[0-9]*-*[0-9]*)
+      # Convert specified date to timestamp for calculations
+      now=$(date -j -f "%Y-%m-%d" "$specified_date" "+%s")
+      yyyymmdd="$specified_date"
+      ;;
+    *)
+      echo "Error: Invalid date format. Use 'yesterday', 'today', 'tomorrow', or YYYY-MM-DD"
+      exit 1
+      ;;
+  esac
+else
+  # Use actual time, adjusting for timezone as in original script
+  yyyymmdd=$(date -r $((now - 3600 * 4)) "+%Y-%m-%d")
+fi
 yyyy="$(echo $yyyymmdd | cut -d '-' -f1)"
-mm="$(  echo $yyyymmdd | cut -d '-' -f2)"
-dd="$(  echo $yyyymmdd | cut -d '-' -f3)"
+mm="$(echo $yyyymmdd | cut -d '-' -f2)"
+dd="$(echo $yyyymmdd | cut -d '-' -f3)"
+
+# Create year directory if it doesn't exist
+mkdir -p "$yyyy"
+
 today_file="$yyyy/$yyyy-$mm-$dd.md"
 $EDITOR "$today_file"
 
@@ -25,11 +75,11 @@ green="\033[1;32m"
 nocolor="\033[0m"
 echo
 cat prompt.md
-for days_ago in 3650 365 92 30 7 2 1 0; do
+for days_ago in 365 90 30 7 2 1 0; do
   yyyymmdd=$(date -r $((now - 3600 * 4 - 86400 * days_ago)) "+%Y-%m-%d")
   yyyy="$(echo $yyyymmdd | cut -d '-' -f1)"
-  mm="$(  echo $yyyymmdd | cut -d '-' -f2)"
-  dd="$(  echo $yyyymmdd | cut -d '-' -f3)"
+  mm="$(echo $yyyymmdd | cut -d '-' -f2)"
+  dd="$(echo $yyyymmdd | cut -d '-' -f3)"
   file="$yyyy/$yyyy-$mm-$dd.md"
   if [[ -f "$file" ]]; then
     echo
