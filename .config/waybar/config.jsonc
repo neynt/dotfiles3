@@ -4,7 +4,7 @@
     "height": 30,
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["cpu", "memory", "battery", "tray"],
+    "modules-right": ["tray"],
     "hyprland/workspaces": {
         "format": "{name}"
     },

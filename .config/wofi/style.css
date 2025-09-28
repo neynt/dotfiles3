@@ -1,9 +1,9 @@
 window {
     margin: 5px;
-    border: 2px solid #33ccff;
+    border: 2px solid #ffffff99;
     background-color: #1a1a1a;
     border-radius: 10px;
-    font-family: JetBrains Mono;
+    font-family: Iosevka;
     font-size: 14px; /* Matches your 4K 0.75 scale */
 }
 #input {
@@ -17,6 +17,6 @@ window {
     color: #ffffff;
 }
 #entry:selected {
-    background-color: #33ccff;
+    background-color: #666666;
     border-radius: 5px;
 }

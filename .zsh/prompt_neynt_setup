@@ -27,7 +27,7 @@ prompt_neynt_setup() {
       PROMPT+="$wht"
       ;;
     saltblock-arch)
-      PROMPT+="$Cyn"
+      PROMPT+="$Wht"
       ;;
     hanabi)
       PROMPT+="$Mag"
