@@ -1,0 +1,22 @@
+window {
+    margin: 5px;
+    border: 2px solid #33ccff;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    font-family: JetBrains Mono;
+    font-size: 14px; /* Matches your 4K 0.75 scale */
+}
+#input {
+    margin: 5px;
+    border: none;
+    background-color: #2a2a2a;
+    color: #ffffff;
+}
+#entry {
+    padding: 5px;
+    color: #ffffff;
+}
+#entry:selected {
+    background-color: #33ccff;
+    border-radius: 5px;
+}
