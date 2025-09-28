@@ -1,13 +1,8 @@
 # additional functions (mainly my prompt)
 fpath=( "$HOME/.zsh" $fpath )
 
-if [[ -f ~/.sharedrc ]]; then
-  source ~/.sharedrc
-fi
-
-if [[ -f ~/.sharedrc.local ]]; then
-  source ~/.sharedrc.local
-fi
+[[ -f ~/.sharedrc ]] && source ~/.sharedrc
+[[ -f ~/.sharedrc.local ]] && source ~/.sharedrc.local
 
 # env vars
 # opam configuration
