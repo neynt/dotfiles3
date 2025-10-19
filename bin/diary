@@ -1,7 +1,6 @@
 #!/bin/bash
 #
-# Diary script. Keeps a diary in an encrypted file, unzipping/zipping it
-# whenever you want to modify it.
+# Diary script. Manages daily diary entries in markdown files.
 # Added: Support for specifying an explicit date to use as "today"
 
 diary_root="/Users/neynt/stash/diary"
@@ -24,7 +23,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ ! -d "$diary_root" ]]; then
-  echo "Diary is not mounted. Mount it with Veracrypt."
+  echo "Diary directory does not exist: $diary_root"
   exit 1
 fi
 
@@ -68,6 +67,17 @@ dd="$(echo $yyyymmdd | cut -d '-' -f3)"
 mkdir -p "$yyyy"
 
 today_file="$yyyy/$yyyy-$mm-$dd.md"
+
+# Initialize new diary file with path to last diary entry if it doesn't exist
+if [[ ! -f "$today_file" ]]; then
+  # Find the most recent diary file in the year directories
+  last_file=$(find "$diary_root" -path "*/????/*.md" -name "????-??-??.md" -type f | sort | tail -1)
+  if [[ -n "$last_file" ]]; then
+    echo "Last entry: $last_file" > "$today_file"
+    echo "" >> "$today_file"
+  fi
+fi
+
 $EDITOR "$today_file"
 
 blue="\033[1;34m"
