@@ -4,7 +4,7 @@
     "height": 30,
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["tray"],
+    "modules-right": ["pulseaudio", "tray"],
     "hyprland/workspaces": {
         "format": "{name}"
     },
@@ -19,5 +19,13 @@
     },
     "battery": {
         "format": "{capacity}% {icon}"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰖁 {volume}%",
+        "format-icons": {
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     }
 }

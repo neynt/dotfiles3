@@ -1,12 +1,57 @@
 #!/bin/bash
-#
-# Diary script. Manages daily diary entries in markdown files.
-# Added: Support for specifying an explicit date to use as "today"
 
-diary_root="/Users/neynt/stash/diary"
+hostname=$(cat /etc/hostname 2>/dev/null || hostname)
+if [[ "$hostname" == "saltblock-arch" ]]; then
+  diary_root="/home/neynt/diary"
+  is_macos=false
+else
+  diary_root="/Users/neynt/stash/diary"
+  is_macos=true
+fi
 
-# Process command line arguments
-# If -d or --date is provided, use that date as "today"
+format_date() {
+  local timestamp=$1
+  if [[ "$is_macos" == "true" ]]; then
+    date -r "$timestamp" "+%Y-%m-%d"
+  else
+    date -d "@$timestamp" "+%Y-%m-%d"
+  fi
+}
+
+parse_date() {
+  local input=$1
+  case "$input" in
+    yesterday)
+      if [[ "$is_macos" == "true" ]]; then
+        date -v-1d "+%s"
+      else
+        date -d "yesterday" "+%s"
+      fi
+      ;;
+    tomorrow)
+      if [[ "$is_macos" == "true" ]]; then
+        date -v+1d "+%s"
+      else
+        date -d "tomorrow" "+%s"
+      fi
+      ;;
+    today)
+      date "+%s"
+      ;;
+    *[0-9]*-*[0-9]*-*[0-9]*)
+      if [[ "$is_macos" == "true" ]]; then
+        date -j -f "%Y-%m-%d" "$input" "+%s"
+      else
+        date -d "$input" "+%s"
+      fi
+      ;;
+    *)
+      echo "Error: Invalid date format. Use 'yesterday', 'today', 'tomorrow', or YYYY-MM-DD" >&2
+      exit 1
+      ;;
+  esac
+}
+
 specified_date=""
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -29,41 +74,17 @@ fi
 
 cd "$diary_root"
 
-# Calculate the date to use
-now=$(date "+%s")
 if [[ -n "$specified_date" ]]; then
-  # Handle relative dates like "yesterday", "tomorrow", etc.
-  case "$specified_date" in
-    yesterday)
-      now=$(date -v-1d "+%s")
-      yyyymmdd=$(date -r $((now - 3600 * 4)) "+%Y-%m-%d")
-      ;;
-    tomorrow)
-      now=$(date -v+1d "+%s")
-      yyyymmdd=$(date -r $((now - 3600 * 4)) "+%Y-%m-%d")
-      ;;
-    today)
-      yyyymmdd=$(date -r $((now - 3600 * 4)) "+%Y-%m-%d")
-      ;;
-    *[0-9]*-*[0-9]*-*[0-9]*)
-      # Convert specified date to timestamp for calculations
-      now=$(date -j -f "%Y-%m-%d" "$specified_date" "+%s")
-      yyyymmdd="$specified_date"
-      ;;
-    *)
-      echo "Error: Invalid date format. Use 'yesterday', 'today', 'tomorrow', or YYYY-MM-DD"
-      exit 1
-      ;;
-  esac
+  now=$(parse_date "$specified_date")
 else
-  # Use actual time, adjusting for timezone as in original script
-  yyyymmdd=$(date -r $((now - 3600 * 4)) "+%Y-%m-%d")
+  now=$(date "+%s")
 fi
-yyyy="$(echo $yyyymmdd | cut -d '-' -f1)"
-mm="$(echo $yyyymmdd | cut -d '-' -f2)"
-dd="$(echo $yyyymmdd | cut -d '-' -f3)"
 
-# Create year directory if it doesn't exist
+yyyymmdd=$(format_date $((now - 3600 * 4)))
+yyyy="${yyyymmdd%%-*}"
+mm="${yyyymmdd:5:2}"
+dd="${yyyymmdd:8:2}"
+
 mkdir -p "$yyyy"
 
 today_file="$yyyy/$yyyy-$mm-$dd.md"
@@ -86,16 +107,13 @@ nocolor="\033[0m"
 echo
 cat prompt.md
 for days_ago in 365 90 30 7 2 1 0; do
-  yyyymmdd=$(date -r $((now - 3600 * 4 - 86400 * days_ago)) "+%Y-%m-%d")
-  yyyy="$(echo $yyyymmdd | cut -d '-' -f1)"
-  mm="$(echo $yyyymmdd | cut -d '-' -f2)"
-  dd="$(echo $yyyymmdd | cut -d '-' -f3)"
-  file="$yyyy/$yyyy-$mm-$dd.md"
+  yyyymmdd=$(format_date $((now - 3600 * 4 - 86400 * days_ago)))
+  file="${yyyymmdd%%-*}/$yyyymmdd.md"
   if [[ -f "$file" ]]; then
     echo
     printf "${green}## $yyyymmdd ($days_ago days ago, %d words)${nocolor}\n" "$(wc -w < "$file")"
     echo
-    cat $file
+    cat "$file"
     echo
   fi
 done

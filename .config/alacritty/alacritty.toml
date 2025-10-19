@@ -58,3 +58,25 @@ option_as_alt = "Both"
 [window.padding]
 x = 1
 y = 1
+
+# Disable default zoom bindings
+[[keyboard.bindings]]
+key = "="
+mods = "Control"
+action = "None"
+
+[[keyboard.bindings]]
+key = "-"
+mods = "Control"
+action = "None"
+
+# New zoom bindings
+[[keyboard.bindings]]
+key = "+"
+mods = "Control|Shift"
+action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "_"
+mods = "Control|Shift"
+action = "DecreaseFontSize"

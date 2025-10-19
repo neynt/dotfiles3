@@ -4,7 +4,7 @@
 }
 #waybar {
     background: #1a1a1a;
-    border-radius: 10px;
+    border-radius: 0;
     margin: 5px;
 }
 #workspaces button {
@@ -22,7 +22,7 @@
     text-shadow: inherit;
     transition: none;
 }
-#clock, #cpu, #memory, #battery, #tray {
+#clock, #cpu, #memory, #battery, #tray, #pulseaudio {
     padding: 0 10px;
     color: #aaaaaa;
 }
