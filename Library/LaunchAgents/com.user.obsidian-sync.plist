@@ -3,18 +3,18 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>com.user.diary-sync</string>
+    <string>com.user.obsidian-sync</string>
     <key>ProgramArguments</key>
     <array>
         <string>/bin/sh</string>
         <string>-c</string>
-        <string>cd /Users/neynt/stash/diary && /usr/bin/git pull --rebase && /usr/bin/git add -A && /usr/bin/git commit -m "Auto-commit $(date)" || true && /usr/bin/git push</string>
+        <string>cd /Users/neynt/obsidian && /usr/bin/git pull --rebase && /usr/bin/git add -A && /usr/bin/git commit -m "Auto-commit $(date)" || true && /usr/bin/git push</string>
     </array>
     <key>StartInterval</key>
     <integer>3600</integer>
     <key>StandardOutPath</key>
-    <string>/tmp/diary-sync.log</string>
+    <string>/tmp/obsidian-sync.log</string>
     <key>StandardErrorPath</key>
-    <string>/tmp/diary-sync.err</string>
+    <string>/tmp/obsidian-sync.err</string>
 </dict>
 </plist>

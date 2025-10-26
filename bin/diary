@@ -1,11 +1,12 @@
 #!/bin/bash
+set -euo pipefail
 
 hostname=$(cat /etc/hostname 2>/dev/null || hostname)
 if [[ "$hostname" == "saltblock-arch" ]]; then
   diary_root="/home/neynt/diary"
   is_macos=false
 else
-  diary_root="/Users/neynt/stash/diary"
+  diary_root="/Users/neynt/diary"
   is_macos=true
 fi
 
