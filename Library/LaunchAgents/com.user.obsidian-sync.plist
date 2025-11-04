@@ -8,7 +8,7 @@
     <array>
         <string>/bin/sh</string>
         <string>-c</string>
-        <string>cd /Users/neynt/obsidian && /usr/bin/git pull --rebase && /usr/bin/git add -A && /usr/bin/git commit -m "Auto-commit $(date)" || true && /usr/bin/git push</string>
+        <string>cd /Users/neynt/obsidian && /usr/bin/git add -A && /usr/bin/git commit -m "Auto-commit $(date)" || true && /usr/bin/git pull --rebase && /usr/bin/git push</string>
     </array>
     <key>StartInterval</key>
     <integer>3600</integer>
