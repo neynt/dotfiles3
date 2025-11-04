@@ -117,6 +117,21 @@ function grepdiary {
   rg --sort path "$@" ~/stash/diary
 }
 
+function timers {
+  systemctl --user list-timers --all | \
+    tail -n +2 | head -n -2 | \
+    column -t | \
+    fzf --header="Systemd User Timers" \
+        --preview='systemctl --user status {-1}' \
+        --preview-window=right:60%:wrap \
+        --bind='enter:execute(systemctl --user status {-1} | less)' \
+        --bind='r:reload(systemctl --user list-timers --all | tail -n +2 | head -n -3 | column -t)' \
+        --bind='ctrl-r:execute-silent(systemctl --user restart {-1})+reload(systemctl --user list-timers --all | tail -n +2 | head -n -3 | column -t)' \
+        --bind='ctrl-s:execute-silent(systemctl --user start {-1})+reload(systemctl --user list-timers --all | tail -n +2 | head -n -3 | column -t)' \
+        --bind='ctrl-x:execute-silent(systemctl --user stop {-1})+reload(systemctl --user list-timers --all | tail -n +2 | head -n -3 | column -t)' \
+        --header-lines=0
+}
+
 if [[ $# -eq 0 ]]; then
   echo "commands are:"
   grep -E "^function" "$this_script" | cut -d' ' -f2

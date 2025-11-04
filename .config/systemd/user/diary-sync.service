@@ -1,0 +1,7 @@
+[Unit]
+Description=Sync diary git repository
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/diary
+ExecStart=/bin/bash -c 'git add -A && git commit -m "Auto-commit $(date +%%Y-%%m-%%d)" || true; git pull --rebase && git push || true'

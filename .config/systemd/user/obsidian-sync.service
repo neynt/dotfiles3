@@ -1,0 +1,7 @@
+[Unit]
+Description=Sync obsidian git repository
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/obsidian
+ExecStart=/bin/bash -c 'git add -A && git commit -m "Auto-commit $(date +%%Y-%%m-%%d)" || true; git pull --rebase && git push || true'

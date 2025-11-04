@@ -1,0 +1,13 @@
+[Unit]
+Description=Update Obsidian vault
+After=network.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/neynt/obsidian
+ExecStart=/home/neynt/obsidian/update-obsidian.sh
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Run update-obsidian script hourly
+Requires=update-obsidian.service
+
+[Timer]
+OnCalendar=hourly
+Persistent=true
+
+[Install]
+WantedBy=timers.target
