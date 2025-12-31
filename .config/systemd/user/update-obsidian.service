@@ -5,7 +5,8 @@ After=network.target
 [Service]
 Type=oneshot
 WorkingDirectory=/home/neynt/obsidian
-ExecStart=/home/neynt/obsidian/update-obsidian.sh
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/usr/bin/python /home/neynt/obsidian/update_obsidian.py
 StandardOutput=journal
 StandardError=journal
 

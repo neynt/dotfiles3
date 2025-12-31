@@ -93,10 +93,10 @@ today_file="$yyyy/$yyyy-$mm-$dd.md"
 # Initialize new diary file with path to last diary entry if it doesn't exist
 if [[ ! -f "$today_file" ]]; then
   # Find the most recent diary file in the year directories
-  last_file=$(find "$diary_root" -path "*/????/*.md" -name "????-??-??.md" -type f | sort | tail -1)
+  last_file=$(find "$diary_root" -path "$diary_root/????/*.md" -name "????-??-??.md" -type f | sort | tail -1)
   if [[ -n "$last_file" ]]; then
-    echo "Last entry: $last_file" > "$today_file"
-    echo "" >> "$today_file"
+    prefix="$diary_root/$(dirname "$today_file")/"
+    echo "Last entry: ${last_file#$prefix}" > "$today_file"
   fi
 fi
 
@@ -105,19 +105,20 @@ $EDITOR "$today_file"
 blue="\033[1;34m"
 green="\033[1;32m"
 nocolor="\033[0m"
-echo
-cat prompt.md
-for days_ago in 365 90 30 7 2 1 0; do
-  yyyymmdd=$(format_date $((now - 3600 * 4 - 86400 * days_ago)))
-  file="${yyyymmdd%%-*}/$yyyymmdd.md"
-  if [[ -f "$file" ]]; then
-    echo
-    printf "${green}## $yyyymmdd ($days_ago days ago, %d words)${nocolor}\n" "$(wc -w < "$file")"
-    echo
-    cat "$file"
-    echo
-  fi
-done
+(
+  cat prompt.md;
+  for days_ago in 365 90 30 7 2 1 0; do
+    yyyymmdd=$(format_date $((now - 3600 * 4 - 86400 * days_ago)))
+    file="${yyyymmdd%%-*}/$yyyymmdd.md"
+    if [[ -f "$file" ]]; then
+      echo
+      printf "${green}## $yyyymmdd ($days_ago days ago, %d words)${nocolor}\n" "$(wc -w < "$file")"
+      echo
+      cat "$file"
+      echo
+    fi
+  done
+) | less -r
 
 if [[ -f "$today_file" ]]; then
   echo

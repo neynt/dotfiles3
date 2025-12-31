@@ -1,8 +1,8 @@
 [Unit]
-Description=Sync diary repository daily
+Description=Sync diary repository hourly
 
 [Timer]
-OnCalendar=daily
+OnCalendar=hourly
 Persistent=true
 
 [Install]
