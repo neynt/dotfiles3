@@ -1,4 +1,12 @@
 return {
+  {
+    "nanotech/jellybeans.vim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme('jellybeans')
+    end,
+  },
   { "tpope/vim-sensible" },
   { "tpope/vim-sleuth" },
   -- { "scrooloose/nerdtree" },
@@ -64,7 +72,17 @@ return {
   -- { "vim-scripts/a.vim" },
   -- { "vim-airline/vim-airline" },
   -- { "vim-syntastic/syntastic" },
-  { "ctrlpvim/ctrlp.vim" },
+  {
+    "ctrlpvim/ctrlp.vim",
+    config = function()
+      vim.g.ctrlp_cmd = 'CtrlP'
+      vim.g.ctrlp_user_command = {
+        '.git',
+        'cd %s && git ls-files . -co --exclude-standard',
+        'find %s -type f'
+      }
+    end,
+  },
   { "jremmen/vim-ripgrep" },
   { "easymotion/vim-easymotion" },
   { "vim-scripts/gitignore" },
