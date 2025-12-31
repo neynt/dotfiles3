@@ -30,7 +30,98 @@ return {
       })
     end,
   },
-  { "tpope/vim-sensible" },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    main = "nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        'bash', 'c', 'cpp', 'css', 'go', 'html', 'javascript', 'json',
+        'lua', 'markdown', 'python', 'rust', 'typescript', 'tsx', 'vim',
+        'vimdoc', 'yaml', 'zig', 'ocaml',
+      },
+      auto_install = true,
+    },
+  },
+  {
+    "saghen/blink.cmp",
+    version = "1.*",
+    opts = {
+      keymap = { preset = 'default' },
+      appearance = { nerd_font_variant = 'mono' },
+      completion = {
+        documentation = { auto_show = true },
+      },
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+      signature = { enabled = true },
+    },
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      signs = {
+        add = { text = '+' },
+        change = { text = '~' },
+        delete = { text = '_' },
+        topdelete = { text = '‾' },
+        changedelete = { text = '~' },
+      },
+      on_attach = function(bufnr)
+        local gs = require('gitsigns')
+        local opts = { buffer = bufnr }
+        vim.keymap.set('n', ']c', gs.next_hunk, opts)
+        vim.keymap.set('n', '[c', gs.prev_hunk, opts)
+        vim.keymap.set('n', '<leader>hp', gs.preview_hunk, opts)
+        vim.keymap.set('n', '<leader>hs', gs.stage_hunk, opts)
+        vim.keymap.set('n', '<leader>hr', gs.reset_hunk, opts)
+        vim.keymap.set('n', '<leader>hb', gs.blame_line, opts)
+      end,
+    },
+  },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      { "<leader>?", function() require("which-key").show({ global = false }) end, desc = "Buffer keymaps" },
+    },
+  },
+  {
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    keys = {
+      { "<leader>cf", function() require("conform").format({ async = true }) end, desc = "Format buffer" },
+    },
+    opts = {
+      formatters_by_ft = {
+        python = { "black" },
+        javascript = { "prettier" },
+        typescript = { "prettier" },
+        javascriptreact = { "prettier" },
+        typescriptreact = { "prettier" },
+        json = { "prettier" },
+        yaml = { "prettier" },
+        markdown = { "prettier" },
+        html = { "prettier" },
+        css = { "prettier" },
+        rust = { "rustfmt" },
+        go = { "gofmt" },
+        lua = { "stylua" },
+        ocaml = { "ocamlformat" },
+      },
+      format_on_save = function(bufnr)
+        -- disable for certain filetypes or large files
+        local ignore_filetypes = {}
+        if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
+          return
+        end
+        return { timeout_ms = 500, lsp_format = "fallback" }
+      end,
+    },
+  },
   { "tpope/vim-sleuth" },
   {
     "nvim-telescope/telescope.nvim",
