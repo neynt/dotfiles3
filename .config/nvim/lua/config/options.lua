@@ -3,7 +3,7 @@ local opt = vim.opt
 local g = vim.g
 
 -- leader keys (set early)
-g.mapleader = ','
+g.mapleader = ' '
 g.maplocalleader = '\\'
 
 -- encoding

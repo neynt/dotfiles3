@@ -43,10 +43,6 @@ map('n', '<leader>rt', ':set expandtab<cr>:retab<cr>', opts)
 -- search
 map('n', '<leader>n', ':nohlsearch<cr>', opts)
 
--- command mode shortcut
-map('n', '<space>', ':', { noremap = true })
-map('v', '<space>', ':', { noremap = true })
-
 -- movement shortcuts
 map('n', 'H', '^', { noremap = true })
 map('n', 'L', '$', { noremap = true })
