@@ -1,54 +1,37 @@
 return {
   {
-    "nanotech/jellybeans.vim",
+    "rebelot/kanagawa.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme('jellybeans')
+      require('kanagawa').setup({
+        transparent = true,
+      })
+      vim.cmd.colorscheme('kanagawa-wave')
     end,
   },
-  { "tpope/vim-sensible" },
-  { "tpope/vim-sleuth" },
-  -- { "scrooloose/nerdtree" },
   {
-    "nvim-tree/nvim-tree.lua",
+    "nvim-lualine/lualine.nvim",
     config = function()
-      vim.keymap.set('n', '<leader>f', function()
-        require('nvim-tree.api').tree.toggle({ find_file = true, focus = true })
-      end, { noremap = true, silent = true })
-      --vim.keymap.set('n', '<leader>f', ':NvimTreeToggle<CR>', {})
-      require("nvim-tree").setup({
-        renderer = {
-          icons = {
-            show = {
-              file = false,
-              folder = false,
-              folder_arrow = true,
-              git = true,
-            },
-            glyphs = {
-              folder = {
-                arrow_closed = ">",
-                arrow_open = "v",
-              },
-              git = {
-                unstaged = "~",
-                staged = "+",
-                unmerged = "!",
-                renamed = ">",
-                untracked = "?",
-                deleted = "x",
-                ignored = "-",
-              },
-            },
-          },
+      require('lualine').setup({
+        options = {
+          theme = 'auto',
+          component_separators = { left = '│', right = '│' },
+          section_separators = { left = '', right = '' },
         },
-        view = {
-          side = "right",
+        sections = {
+          lualine_a = { 'mode' },
+          lualine_b = { 'branch', 'diff', 'diagnostics' },
+          lualine_c = { 'filename' },
+          lualine_x = { 'encoding', 'fileformat', 'filetype' },
+          lualine_y = { 'progress' },
+          lualine_z = { 'location' },
         },
       })
     end,
   },
+  { "tpope/vim-sensible" },
+  { "tpope/vim-sleuth" },
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
@@ -56,10 +39,29 @@ return {
     },
     config = function()
       local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>F', builtin.find_files, {})
-      vim.keymap.set('n', '<leader>b', builtin.buffers, { silent = true })
-      vim.keymap.set('n', '<leader>h', builtin.help_tags, { silent = true })
-      vim.keymap.set('n', '<leader>g', builtin.live_grep, { silent = true })
+      local opts = { silent = true }
+
+      -- files
+      vim.keymap.set('n', '<leader>f', builtin.find_files, opts)
+      vim.keymap.set('n', '<leader>o', function()
+        builtin.find_files({ cwd = vim.fn.expand('%:p:h') })
+      end, opts)
+      vim.keymap.set('n', '<leader>r', builtin.oldfiles, opts)
+
+      -- search
+      vim.keymap.set('n', '<leader>g', builtin.live_grep, opts)
+      vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, opts)
+
+      -- vim internals
+      vim.keymap.set('n', '<leader>b', builtin.buffers, opts)
+      vim.keymap.set('n', '<leader>h', builtin.help_tags, opts)
+      vim.keymap.set('n', '<leader>k', builtin.keymaps, opts)
+      vim.keymap.set('n', '<leader>:', builtin.command_history, opts)
+
+      -- lsp (when available)
+      vim.keymap.set('n', '<leader>d', builtin.diagnostics, opts)
+      vim.keymap.set('n', '<leader>s', builtin.lsp_document_symbols, opts)
+      vim.keymap.set('n', '<leader>S', builtin.lsp_workspace_symbols, opts)
     end,
   },
   { "ConradIrwin/vim-bracketed-paste" },
@@ -69,20 +71,6 @@ return {
   { "tpope/vim-repeat" },
   { "tpope/vim-obsession" }, -- auto sessions
   { "tpope/vim-unimpaired" },
-  -- { "vim-scripts/a.vim" },
-  -- { "vim-airline/vim-airline" },
-  -- { "vim-syntastic/syntastic" },
-  {
-    "ctrlpvim/ctrlp.vim",
-    config = function()
-      vim.g.ctrlp_cmd = 'CtrlP'
-      vim.g.ctrlp_user_command = {
-        '.git',
-        'cd %s && git ls-files . -co --exclude-standard',
-        'find %s -type f'
-      }
-    end,
-  },
   { "jremmen/vim-ripgrep" },
   { "easymotion/vim-easymotion" },
   { "vim-scripts/gitignore" },
