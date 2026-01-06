@@ -33,15 +33,35 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    main = "nvim-treesitter",
-    opts = {
-      ensure_installed = {
+    lazy = false,
+    config = function()
+      -- install missing parsers
+      local wanted = {
         'bash', 'c', 'cpp', 'css', 'go', 'html', 'javascript', 'json',
         'lua', 'markdown', 'python', 'rust', 'typescript', 'tsx', 'vim',
         'vimdoc', 'yaml', 'zig', 'ocaml',
-      },
-      auto_install = true,
-    },
+      }
+      local installed = require('nvim-treesitter.config').get_installed()
+      local to_install = vim.tbl_filter(function(lang)
+        return not vim.tbl_contains(installed, lang)
+      end, wanted)
+      if #to_install > 0 then
+        require('nvim-treesitter.install').install(to_install)
+      end
+
+      -- enable treesitter highlighting
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function(args)
+          pcall(vim.treesitter.start, args.buf)
+        end,
+      })
+      -- also enable for any buffers already open
+      for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_loaded(buf) then
+          pcall(vim.treesitter.start, buf)
+        end
+      end
+    end,
   },
   {
     "saghen/blink.cmp",
@@ -163,5 +183,4 @@ return {
   { "junegunn/goyo.vim" },
   { "junegunn/vim-easy-align" },
   { "tpope/vim-fugitive" }, -- git integration
-  { "let-def/ocp-indent-vim" }, -- ocaml indentation
 }

@@ -13,6 +13,7 @@ export COLORTERM=truecolor
 [ -d ~/.nimble/bin ] && export PATH=~/.nimble/bin:$PATH
 [ -d ~/.cargo/bin ] && export PATH=~/.cargo/bin:$PATH
 [ -d ~/.local/bin ] && export PATH=~/.local/bin:$PATH
+[ -d ~/.yarn/bin ] && export PATH=~/.yarn/bin:$PATH
 [ -d ~/bin ] && export PATH=~/bin:$PATH
 [ -d ~/go ] && export GOPATH=~/go && export PATH="$PATH:$GOPATH/bin"
 [ -d ~/.local/lib/python/site-packages ] && export PYTHONPATH=~/.local/lib/python/site-packages:$PYTHONPATH
