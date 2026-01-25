@@ -53,6 +53,7 @@ vim.lsp.config.pyright = {}
 vim.lsp.config.rust_analyzer = {}
 vim.lsp.config.nimls = {}
 vim.lsp.config.ocamllsp = {}
+vim.lsp.config.svelte = {}
 
 -- typescript with custom root_dir
 vim.lsp.config.ts_ls = {
@@ -65,7 +66,7 @@ vim.lsp.config.denols = {
 }
 
 -- enable all servers
-local servers = { 'pyright', 'ts_ls', 'nimls', 'rust_analyzer', 'denols', 'ocamllsp' }
+local servers = { 'pyright', 'ts_ls', 'nimls', 'rust_analyzer', 'denols', 'ocamllsp', 'svelte' }
 for _, server in ipairs(servers) do
   vim.lsp.enable(server)
 end

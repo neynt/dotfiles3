@@ -39,7 +39,7 @@ return {
       local wanted = {
         'bash', 'c', 'cpp', 'css', 'go', 'html', 'javascript', 'json',
         'lua', 'markdown', 'python', 'rust', 'typescript', 'tsx', 'vim',
-        'vimdoc', 'yaml', 'zig', 'ocaml',
+        'vimdoc', 'yaml', 'zig', 'ocaml', 'svelte',
       }
       local installed = require('nvim-treesitter.config').get_installed()
       local to_install = vim.tbl_filter(function(lang)
@@ -132,14 +132,8 @@ return {
         lua = { "stylua" },
         ocaml = { "ocamlformat" },
       },
-      format_on_save = function(bufnr)
-        -- disable for certain filetypes or large files
-        local ignore_filetypes = {}
-        if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
-          return
-        end
-        return { timeout_ms = 500, lsp_format = "fallback" }
-      end,
+      -- format_on_save disabled; use <leader>cf to format manually
+      format_on_save = false,
     },
   },
   { "tpope/vim-sleuth" },
@@ -152,8 +146,10 @@ return {
       local builtin = require('telescope.builtin')
       local opts = { silent = true }
 
-      -- files
-      vim.keymap.set('n', '<leader>f', builtin.find_files, opts)
+      -- files (hidden=true shows dotfiles, no_ignore=false respects .gitignore)
+      vim.keymap.set('n', '<leader>f', function()
+        builtin.find_files({ hidden = true, no_ignore = false })
+      end, opts)
       vim.keymap.set('n', '<leader>o', function()
         builtin.find_files({ cwd = vim.fn.expand('%:p:h') })
       end, opts)
