@@ -141,8 +141,10 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-file-browser.nvim",
     },
     config = function()
+      local telescope = require('telescope')
       local builtin = require('telescope.builtin')
       local opts = { silent = true }
 
@@ -150,8 +152,24 @@ return {
       vim.keymap.set('n', '<leader>f', function()
         builtin.find_files({ hidden = true, no_ignore = false })
       end, opts)
+
+      -- load file browser extension
+      telescope.load_extension('file_browser')
       vim.keymap.set('n', '<leader>o', function()
-        builtin.find_files({ cwd = vim.fn.expand('%:p:h') })
+        local cwd = vim.fn.expand('%:p:h')
+        require('telescope.pickers').new({}, {
+          prompt_title = 'Files',
+          cwd = cwd,
+          finder = require('telescope.finders').new_oneshot_job(
+            { 'sh', '-c', 'fd --type f --strip-cwd-prefix | sort' },
+            { cwd = cwd }
+          ),
+          sorter = require('telescope.config').values.generic_sorter({}),
+          previewer = require('telescope.config').values.file_previewer({}),
+        }):find()
+      end, opts)
+      vim.keymap.set('n', '<leader>O', function()
+        telescope.extensions.file_browser.file_browser({ path = vim.fn.expand('%:p:h') })
       end, opts)
       vim.keymap.set('n', '<leader>r', builtin.oldfiles, opts)
 
