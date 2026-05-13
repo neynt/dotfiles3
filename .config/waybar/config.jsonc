@@ -4,7 +4,7 @@
     "height": 30,
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "tray"],
+    "modules-right": ["custom/brightness", "pulseaudio", "tray"],
     "hyprland/workspaces": {
         "format": "{name}"
     },
@@ -19,6 +19,13 @@
     },
     "battery": {
         "format": "{capacity}% {icon}"
+    },
+    "custom/brightness": {
+        "exec": "~/.local/bin/waybar-brightness",
+        "format": "󰃠 {}%",
+        "interval": 30,
+        "on-click": "f=/tmp/waybar-brightness-dim; if [ -f $f ]; then rm $f; ddcutil setvcp 10 100; else touch $f; ddcutil setvcp 10 20; fi",
+        "tooltip": false
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",

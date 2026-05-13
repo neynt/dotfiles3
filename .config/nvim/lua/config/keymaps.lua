@@ -54,6 +54,9 @@ map('v', '<leader>y', '"yy <Bar> :call system("xclip -selection clipboard", @y)<
 map('v', '<', '<gv', { noremap = true })
 map('v', '>', '>gv', { noremap = true })
 
+-- open current file's directory in new tmux window
+map('n', '<leader>oo', ':silent !tmux new-window -c %:p:h<cr>:redraw!<cr>', opts)
+
 -- search for selected text
 -- adapted from http://vim.wikia.com/wiki/Search_for_visually_selected_text
 map('v', '*', [[:<C-U>let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>gvy/<C-R><C-R>=substitute(escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>gV:call setreg('"', old_reg, old_regtype)<CR>]], { noremap = true, silent = true })

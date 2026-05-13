@@ -46,6 +46,23 @@ autocmd('BufEnter', {
   command = 'syntax sync fromstart',
 })
 
+-- goyo: hide lualine in padding windows
+autocmd('User', {
+  group = augroup,
+  pattern = 'GoyoEnter',
+  callback = function()
+    require('lualine').hide()
+  end,
+})
+
+autocmd('User', {
+  group = augroup,
+  pattern = 'GoyoLeave',
+  callback = function()
+    require('lualine').hide({ unhide = true })
+  end,
+})
+
 -- glsl file detection
 autocmd({ 'BufNewFile', 'BufRead' }, {
   group = augroup,

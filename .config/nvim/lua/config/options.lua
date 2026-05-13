@@ -67,3 +67,10 @@ vim.cmd.syntax('on')
 
 -- filetype detection
 vim.cmd.filetype('plugin', 'indent', 'on')
+
+-- custom filetypes
+vim.filetype.add({
+  extension = {
+    jsonl = 'json',
+  },
+})

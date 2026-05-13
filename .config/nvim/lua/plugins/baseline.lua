@@ -148,21 +148,42 @@ return {
       local builtin = require('telescope.builtin')
       local opts = { silent = true }
 
-      -- files (hidden=true shows dotfiles, no_ignore=false respects .gitignore)
-      vim.keymap.set('n', '<leader>f', function()
-        builtin.find_files({ hidden = true, no_ignore = false })
-      end, opts)
+      telescope.setup({
+        defaults = {
+          file_ignore_patterns = { "^%.git/" },
+        },
+        pickers = {
+          find_files = {
+            hidden = true,
+            -- fd respects .gitignore by default; --strip-cwd-prefix for cleaner paths
+            find_command = { "fd", "--type", "f", "--hidden", "--strip-cwd-prefix" },
+          },
+        },
+      })
+
+      -- files
+      vim.keymap.set('n', '<leader>f', builtin.find_files, opts)
 
       -- load file browser extension
       telescope.load_extension('file_browser')
       vim.keymap.set('n', '<leader>o', function()
         local cwd = vim.fn.expand('%:p:h')
         require('telescope.pickers').new({}, {
-          prompt_title = 'Files',
-          cwd = cwd,
+          prompt_title = 'Files in ' .. vim.fn.fnamemodify(cwd, ':t'),
           finder = require('telescope.finders').new_oneshot_job(
-            { 'sh', '-c', 'fd --type f --strip-cwd-prefix | sort' },
-            { cwd = cwd }
+            { 'sh', '-c', 'fd --type f --absolute-path | sort' },
+            {
+              cwd = cwd,
+              entry_maker = function(entry)
+                -- display relative to cwd, but open via absolute path
+                local rel = entry:sub(#cwd + 2)  -- +2 to skip the trailing /
+                return {
+                  value = entry,
+                  display = rel,
+                  ordinal = rel,
+                }
+              end,
+            }
           ),
           sorter = require('telescope.config').values.generic_sorter({}),
           previewer = require('telescope.config').values.file_previewer({}),

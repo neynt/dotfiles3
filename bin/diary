@@ -19,6 +19,15 @@ format_date() {
   fi
 }
 
+dow_for_date() {
+  local date_str=$1
+  if [[ "$is_macos" == "true" ]]; then
+    date -j -f "%Y-%m-%d" "$date_str" "+%a"
+  else
+    date -d "$date_str" "+%a"
+  fi
+}
+
 parse_date() {
   local input=$1
   case "$input" in
@@ -51,6 +60,14 @@ parse_date() {
       exit 1
       ;;
   esac
+}
+
+# Extract a single day's content from a monthly file (without the ## header)
+extract_day() {
+  local month_file=$1
+  local date_str=$2
+  [[ -f "$month_file" ]] || return
+  sed -n "/^## $date_str\( \|$\)/,/^## /{/^## $date_str\( \|$\)/d;/^## /d;p}" "$month_file"
 }
 
 specified_date=""
@@ -86,21 +103,19 @@ yyyy="${yyyymmdd%%-*}"
 mm="${yyyymmdd:5:2}"
 dd="${yyyymmdd:8:2}"
 
-mkdir -p "$yyyy"
+month_file="$yyyy-$mm.md"
 
-today_file="$yyyy/$yyyy-$mm-$dd.md"
-
-# Initialize new diary file with path to last diary entry if it doesn't exist
-if [[ ! -f "$today_file" ]]; then
-  # Find the most recent diary file in the year directories
-  last_file=$(find "$diary_root" -path "$diary_root/????/*.md" -name "????-??-??.md" -type f | sort | tail -1)
-  if [[ -n "$last_file" ]]; then
-    prefix="$diary_root/$(dirname "$today_file")/"
-    echo "Last entry: ${last_file#$prefix}" > "$today_file"
+# Add today's header if it doesn't already exist in the monthly file
+if ! grep -qE "^## $yyyymmdd( |$)" "$month_file" 2>/dev/null; then
+  # Add blank line before header if file already has content
+  if [[ -f "$month_file" ]] && [[ -s "$month_file" ]]; then
+    echo "" >> "$month_file"
   fi
+  echo "## $yyyymmdd ($(dow_for_date "$yyyymmdd"))" >> "$month_file"
+  echo "" >> "$month_file"
 fi
 
-$EDITOR "$today_file"
+$EDITOR '+normal G' "$month_file"
 
 blue="\033[1;34m"
 green="\033[1;32m"
@@ -108,19 +123,23 @@ nocolor="\033[0m"
 (
   cat prompt.md;
   for days_ago in 365 90 30 7 2 1 0; do
-    yyyymmdd=$(format_date $((now - 3600 * 4 - 86400 * days_ago)))
-    file="${yyyymmdd%%-*}/$yyyymmdd.md"
-    if [[ -f "$file" ]]; then
+    past_date=$(format_date $((now - 3600 * 4 - 86400 * days_ago)))
+    past_month_file="${past_date:0:7}.md"
+    day_content=$(extract_day "$past_month_file" "$past_date")
+    if [[ -n "$day_content" ]]; then
+      word_count=$(echo "$day_content" | wc -w)
       echo
-      printf "${green}## $yyyymmdd ($days_ago days ago, %d words)${nocolor}\n" "$(wc -w < "$file")"
+      printf "${green}## $past_date ($days_ago days ago, %d words)${nocolor}\n" "$word_count"
       echo
-      cat "$file"
+      echo "$day_content"
       echo
     fi
   done
 ) | less -r
 
-if [[ -f "$today_file" ]]; then
+today_content=$(extract_day "$month_file" "$yyyymmdd")
+if [[ -n "$today_content" ]]; then
+  word_count=$(echo "$today_content" | wc -w)
   echo
-  printf "${blue}You wrote %d words today.${nocolor}\n" "$(wc -w < "$today_file")"
+  printf "${blue}You wrote %d words today.${nocolor}\n" "$word_count"
 fi

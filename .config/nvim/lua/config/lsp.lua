@@ -33,36 +33,50 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- helper for custom root_dir detection
-local function package_json_with_marker(marker)
-  return function(path)
-    local has_marker = false
-    return vim.fs.root(path, function(name, dir_path)
-      if name == marker then
-        has_marker = true
-      end
-      if name == 'package.json' and has_marker then
-        return true
-      end
-    end)
-  end
-end
-
 -- configure LSP servers
-vim.lsp.config.pyright = {}
-vim.lsp.config.rust_analyzer = {}
-vim.lsp.config.nimls = {}
-vim.lsp.config.ocamllsp = {}
-vim.lsp.config.svelte = {}
-
--- typescript with custom root_dir
-vim.lsp.config.ts_ls = {
-  root_dir = package_json_with_marker('.ts-root'),
+vim.lsp.config.pyright = {
+  cmd = { 'pyright-langserver', '--stdio' },
+  filetypes = { 'python' },
+  root_markers = { 'pyproject.toml', 'setup.py', 'requirements.txt', '.git' },
 }
 
--- deno with custom root_dir
+vim.lsp.config.rust_analyzer = {
+  cmd = { 'rust-analyzer' },
+  filetypes = { 'rust' },
+  root_markers = { 'Cargo.toml', '.git' },
+}
+
+vim.lsp.config.ts_ls = {
+  cmd = { 'typescript-language-server', '--stdio' },
+  filetypes = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
+  root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' },
+}
+
 vim.lsp.config.denols = {
-  root_dir = package_json_with_marker('.deno-root'),
+  cmd = { 'deno', 'lsp' },
+  filetypes = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
+  root_dir = function(path)
+    -- only activate denols if deno.json exists (avoid conflict with ts_ls)
+    return vim.fs.root(path, { 'deno.json', 'deno.jsonc' })
+  end,
+}
+
+vim.lsp.config.svelte = {
+  cmd = { 'svelteserver', '--stdio' },
+  filetypes = { 'svelte' },
+  root_markers = { 'svelte.config.js', 'package.json', '.git' },
+}
+
+vim.lsp.config.ocamllsp = {
+  cmd = { 'ocamllsp' },
+  filetypes = { 'ocaml', 'ocaml.menhir', 'ocaml.interface', 'ocaml.ocamllex', 'reason', 'dune' },
+  root_markers = { 'dune-project', 'dune-workspace', '.git' },
+}
+
+vim.lsp.config.nimls = {
+  cmd = { 'nimlsp' },
+  filetypes = { 'nim' },
+  root_markers = { '*.nimble', '.git' },
 }
 
 -- enable all servers

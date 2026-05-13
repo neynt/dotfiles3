@@ -22,7 +22,7 @@
     text-shadow: inherit;
     transition: none;
 }
-#clock, #cpu, #memory, #battery, #tray, #pulseaudio {
+#clock, #cpu, #memory, #battery, #tray, #pulseaudio, #custom-brightness {
     padding: 0 10px;
     color: #aaaaaa;
 }
